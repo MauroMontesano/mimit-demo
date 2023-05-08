@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-body">
+    <div class="h3 card-title" *ngIf="title">{{ title | translate }}</div>
+    <p class="card-text"><ng-content></ng-content></p>
+    <ng-container *ngIf="actions">
+      <a
+        *ngFor="let action of actions"
+        [title]="action.name"
+        (click)="action.action($event)"
+        class="me-2"
+        [class.disabled]="action.disabled"
+        ><i *ngIf="action.icon" class="fa-regular fa-{{ action.icon }} me-2"></i>{{ action.name }}</a
+      >
+    </ng-container>
+  </div>
+</div>
+
+<!-- 
+<div class="card py-4">
+  <div class="card-header py-3" *ngIf="title || headerActions">
+    <div class="row">
+      <div class="h2 col-xs-10 pb-4 flex-grow-1" *ngIf="title">
+        {{ title | translate }}
+      </div>
+      <div *ngIf="headerActions">
+        <button
+          *ngFor="let action of headerActions"
+          class="btn btn-link"
+          type="button"
+          [title]="action.name"
+          [disabled]="action.disabled"
+          (click)="action.action($event)"
+        >
+          <span class="fa-regular fa-{{ action.icon }}"></span>
+        </button>
+        <button class="btn btn-link" type="button" (click)="manageClick()">
+          <span class="fa-regular fa-chevron-down" [hidden]="isOpen" *ngIf="closable"></span>
+          <span class="fa-regular fa-chevron-up" [hidden]="!isOpen" *ngIf="closable"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" [hidden]="!isOpen">
+    <ng-content></ng-content>
+  </div>
+  <div class="card-footer text-right" [hidden]="!isOpen" *ngIf="actions">
+    <button
+      *ngFor="let action of actions"
+      class="btn btn-{{ mapActionType(action.type) }} me-3"
+      type="button"
+      [title]="action.name"
+      [disabled]="action.disabled"
+      (click)="action.action($event)"
+    >
+      <i *ngIf="action.icon" class="fa-regular fa-{{ action.icon }}"></i>
+      {{ action.name }}
+    </button>
+  </div>
+</div> -->

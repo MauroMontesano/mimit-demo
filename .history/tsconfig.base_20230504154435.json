@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@engular/base-models": ["libs/engular/base-models/src/index.ts"],
+      "@engular/base-page": ["libs/engular/base-page/src/index.ts"],
+      "@engular/boostrap-utils": ["libs/engular/boostrap-utils/src/index.ts"],
+      "@engular/core-services": ["libs/engular/core-services/src/index.ts"],
+      "@engular/forms-base": ["libs/engular/forms-base/src/index.ts"],
+      "@engular/forms-errors": ["libs/engular/forms-errors/src/index.ts"],
+      "@engular/layout-base": ["libs/engular/layout-base/src/index.ts"],
+      "@engular/layout-search": ["libs/engular/layout-search/src/index.ts"],
+      "@engular/layout-utils": ["libs/engular/layout-utils/src/index.ts"],
+      "@engular/logger": ["libs/engular/logger/src/index.ts"],
+      "@engular/menu": ["libs/engular/menu/src/index.ts"],
+      "@engular/security": ["libs/engular/security/src/index.ts"],
+      "@mimit/core": ["libs/core/src/index.ts"],
+      "@mimit/shared": ["libs/shared/src/index.ts"],
+      "@webkit/base-pages": ["libs/webkit/base-pages/src/index.ts"],
+      "@webkit/form": ["libs/webkit/form/src/index.ts"],
+      "@webkit/layout": ["libs/webkit/layout/src/index.ts"],
+      "@webkit/shared": ["libs/webkit/shared/src/index.ts"],
+      "@webkit/stories-utils": ["libs/webkit/stories-utils/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

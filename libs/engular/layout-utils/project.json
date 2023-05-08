@@ -1,0 +1,40 @@
+{
+  "name": "engular-layout-utils",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/layout-utils/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/layout-utils"],
+      "options": {
+        "project": "libs/engular/layout-utils/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/layout-utils/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/layout-utils/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/layout-utils"],
+      "options": {
+        "jestConfig": "libs/engular/layout-utils/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/layout-utils/src/**/*.ts", "libs/engular/layout-utils/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

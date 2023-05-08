@@ -1,0 +1,85 @@
+<div class="mb-3">
+  <div [ngClass]="{ 'input-group': tooltip || actions }">
+    <div [ngClass]="{ 'form-floating': tooltip || actions }">
+      <label *ngIf="_label && _label !== '' && !tooltip && !actions" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}</label
+      >
+      <select
+        #input
+        class="form-select"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        [disabled]="disabled || readonly || formControl.pending || !options || options['length'] === 0"
+        [multiple]="multi"
+        [attr.disabled]="disabled || readonly ? '' : null"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && formControl.touched,
+          disabled: disabled || readonly,
+          'is-warning': warningMessage
+        }"
+        [title]="placeholder! | translate"
+        (change)="onChangeSelect($event)"
+      >
+        <option
+          *ngIf="!multi && nullable"
+          attr.title="{{ placeholder }}"
+          title="{{ placeholder }}"
+          [value]="undefined"
+          attr.data-content="<span class='text'> {{ 'Annulla' | translate }} </span><span class='reset-label'></span>"
+        >
+          {{ placeholder! | translate }}
+        </option>
+
+        <ng-container *ngIf="groupsOfOptionsKeys">
+          <ng-container *ngFor="let key of groupsOfOptionsKeys">
+            <optgroup label="{{ key }}">
+              <option
+                *ngFor="let option of groupsOfOptions[key]; let i = index"
+                [value]="option[fieldForId || 'id']"
+                attr.data-content="<span class='select-pill'>{{ option | deepObject: fieldForOptionElement }} </span>"
+              >
+                {{ option | deepObject: fieldForOptionElement }}
+              </option>
+            </optgroup>
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="!groupsOfOptionsKeys">
+          <option
+            *ngFor="let option of _options; let i = index"
+            [value]="option[fieldForId || 'id']"
+            attr.data-content="<span class='select-pill'>{{ option | deepObject: fieldForOptionElement }} </span>"
+          >
+            {{ option | deepObject: fieldForOptionElement }}
+          </option>
+        </ng-container>
+      </select>
+      <label *ngIf="(_label && _label !== '' && tooltip) || actions" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}</label
+      >
+    </div>
+    <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+    <ng-container *ngIf="actions">
+      <button
+        (click)="action.action($event)"
+        *ngFor="let action of actions"
+        [disabled]="action.disabled"
+        [title]="action.name"
+        class="btn btn-primary"
+        type="button"
+      >
+        <ng-container *ngIf="!action.icon">{{ action.name }}</ng-container>
+        <span *ngIf="action.icon" class="fa-solid fa-{{ action.icon }}"></span>
+      </button>
+    </ng-container>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required && !disabled"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</div>

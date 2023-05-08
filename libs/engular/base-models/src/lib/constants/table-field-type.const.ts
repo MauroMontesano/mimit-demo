@@ -1,0 +1,12 @@
+export enum TableFieldTypeConstants {
+  NORMAL = 'NORMAL',
+  LINK = 'LINK',
+  NUMBER = 'NUMBER',
+  DATE = 'DATE',
+  PROGRESS = 'PROGRESS',
+  ACTIONS = 'TEXT',
+  TEXT_ARRAY = 'TEXT_ARRAY',
+  CHECKBOX = 'CHECKBOX',
+  RADIO = 'RADIO',
+  TEMPLATE = 'TEMPLATE',
+}

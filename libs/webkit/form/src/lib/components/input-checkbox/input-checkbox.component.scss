@@ -1,0 +1,13 @@
+eaf-input-checkbox {
+    &.light {
+        legend {
+            display: none;
+        }
+        fieldset {
+            border: 0px;
+        }
+    }
+    .float-right {
+      float: right;
+    }
+}

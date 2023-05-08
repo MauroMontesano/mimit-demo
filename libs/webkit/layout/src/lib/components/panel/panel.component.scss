@@ -1,0 +1,9 @@
+.wk-siae{
+    div.panel.disable{
+        &,& h2, & panel-body{
+            color: #D3DAE3;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    }
+}

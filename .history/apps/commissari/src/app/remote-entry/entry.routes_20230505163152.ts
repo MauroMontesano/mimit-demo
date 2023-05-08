@@ -1,0 +1,10 @@
+import { Route } from "@angular/router";
+import { FormComponent } from "./components/form/form.component";
+import { TableComponent } from "./components/table/table.component";
+import { RemoteEntryComponent } from "./entry.component";
+
+export const remoteRoutes: Route[] = [
+  { path: "", component: RemoteEntryComponent },
+  { path: "form", component: FormComponent },
+  { path: "xtable", component: TableComponent },
+];

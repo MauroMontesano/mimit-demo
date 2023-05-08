@@ -1,0 +1,96 @@
+<!-- <div
+  #ref
+  class="{{ _size.toClass() }} form-group input-group-TODO bootstrap-select-wrapper"
+  [ngClass]="{ 'select-multiple show-tick': multi, 'xselect-multiple': filterable }"
+> -->
+<div
+  class="form-group"
+  [ngClass]="{
+    'is-invalid': !formControl.valid && !formControl.disabled && formControl.touched,
+    'disabled readonly': disabled || readonly || formControl.pending || !options || options['length'] === 0,
+    'cancel-option': !formControl.value && formControl.touched
+  }"
+>
+  <select
+    #input
+    (change)="onChangeSelect($event)"
+    (click)="onChangeSelect($event)"
+    [disabled]="disabled || readonly || formControl.pending || !options || options['length'] === 0"
+    [multiple]="multi"
+    [attr.disabled]="disabled || readonly"
+    [attr.data-multiple-separator]="multi ? '  ' : null"
+    [attr.data-live-search]="filterable ? true : null"
+    [attr.data-live-search-placeholder]="filterable ? 'Cerca opzioni' : null"
+    [ngClass]="{
+      'is-invalid': !formControl.valid && !formControl.disabled && formControl.touched,
+      disabled: disabled || readonly,
+      'is-warning': warningMessage
+    }"
+    [title]="placeholder! | translate"
+    id="{{ id + extId }}"
+  >
+    <option
+      *ngIf="!multi"
+      attr.title="{{ placeholder }}"
+      title="{{ placeholder }}"
+      [value]="undefined"
+      attr.data-content="<span class='text'> {{ 'Annulla' | translate }} </span><span class='reset-label'></span>"
+    >
+      {{ placeholder! | translate }}
+    </option>
+
+    <ng-container *ngIf="groupsOfOptionsKeys">
+      <ng-container *ngFor="let key of groupsOfOptionsKeys">
+        <optgroup label="{{ key }}">
+          <option
+            *ngFor="let option of groupsOfOptions[key]; let i = index"
+            [value]="option[fieldForId || 'id']"
+            attr.data-content="<span class='select-pill'>{{ option | deepObject: fieldForOptionElement }} </span>"
+          >
+            {{ option | deepObject: fieldForOptionElement }}
+          </option>
+        </optgroup>
+      </ng-container>
+    </ng-container>
+
+    <ng-container *ngIf="!groupsOfOptionsKeys">
+      <option
+        *ngFor="let option of _options; let i = index"
+        [value]="option[fieldForId || 'id']"
+        attr.data-content="<span class='select-pill'>{{ option | deepObject: fieldForOptionElement }} </span>"
+      >
+        {{ option | deepObject: fieldForOptionElement }}
+      </option>
+    </ng-container>
+  </select>
+
+  <label *ngIf="_label && _label !== ''" class="control-label active" for="{{ id + extId }}">
+    {{ _label | translate }}
+  </label>
+
+  <!-- QUI VA MESSO IL LOADING -->
+  <!-- <eaf-input-loading [loading]="loading && !options"> </eaf-input-loading> -->
+
+  <span class="warning-feedback" *ngIf="warningMessage">{{ warningMessage }}</span>
+  <eaf-input-error [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+</div>
+
+<div
+  *ngIf="actions || tooltip"
+  class="input-group-append border-radius-left-0"
+  [ngClass]="{ readonly: disabled || readonly || formControl.pending || !options || options['length'] === 0 }"
+>
+  <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  <button
+    (click)="action.action($event)"
+    *ngFor="let action of actions"
+    [disabled]="action.disabled"
+    [title]="action.name"
+    class="btn btn-{{ action.type | lowercase }}"
+    type="button"
+  >
+    <ng-container *ngIf="!action.icon">{{ action.name }}</ng-container>
+    <span *ngIf="action.icon" class="fa-regular fa-{{ action.icon }}"></span>
+  </button>
+</div>
+<!-- </div> -->

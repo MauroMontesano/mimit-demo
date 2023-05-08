@@ -1,0 +1,32 @@
+{
+  "name": "webkit-layout",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/webkit/layout/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/webkit/layout"],
+      "options": {
+        "project": "libs/webkit/layout/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/webkit/layout/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/webkit/layout/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/webkit/layout/src/**/*.ts", "libs/webkit/layout/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

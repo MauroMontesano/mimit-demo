@@ -1,0 +1,40 @@
+{
+  "name": "engular-core-services",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/core-services/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/core-services"],
+      "options": {
+        "project": "libs/engular/core-services/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/core-services/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/core-services/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/core-services"],
+      "options": {
+        "jestConfig": "libs/engular/core-services/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/core-services/src/**/*.ts", "libs/engular/core-services/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

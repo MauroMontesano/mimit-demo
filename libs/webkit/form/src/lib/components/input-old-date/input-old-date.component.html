@@ -1,0 +1,50 @@
+<!-- <div class="{{ _size.toClass() }} form-group input-group-TODO "> -->
+<div class="form-group">
+  <!-- Input -->
+  <input
+    #input
+    type="text"
+    id="{{ id + extId }}"
+    class="form-control datepicker {{ _sizeInput.toClass() }}"
+    placeholder="{{ placeholder | translate }}"
+    (paste)="onChange($event)"
+    (keyup)="onChange($event)"
+    (change)="onChange($event)"
+    [ngClass]="{
+      'is-invalid': !formControl.valid && !formControl.disabled && formControl.touched,
+      'is-warning': warningMessage
+    }"
+    [required]="required"
+    [readonly]="readonly || disabled"
+    [disabled]="disabled"
+    title="{{ _label && _label !== '' ? _label : '' }}"
+    [attr.aria-label]="_label && _label !== '' ? 'label' : 'Valore'"
+  />
+  <!-- Label -->
+  <label *ngIf="_label && _label !== ''" class="control-label active {{ _sizeLabel.toClass() }}" for="{{ id + extId }}">
+    {{ _label | translate }}
+  </label>
+  <!-- Required -->
+  <small *ngIf="required" class="text-truncate form-text text-muted is-invalid" title="obbligatorio">{{
+    'LABEL.REQUIRED' | translate
+  }}</small>
+  <!-- Warning -->
+  <span *ngIf="warningMessage" class="text-truncate warning-feedback d-block">{{ warningMessage }}</span>
+  <!-- Feedback-->
+  <eaf-input-error [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+</div>
+
+<div *ngIf="actions || tooltip" class="input-group-append" [ngClass]="{ readonly: readonly }">
+  <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  <button
+    *ngFor="let action of actions"
+    class="btn btn-{{ action.type | lowercase }}"
+    type="button"
+    [title]="action.name"
+    [disabled]="action.disabled"
+    (click)="action.callAction($event)"
+  >
+    <span [ngClass]="action.icon ? 'fa-regular fa-' + action.icon : ''">{{ action.name }}</span>
+  </button>
+</div>
+<!-- </div> -->

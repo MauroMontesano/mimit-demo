@@ -1,0 +1,27 @@
+.wk-eaf eaf-stepper {
+	.stepper-wrapper .stepper-menu.collapse-nav {
+		display: none;
+	}
+	
+	@media (min-width: 62.1rem) {
+		.stepper-wrapper .stepper-menu {
+			display: block;
+		}
+	}
+	
+	@media (max-width: 62rem) {
+		.stepper-wrapper .stepper-menu.collapse-nav {
+			display: block;
+		}
+	
+		.stepper-wrapper .stepper-menu {
+			display: block;
+		}
+	}
+	
+	@media screen and (-ms-high-constrast:active), all and (-ms-high-contrast:none) {
+		.media-body {
+			display: block;
+		}
+	}
+}

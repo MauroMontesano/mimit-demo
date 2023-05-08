@@ -1,0 +1,40 @@
+.footer {
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+
+.footerADM1 {
+  background-color: #295c84;
+}
+
+.footerADM2 {
+  background-color: #204c70;
+
+  a {
+    color: white;
+  }
+
+  a:hover {
+    color: #bfd8ed;
+  }
+}
+
+eaf-panel {
+  // position: fixed;
+  // bottom: 2rem;
+  // left: 50%;
+  color:black;
+  .card {
+    border-left: 6px solid rgb(41, 92, 132);
+  }
+  .card-text {
+    width: 95%;
+  }
+  .close-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

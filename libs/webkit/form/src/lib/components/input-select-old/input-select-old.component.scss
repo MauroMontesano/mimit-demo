@@ -1,0 +1,49 @@
+.wk-eaf eaf-input-select  .form-group.input-group .input-group-append .btn{
+  height: calc(1.5em + 9px + 1.376rem);
+}
+eaf-input-select {
+  .dropdown-toggle.disabled{
+    background-color: #EFF0F1 !important;
+    border-color: #EFF0F1 !important;
+    color: #1C2024 !important;
+    -webkit-box-shadow: 0px 2px 0px 0px #EFF0F1 !important;
+            box-shadow: 0px 2px 0px 0px #EFF0F1 !important;
+  }
+  .bs-searchbox .form-control {
+    padding-top: 0px;
+  }
+
+  .select-pill {
+    color: #1C2024 !important;
+  }
+
+  li.disabled {
+    display: none !important;
+  }
+
+  .dropdown-menu.show {
+    z-index: 2000;
+  }
+
+  .form-group {
+    max-width: 100%;
+    min-width: 4.5em;
+  }
+
+  .input-group-append.readonly,
+  .input-group-prepend.readonly {
+    background-color: var(--light);
+    .input-group-text {
+      border-color: var(--light);
+    }
+  }
+
+  /* fix per select advanced */
+  .border-right-0 button {
+    border-right: 0 !important;
+  }
+
+  .border-left-0 button {
+    border-left: 0 !important;
+  }
+}

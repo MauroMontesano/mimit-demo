@@ -1,0 +1,31 @@
+<!-- 
+	THIS IS ONLY A EXAMPLE TO USE AS MAPPING REFERENCE
+-->
+<!--
+	<span role="status">
+	<eng-input-loading [loading]="showSpinner"> </eng-input-loading>
+
+	<small
+		*ngIf="message"
+		class="pulsantiera__small"
+		[ngClass]="{
+			error:
+				message.type === MESSAGE_TYPE.ERROR_MANAGED ||
+				message.type === MESSAGE_TYPE.ERROR_BLOCK ||
+				message.type === MESSAGE_TYPE.ERROR_AUTHENTICATION
+		}"
+		>{{ message.message | translate: message.i18NPlaceHolder }}</small
+	>
+</span>
+<eng-button
+	[isLink]="isLink"
+	[icon]="icon"
+	[size]="sizeButton"
+	[color]="colorButton"
+	[disabled]="disabledButton || showSpinner"
+	(onClick)="buttonClicked()"
+	[title]="title"
+	[ext-id]="extId"
+>
+</eng-button>
+-->

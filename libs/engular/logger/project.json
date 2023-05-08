@@ -1,0 +1,40 @@
+{
+  "name": "engular-logger",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/logger/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/logger"],
+      "options": {
+        "project": "libs/engular/logger/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/logger/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/logger/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/logger"],
+      "options": {
+        "jestConfig": "libs/engular/logger/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/logger/src/**/*.ts", "libs/engular/logger/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

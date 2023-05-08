@@ -1,0 +1,58 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="{{ id }}"
+  tabindex="-1"
+  role="dialog"
+  [attr.aria-labelledby]="id + '_myModalLabel'"
+  tabindex="-1"
+>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    [ngClass]="{ 'modal-lg': size === 'lg', 'modal-sm': size === 'sm', 'modal-xl': size === 'xl' }"
+    role="document"
+  >
+    <div class="modal-content" id="{{ id }}_myModalLabel">
+      <div *ngFor="let t of templateStack; let i = index" [hidden]="t !== template">
+        <!-- <div
+      class="modal-dialog"
+      [ngClass]="{ 'modal-lg': optionsStack[i]?.size === 'lg', 'modal-sm': optionsStack[i]?.size === 'sm' }"
+      role="document"
+    > -->
+        <ng-container *ngIf="!customTemplate">
+          <div class="modal-header">
+            <eaf-actions-dropdown
+              *ngIf="optionsStack[i]?.headerActions"
+              [actions]="optionsStack[i]?.headerActions"
+              [maxAction]="3"
+              [labeledMenu]="true"
+            ></eaf-actions-dropdown>
+            <span class="h4 modal-title text-primary" id="{{ id }}_myModalLabel_title">{{
+              optionsStack[i]?.title | translate
+            }}</span>
+          </div>
+        </ng-container>
+
+        <div [ngClass]="{ 'modal-body': !customTemplate }">
+          <ng-container *ngTemplateOutlet="t"></ng-container>
+        </div>
+
+        <ng-container *ngIf="!customTemplate">
+          <div class="modal-footer" *ngIf="optionsStack[i]?.buttons && optionsStack[i]?.buttons.length > 0">
+            <eaf-button
+              *ngFor="let button of optionsStack[i]?.buttons"
+              class="me-2"
+              [isLink]="button.type === 'LINK'"
+              [icon]="button.icon"
+              [disabled]="button.disabled"
+              (click)="button.action(button.action, button)"
+              [title]="button.name"
+              [color]="button.type"
+            >
+            </eaf-button>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

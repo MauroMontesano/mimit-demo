@@ -1,0 +1,54 @@
+<div class="mb-3">
+  <div [ngClass]="{ 'input-group': tooltip }">
+    <div [ngClass]="{ 'form-floating': tooltip }">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}</label
+      >
+
+      <input
+        #input
+        type="text"
+        placeholder="{{ placeholder! | translate }}"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        class="form-control form-control-{{ inputSize }}"
+        (paste)="onChange($event)"
+        (keyup)="onChange($event)"
+        [readonly]="readonly"
+        [disabled]="disabled"
+        title="{{ _label && _label !== '' ? _label : '' }}"
+        [attr.maxlength]="maxLength"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-valid': formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)
+        }"
+      />
+      <label *ngIf="_label && _label !== '' && tooltip" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}</label
+      >
+    </div>
+    <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</div>
+
+<!-- <ng-container *ngIf="actions">
+      <button
+        *ngFor="let action of actions"
+        class="btn btn-{{ action.type | lowercase }}"
+        type="button"
+        [title]="action.name"
+        [disabled]="action.disabled"
+        (click)="action.action($event)"
+      >
+        <span class="fa-regular fa-{{ action.icon }}"></span>
+      </button>
+    </ng-container> -->

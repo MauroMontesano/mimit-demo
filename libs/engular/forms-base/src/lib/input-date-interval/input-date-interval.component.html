@@ -1,0 +1,61 @@
+<div
+  class="{{ _size.toBootstrapClass() }}  form-group"
+  [ngClass]="{ 'has-error': !formControl.valid && !formControl.disabled, 'has-warning': warningMessage }"
+>
+  <div class="row">
+    <!-- etichetta -->
+    <div class="{{ _sizeLabel.toBootstrapClass() }}">
+      <p class="control-label"><span *ngIf="required">*</span>{{ _label | translate }}</p>
+      <!-- popover -->
+      <eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+    </div>
+
+    <!-- inputs -->
+    <div class="{{ _sizeInput.toBootstrapClass() }} input-group-TODO input-date">
+      <!-- input "DAL" -->
+      <label class="control-label input-group-addon" for="{{ id + extId + '-from' }}">{{
+        fromLabel | translate
+      }}</label>
+      <input
+        #input
+        type="text"
+        id="{{ id + extId + '-from' }}"
+        class="form-control datetimepicker"
+        title="From"
+        placeholder="{{ placeholder | translate }}"
+        (paste)="onChangeDDate($event, 'from')"
+        (keyup)="onChangeDDate($event, 'from')"
+        (change)="onChangeDDate($event, 'from')"
+        (blur)="onChangeDDate($event, 'from')"
+        [readonly]="readonly || disabled"
+      />
+
+      <label class="control-label input-group-addon" for="{{ id + extId + '-to' }}">{{ toLabel | translate }}</label>
+
+      <input
+        #input2
+        type="text"
+        id="{{ id + extId + '-to' }}"
+        class="form-control datetimepicker"
+        title="From"
+        placeholder="{{ placeholder | translate }}"
+        (paste)="onChangeDDate($event, 'to')"
+        (keyup)="onChangeDDate($event, 'to')"
+        (change)="onChangeDDate($event, 'to')"
+        (blur)="onChangeDDate($event, 'to')"
+        [readonly]="readonly || disabled"
+      />
+
+      <!-- /.input-group-TODO -->
+
+      <div class="{{ _sizeMessages.toBootstrapClass() }}">
+        <small class="help-block" id="{{ id + extId }}_help-block" role="alert">
+          <span class="help-block--warning" *ngIf="warningMessage">{{ warningMessage }}</span>
+          <eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+        </small>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.form-group -->
+</div>

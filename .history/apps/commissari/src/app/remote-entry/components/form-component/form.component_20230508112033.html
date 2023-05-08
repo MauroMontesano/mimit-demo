@@ -1,0 +1,74 @@
+<eaf-form-section>
+  <eaf-form-group title="Iscrizione Commissario"
+    ><eaf-input-text
+      label="Nome"
+      size="12|12|6|6"
+      ext-id="nome"
+      [formControl]="getFormControl('nome')"
+      [error-labels]="errorLabels['nome']"
+    ></eaf-input-text>
+    <eaf-input-text
+      label="Cognome"
+      size="12|12|6|6"
+      ext-id="cognome"
+      [formControl]="getFormControl('cognome')"
+      [error-labels]="errorLabels['cognome']"
+    ></eaf-input-text>
+    <eaf-input-text
+      label="Codice Fiscale"
+      size="12|12|6|6"
+      ext-id="codiceFiscale"
+      [formControl]="getFormControl('codiceFiscale')"
+      [error-labels]="errorLabels['codiceFiscale']"
+    ></eaf-input-text>
+    <eaf-input-text
+      label="PEC"
+      size="12|12|6|6"
+      ext-id="PEC"
+      [formControl]="getFormControl('PEC')"
+      [error-labels]="errorLabels['PEC']"
+    ></eaf-input-text>
+    <eaf-input-text
+      label="Domicilio professionale"
+      size="12|12|6|6"
+      ext-id="domicilioProfessionale"
+      [formControl]="getFormControl('domicilioProfessionale')"
+      [error-labels]="errorLabels['domicilioProfessionale']"
+    ></eaf-input-text>
+    <eaf-input-select
+    label="Ordine Professionale"
+    size="12|12|6|6"
+    ext-id="ordineProfessionale"
+    [options]="optionsOrdineProfessionale"
+    [formControl]="getFormControl('ordineProfessionale')"
+    [error-labels]="errorLabels['ordineProfessionale']"
+    field-for-id="descrizione"
+    field-for-option="descrizione"
+  ></eaf-input-select>
+    <eaf-input-number
+      label="N° Incarichi"
+      size="12|12|6|6"
+      ext-id="numeroIncarichi"
+      [formControl]="getFormControl('numeroIncarichi')"
+      [error-labels]="errorLabels['numeroIncarichi']"
+    ></eaf-input-number>
+    <eaf-input-select
+    label="Livello Esperienza"
+    size="12|12|6|6"
+    ext-id="livelloEsperienza"
+    [options]="optionsLivelloEsperienza"
+    [formControl]="getFormControl('livelloEsperienza')"
+    [error-labels]="errorLabels['livelloEsperienza']"
+    field-for-id="descrizione"
+    field-for-option="descrizione"
+  ></eaf-input-select>
+  </eaf-form-group>
+  <div class="my-3 d-flex justify-content-between">
+    <eaf-button onclick="history.back()" title="Indietro"></eaf-button>
+    <eaf-button
+      [disabled]="form.invalid"
+      color="primary"
+      (click)="onSubmit()"
+      [title]="isNewInsert() ? 'Inserisci' : 'Modifica'"
+    ></eaf-button></div
+></eaf-form-section>

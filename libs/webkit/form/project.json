@@ -1,0 +1,72 @@
+{
+  "name": "webkit-form",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/webkit/form/src",
+  "prefix": "eaf",
+  "generators": {
+    "style": "scss",
+    "skipTests": true,
+    "viewEncapsulation": "None",
+    "changeDetection": "Default",
+    "export": true
+  },
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/webkit/form"],
+      "options": {
+        "project": "libs/webkit/form/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/webkit/form/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/webkit/form/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/webkit/form/src/**/*.ts", "libs/webkit/form/src/**/*.html"]
+      }
+    },
+    "storybook": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/webkit/form/.storybook"
+        },
+        "projectBuildConfig": "webkit-form:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "uiFramework": "@storybook/angular",
+        "outputPath": "dist/storybook/webkit-form",
+        "config": {
+          "configFolder": "libs/webkit/form/.storybook"
+        },
+        "projectBuildConfig": "webkit-form:build-storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,11 @@
+<ng-container *ngFor="let item of errors">
+  <!-- <small
+    *ngIf="item.checkFn(control)"
+    class="text-truncate invalid-feedback"
+    [title]="item.message | translate: item.messageParams"
+    >{{ item.message | translate: item.messageParams }}</small
+  > -->
+  <div *ngIf="item.checkFn(control)" id="{{ id + '_errorMessage' }}" class="invalid-feedback" role="alert">
+    {{ item.message | translate: item.messageParams }}
+  </div>
+</ng-container>

@@ -1,0 +1,45 @@
+<div>
+  <nav aria-label="naviga tra le pagine" *ngIf="_totalPage && _totalPage > 1">
+    <ul class="pagination">
+      <li id="{{ id }}_{{ id }}_previous" [ngClass]="{ disabled: pageActive === 0 }" class="page-item">
+        <a
+          class="btn btn-link page-link"
+          (click)="changePage(pageActive - 1)"
+          aria-label="Precedente"
+          [attr.aria-controls]="id"
+          tabindex="0"
+          title="Vai alla pagina precedente"
+        >
+          <span class="fa fa-chevron-left" aria-hidden="true" tabindex="-1"></span>
+        </a>
+      </li>
+      <li [ngClass]="{ active: page - 1 === pageActive }" class="page-item" *ngFor="let page of _totalPageSlice">
+        <a
+          class="btn btn-link page-link"
+          title="Vai alla pagina precedente"
+          (click)="changePage(page - 1)"
+          [attr.aria-controls]="id"
+          tabindex="0"
+        >
+          {{ page }}<span *ngIf="page - 1 === pageActive" class="sr-only">(corrente)</span></a
+        >
+      </li>
+      <li
+        aria-label="Successiva"
+        id="{{ id }}_{{ id }}_next"
+        [ngClass]="{ disabled: pageActive === _totalPage - 1 }"
+        class="page-item"
+      >
+        <a
+          class="btn btn-link page-link"
+          title="Vai alla pagina successiva"
+          (click)="changePage(pageActive + 1)"
+          [attr.aria-controls]="id"
+          tabindex="0"
+        >
+          <span class="fa fa-chevron-right" aria-hidden="true" tabindex="-1"></span
+        ></a>
+      </li>
+    </ul>
+  </nav>
+</div>

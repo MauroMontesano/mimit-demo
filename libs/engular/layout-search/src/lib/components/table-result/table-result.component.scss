@@ -1,0 +1,45 @@
+
+
+DISATTIVATOeng-table-result {
+    .accordionTab .tabella {
+        position: relative;
+    }
+
+    .eng-filter-type-actions {
+        .thLabel::after {
+            display: none;
+        }
+    }
+
+    .eng-filter-type-radio {
+        .thLabel::after {
+            display: none;
+        }
+    }
+
+    .eng-filter-type-template {
+        .thLabel::after {
+            display: none;
+        }
+    }
+
+    .pageSizeContainer {
+        // border: 1px solid red;
+        text-align: right;
+
+        .pageSizeFormControl {
+            display: inline-block;
+
+            label {
+                display: inline-block;
+                text-align: right;
+
+                select.form-control {
+                    display: inline-block;
+                    width: 5em;
+                    margin-left: 1em;
+                }
+            }
+        }
+    }
+}

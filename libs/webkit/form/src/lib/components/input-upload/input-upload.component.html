@@ -1,0 +1,18 @@
+<input
+  type="file"
+  class="file-input"
+  [accept]="acceptedTypes"
+  [multiple]="multiple"
+  (change)="onFileSelected($event)"
+  #fileUpload
+/>
+
+<div class="form-group file-upload">
+  <div class="form-control">
+    {{ fileName || placeholder }}
+  </div>
+</div>
+
+<div class="input-group-append mt-1">
+  <eaf-button title="Scegli file" color="primary" (click)="fileUpload.click()"> </eaf-button>
+</div>

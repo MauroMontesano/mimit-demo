@@ -1,0 +1,174 @@
+<div><a skipTo="main">Vai a main</a></div>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+  <span class="navbar-brand">
+    <span style="margin-right: 1em"><img src="./images/logoADM.jpg" style="height: 60px" alt="logoADM" /></span>
+    <span class="navbar-brand-text h2">{{ title }}</span>
+  </span>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <div class="dropdown">
+          <button
+            aria-expanded="false"
+            [attr.aria-haspopup]="userDropdownActions ? true : false"
+            class="btn nav-link px-2"
+            [ngClass]="{ 'dropdown-toggle': userDropdownActions }"
+            [attr.data-toggle]="userDropdownActions ? 'dropdown' : null"
+            id="headerDropdown"
+            title="Navigazione utente"
+            type="button"
+          >
+            <span class="fas fa-user-circle fa-2x me-2" title="icona"></span>
+            <span class="header__dropdown-text h4">{{ nomeUser }}</span>
+            <span class="header__dropdown-text--font-weight-normal h4"> {{ ruoloUser }}</span>
+          </button>
+
+          <div *ngIf="userDropdownActions" aria-labelledby="headerDropdown" class="dropdown-menu dropdown-menu-right">
+            <eaf-action
+              *ngFor="let action of userDropdownActions"
+              [action]="action"
+              [extraClass]="'dropdown-item'"
+            ></eaf-action>
+          </div>
+        </div>
+      </li>
+      <li *ngIf="titoloDropdown" class="nav-item">
+        <div class="dropdown">
+          <button
+            aria-expanded="false"
+            [attr.aria-haspopup]="_dropdownActions ? true : false"
+            class="btn nav-link px-2"
+            [ngClass]="{ 'dropdown-toggle': _dropdownActions }"
+            [attr.data-toggle]="_dropdownActions ? 'dropdown' : null"
+            id="headerDropdown2"
+            [title]="titoloDropdown"
+            type="button"
+          >
+            <span class="fas fa-question-circle" title="icona"></span>
+            <span class="header__dropdown-text">{{ titoloDropdown }}</span>
+          </button>
+          <div aria-labelledby="headerDropdown2" class="dropdown-menu dropdown-menu-right">
+            <eaf-action
+              *ngFor="let action of _dropdownActions"
+              [action]="action"
+              [extraClass]="'dropdown-item'"
+            ></eaf-action>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div id="layoutSidenav">
+  <div id="layoutSidenav_nav" [ngClass]="{ 'hide-nav': fullHide }">
+    <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+      <div class="sb-sidenav-menu">
+        <div class="nav">
+          <button #toggleButton (click)="toggleMenu()" class="btn nav-link" id="sidebarToggle">
+            <span
+              *ngIf="opened"
+              class="sidebar-toggle-icon fas fa-{{ iconSwitch() }}"
+              title="Seleziona per chiudere"
+            ></span>
+            <span
+              *ngIf="!opened"
+              class="sidebar-toggle-icon fas fa-{{ iconSwitch() }}"
+              title="Seleziona per aprire"
+            ></span>
+            <small class="text-uppercase">{{ menuName }}</small>
+          </button>
+          <ng-container *ngIf="this.config">
+            <ng-container *ngFor="let father of this.config; let i = index">
+              <ng-container *ngIf="father.data">
+                <div class="sb-sidenav-menu-heading">{{ father.data.breadcrumbs }}</div>
+                <ng-container *ngIf="!father.children">
+                  <a class="nav-link" [routerLink]="father.path" href="#">
+                    <span aria-hidden="true" class="sb-nav-link-icon" title="Etichetta">
+                      <span
+                        [ngClass]="{ 'fa-columns': !father.data.icon }"
+                        class="fas {{ father.data.icon }}"
+                        title="icona"
+                      ></span>
+                    </span>
+                    <span class="nav-link-text">{{ father.data.breadcrumbs }}</span>
+                  </a>
+                </ng-container>
+                <ng-container *ngIf="father.children">
+                  <a
+                    [attr.aria-controls]="'collapseLayouts' + i"
+                    [attr.data-target]="'#collapseLayouts' + i"
+                    aria-expanded="false"
+                    class="nav-link collapsed"
+                    data-toggle="collapse"
+                    href="#"
+                    id="headingOne"
+                  >
+                    <span aria-hidden="true" class="sb-nav-link-icon" title="Etichetta">
+                      <span
+                        [ngClass]="{ 'fa-columns': !father.data.icon }"
+                        class="fas {{ father.data.icon }}"
+                        title="icona"
+                      ></span>
+                    </span>
+                    <span class="nav-link-text">{{ father.data.breadcrumbs }}</span>
+                    <span class="sb-sidenav-collapse-arrow">
+                      <span class="fas fa-angle-up" title="icona"></span>
+                    </span>
+                  </a>
+                  <div
+                    [id]="'collapseLayouts' + i"
+                    aria-labelledby="headingOne"
+                    class="collapse"
+                    data-parent="#sidenavAccordion"
+                  >
+                    <nav class="sb-sidenav-menu-nested nav">
+                      <ng-container *ngFor="let children of father.children">
+                        <a
+                          [routerLink]="father.path + '/' + children.path"
+                          class="nav-link"
+                          href="#"
+                          [data-permission]="children.data.permission"
+                        >
+                          <span aria-hidden="true" class="sb-nav-link-icon" title="Etichetta">
+                            <span
+                              [ngClass]="{ 'fa-link': !children.data.icon }"
+                              class="fas {{ children.data.icon }}"
+                              title="icona"
+                            ></span>
+                          </span>
+                          <span class="nav-link-text">{{ children.data.breadcrumbs }}</span>
+                        </a>
+                      </ng-container>
+                    </nav>
+                  </div>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <!--Fine Menu-->
+        </div>
+      </div>
+
+      <!-- <div class="sb-sidenav-footer">
+                <div class="small">Autenticato come: Mario Rossi</div>
+              </div> -->
+    </nav>
+  </div>
+  <div id="layoutSidenav_content" (click)="closeFloating()">
+    <main id="main">
+      <!-- <eaf-breadcrumb></eaf-breadcrumb> -->
+      <div class="container-fluid">
+        <div #headerWrapper [ngClass]="{ 'pt-3': headerWrapper.childNodes.length > 0 }">
+          <ng-content select="[header]"></ng-content>
+        </div>
+        <div [ngClass]="{ 'py-3': headerWrapper.childNodes.length <= 0, 'py-4': headerWrapper.childNodes.length > 0 }">
+          <ng-content select="[body]"></ng-content>
+        </div>
+      </div>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+      <div class="container-fluid"></div>
+    </footer>
+  </div>
+</div>

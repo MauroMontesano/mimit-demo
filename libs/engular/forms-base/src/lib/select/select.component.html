@@ -1,0 +1,49 @@
+<!-- <div
+	class="{{_size.toClass()}} form-group"
+	[ngClass]="{
+		'has-error': !formControl.valid && !formControl.disabled,
+		'has-warning': warningMessage
+	}"
+>
+	<div class="row">
+		
+		<div class="{{_sizeLabel.toClass()}}">
+			<label class="control-label" for="{{id+extId}}"><span *ngIf="required">*</span>{{ _label | translate }}</label>
+			
+			<eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+			<eng-input-loading [loading]="!formControl.disabled && (formControl.pending || !options || options.length === 0)"></eng-input-loading>
+		</div>
+
+		<div class="{{_sizeInput.toClass()}} input-group-TODO select">
+			<select #input id="{{id+extId}}" class="form-control " (change)="onChange($event)" [class.disabled]="disabled" [disabled]="disabled">
+				<option [ngValue]="null" [selected]="!value" title="placeholder" *ngIf="placeholder">{{ placeholder | translate }}</option>
+				<option *ngFor="let option of options; let i = index" [value]="option[fieldForId || 'id']" [selected]="i === selectedIndex">{{
+					option | deepObject: fieldForOptionElement
+				}}</option>
+			</select>
+
+			<div class="input-group-btn" *ngIf="actions">
+				<eng-button
+					*ngFor="let action of actions"
+					[size]="'none'"
+					[isLink]="true"
+					(onClick)="action.action($event)"
+					[icon]="action.icon"
+					[title]="''"
+					[disabled]="action.disabled"
+				></eng-button>
+			</div>
+		</div>
+
+		
+		<div class="{{_sizeMessages.toClass()}}">
+			<small class="help-block" id="{{id+extId}}_help-block" role="alert">
+				<span class="help-block--warning" *ngIf="warningMessage">{{ warningMessage }}</span>
+				<eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+			</small>
+		</div>
+	</div>
+	
+</div>
+
+ -->

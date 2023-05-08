@@ -1,0 +1,46 @@
+<fieldset class="fieldset-bordered">
+  <legend>{{ label }}</legend>
+  <div class="row g-4">
+    <div class="col-8 col-sm">
+      <label *ngIf="labels" for="{{ id + extId + '_date' }}" class="form-label">Data:</label>
+      <input
+        #inputDate
+        (paste)="onChangeDataOrTime($event)"
+        (keyup)="onChangeDataOrTime($event)"
+        (change)="onChangeDataOrTime($event)"
+        type="date"
+        [min]="minDate"
+        [max]="maxDate"
+        [name]="label"
+        title="Inserire data"
+        class="form-control"
+        id="{{ id + extId + '_date' }}"
+      />
+    </div>
+    <div class="col-3 col-sm-auto">
+      <label *ngIf="labels" for="{{ id + extId + '_time' }}" class="form-label">Orario:</label>
+      <input
+        #inputTime
+        (paste)="onChangeDataOrTime($event)"
+        (keyup)="onChangeDataOrTime($event)"
+        (change)="onChangeDataOrTime($event)"
+        type="time"
+        [name]="label"
+        class="form-control"
+        title="Inserire orario"
+        id="{{ id + extId + '_time' }}"
+      />
+    </div>
+    <div class="col-1 col-sm-auto">
+      <button (click)="formControl.reset()" class="btn btn-link mb-1" title="Effettua reset form">
+        <span class="fa fa-times" style="vertical-align: bottom"></span>
+      </button>
+    </div>
+  </div>
+  <div class="{{ _sizeMessages.toClass() }}">
+    <small *ngIf="required" class="text-truncate form-text text-muted is-invalid" title="campo obbligatorio">{{
+      'LABEL.REQUIRED' | translate
+    }}</small>
+    <eaf-input-error [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  </div>
+</fieldset>

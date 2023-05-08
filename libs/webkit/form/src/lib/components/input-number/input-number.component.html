@@ -1,0 +1,65 @@
+<div class="mb-3">
+  <div [ngClass]="{ 'input-group': tooltip }">
+    <div [ngClass]="{ 'form-floating': tooltip }">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}
+      </label>
+      <input
+        #input
+        [type]="decimal ? 'text' : 'number'"
+        placeholder="{{ placeholder | translate }}"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        class="form-control form-control-{{ inputSize }}"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-warning': warningMessage
+        }"
+        [min]="min"
+        [max]="max"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        title="{{ _label && _label !== '' ? _label : '' }}"
+        [attr.aria-label]="_label && _label !== '' ? 'label' : 'Valore'"
+        (paste)="onChange($event)"
+        (keyup)="onChange($event)"
+        (input)="onChange($event)"
+      />
+      <label *ngIf="_label && _label !== '' && tooltip" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}
+      </label>
+    </div>
+    <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</div>
+
+<!--     [attr.pattern]="regexString"
+ -->
+
+<!-- <div *ngIf="iconBox" class="input-group-append">
+  <span class="input-group-text">
+    <span class="fas fa-{{ iconBox }}"></span>
+  </span>
+</div>
+<div class="input-group-append">
+  <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  <button
+    *ngFor="let action of actions"
+    class="btn btn-{{ action.type | lowercase }}"
+    type="button"
+    [title]="action.name"
+    [disabled]="action.disabled"
+    (click)="action.action($event)"
+  >
+    <span *ngIf="action.icon" class="fa-regular fa-{{ action.icon }}"></span>
+  </button>
+</div> -->

@@ -1,0 +1,41 @@
+<div class="dnd-sortable-wrapper">
+  <div class="dnd-sortable-list pb-5">
+    <section>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="h6">VISIBILI</div>
+          </div>
+          <div class="col-sm-6">
+            <div class="h6">NASCOSTI</div>
+          </div>
+
+          <div id="visible-fields" class="col-sm-6">
+            <ul class="list-group list-group--primary grid-container" dragula="FIELDS" [(dragulaModel)]="visibleFields">
+              <li *ngFor="let field of visibleFields; let i = index" class="list-group-item">
+                <span class="dnd-icon"></span>
+                {{ field.id.substring(0, 20) }}
+                <span class="field-index">{{ i + 1 }}</span>
+              </li>
+            </ul>
+          </div>
+          <div id="'hidden-fields" class="col-sm-6">
+            <ul class="list-group grid-container" dragula="FIELDS" [(dragulaModel)]="hiddenFields">
+              <li *ngFor="let field of hiddenFields; let i = index" class="list-group-item">
+                <span class="dnd-icon"></span>
+                {{ field.id.substring(0, 20) }}
+                <span class="field-index">{{ i + 1 }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <header class="px-4" *ngIf="showButton">
+        <small class="text-muted">Ordina le voci trascinandole e premi il tasto "salva".</small>
+      </header>
+      <div *ngIf="showButton">
+        <button class="btn btn-primary m-4" (click)="saveFields()" title="Salva filtri di ricerca">Salva</button>
+      </div>
+    </section>
+  </div>
+</div>

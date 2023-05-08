@@ -1,0 +1,10 @@
+.wk-siae eaf-accordion-manager {
+    ul {
+        margin: 0px;
+    }
+
+    &.transparent ul li div.panel-collapse {
+        border: 0;
+        background-color: transparent;
+    }
+}

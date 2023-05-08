@@ -1,0 +1,25 @@
+eaf-details-table {
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 0 none;
+    td,
+    th {
+      border-width: 0 0 1px;
+      border-bottom: 1px solid #cbcbcb;
+      font-weight: 700;
+      vertical-align: middle;
+      margin: 0;
+      padding: 0.5em 1em 0 0;
+      font-size: 1rem;
+    }
+    tr td:first-child {
+      padding: 0.5em 1em 0 0;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+  }
+}

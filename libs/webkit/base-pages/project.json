@@ -1,0 +1,32 @@
+{
+  "name": "webkit-base-pages",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/webkit/base-pages/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/webkit/base-pages"],
+      "options": {
+        "project": "libs/webkit/base-pages/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/webkit/base-pages/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/webkit/base-pages/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/webkit/base-pages/src/**/*.ts", "libs/webkit/base-pages/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

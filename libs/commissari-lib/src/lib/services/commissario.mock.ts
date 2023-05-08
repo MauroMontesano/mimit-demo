@@ -1,0 +1,26 @@
+export const CommissariMock = [
+  {
+    id: 1,
+    cognome: 'ABBENANTE',
+    nome: 'ETTORE GUIDO ALESSANDRO',
+    codiceFiscale: 'BBNTRG56P09D643W',
+    PEC: 'ettore.abbenante@pec.it',
+    domicilioProfessionale: 'PUGLIA, FOGGIA (FG)',
+    OrdineProfessionale: '-',
+    numeroIncarichi: 2,
+    livelloEsperienza: 'A',
+    idoneita: 'VERIFICATO',
+  },
+  {
+    id: 2,
+    cognome: 'ACANFORA',
+    nome: 'ALFONSO',
+    codiceFiscale: 'CNFLNS75B23G813N',
+    PEC: 'a.acanfora@consulentidellavoropec.it',
+    domicilioProfessionale: 'CAMPANIA,SALERNO (SA)',
+    OrdineProfessionale: '-',
+    numeroIncarichi: 2,
+    livelloEsperienza: 'C',
+    idoneita: 'DA VERIFICARE',
+  },
+];

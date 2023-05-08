@@ -1,0 +1,40 @@
+{
+  "name": "engular-menu",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/menu/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/menu"],
+      "options": {
+        "project": "libs/engular/menu/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/menu/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/menu/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/menu"],
+      "options": {
+        "jestConfig": "libs/engular/menu/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/menu/src/**/*.ts", "libs/engular/menu/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,40 @@
+<fieldset [ngClass]="{ 'fieldset-bordered': !noLegend }">
+  <legend *ngIf="!noLegend && _label && _label !== ''" [ngClass]="{ 'sr-only': soloCheck }">
+    {{ _label | translate }}
+  </legend>
+  <eaf-input-loading [loading]="formControl.pending"></eaf-input-loading>
+  <div class="form-check" [class.float-right]="floatRight">
+    <input
+      id="input-checkbox-{{ id + extId }}"
+      (click)="$event.stopPropagation(); onClick()"
+      [checked]="value === checkedValue"
+      type="checkbox"
+      title="{{ label | translate : i18nExtra }}"
+      [disabled]="disabled"
+      [readonly]="readonly"
+      class="form-check-input {{ _sizeLabel.toClass() }}"
+      [ngClass]="{
+        'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+        'is-warning': warningMessage
+      }"
+    />
+    <label
+      *ngIf="_label && _label !== ''"
+      for="{{ id + extId }}"
+      class="form-check-label {{ _sizeLabel.toClass() }}"
+      class="custom-control-label {{ _sizeLabel.toClass() }}"
+      [ngClass]="{ noPaddingLeft: !id, 'sr-only': soloCheck }"
+      (click)="$event.stopPropagation(); onClick()"
+      >{{ _label | translate : i18nExtra }}
+    </label>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required && !noShowText"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</fieldset>

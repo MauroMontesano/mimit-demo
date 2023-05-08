@@ -1,0 +1,45 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li *ngFor="let t of tabs" class="nav-item" id="{{ t.id }}-button">
+    <a
+      (click)="tabChanging(t)"
+      [title]="'Seleziona tab ' + t.title"
+      [ngClass]="{ active: activeTab && activeTab.id === t.id }"
+      class="nav-link"
+      role="tab"
+      data-bs-toggle="tab"
+      [attr.aria-controls]="t.id + '-tab'"
+    >
+      <span *ngIf="t.icon" class="fa-regular fa-{{ t.icon }}"></span>&nbsp;{{ t.title }}
+    </a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent" *ngIf="destroyTemplate">
+  <div
+    [attr.aria-labelledby]="activeTab.id + '-tab'"
+    role="tabpanel"
+    id="_tab"
+    class="tab-pane fade show active"
+    *ngIf="activeTab"
+  >
+    <div id="{{ activeTab.id }}-tab">
+      <!-- <form class="form-group form-grey row" *ngIf="activeTab"> -->
+      <ng-container *ngTemplateOutlet="activeTab.templateNo"> </ng-container>
+      <!-- </form> -->
+    </div>
+  </div>
+</div>
+<div class="tab-content" *ngIf="!destroyTemplate">
+  <div
+    [attr.aria-labelledby]="activeTab.id + '-tab'"
+    role="tabpanel"
+    id="{{ activeTab.id }}_tab"
+    class="tab-pane fade show active"
+    *ngIf="activeTab"
+  >
+    <div id="{{ activeTab.id }}-tab">
+      <!-- <form class="form-group form-grey row" *ngIf="activeTab"> -->
+      <ng-container *ngTemplateOutlet="activeTab.templateNo"> </ng-container>
+      <!-- </form> -->
+    </div>
+  </div>
+</div>

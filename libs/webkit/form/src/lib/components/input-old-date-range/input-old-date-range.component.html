@@ -1,0 +1,108 @@
+<!-- <div class="{{ _size.toClass() }} form-group input-group-TODO"> -->
+<div
+  class="form-group"
+  [ngClass]="{
+    'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+    'is-warning': warningMessage
+  }"
+>
+  <div class="input-group-TODO">
+    <span class="dataRangeTitle">{{ _label }}</span>
+    <div class="col">
+      <span class="input-group-TODO input-sx">
+        <!-- input "DAL" -->
+        <div class="form-group input-group-TODO">
+          <div class="form-group">
+            <input
+              #inputFrom
+              title="From"
+              placeholder="{{ placeholder | translate }}"
+              size="12|12|12|12"
+              [disabled]="disabled || disableFrom"
+              [readonly]="readonly || disabled"
+              [required]="required"
+              (paste)="onChangeDDate($event, 'from')"
+              (keyup)="onChangeDDate($event, 'from')"
+              (change)="onChangeDDate($event, 'from')"
+              type="text"
+              id="{{ id + extId }}"
+              class="form-control datepicker {{ _sizeInput.toClass() }}"
+              [ngClass]="{
+                'is-invalid': !formControl.valid && !formControl.disabled && formControl.touched,
+                'is-warning': warningMessage
+              }"
+              [attr.aria-label]="_label && _label !== '' ? 'label' : 'Valore'"
+            />
+            <!-- Label -->
+            <label
+              *ngIf="_label && _label !== ''"
+              class="control-label active {{ _sizeLabel.toClass() }}"
+              for="{{ id + extId }}"
+            >
+              {{ fromLabel | translate }}
+            </label>
+          </div>
+        </div>
+      </span>
+    </div>
+    <div class="col">
+      <span class="input-group-TODO input-dx">
+        <!-- input "AL" -->
+        <div class="form-group input-group-TODO">
+          <div class="form-group">
+            <input
+              #inputTo
+              title="To"
+              placeholder="{{ placeholder | translate }}"
+              size="12|12|12|12"
+              [disabled]="disabled || disableTo"
+              [readonly]="readonly || disabled"
+              [required]="required"
+              (paste)="onChangeDDate($event, 'to')"
+              (keyup)="onChangeDDate($event, 'to')"
+              (change)="onChangeDDate($event, 'to')"
+              type="text"
+              id="{{ id + extId }}"
+              class="form-control datepicker {{ _sizeInput.toClass() }}"
+              [ngClass]="{
+                'is-invalid': !formControl.valid && !formControl.disabled && formControl.touched,
+                'is-warning': warningMessage
+              }"
+              [attr.aria-label]="_label && _label !== '' ? 'label' : 'Valore'"
+            />
+            <!-- Label -->
+            <label
+              *ngIf="_label && _label !== ''"
+              class="control-label active {{ _sizeLabel.toClass() }}"
+              for="{{ id + extId }}"
+            >
+              {{ toLabel | translate }}
+            </label>
+            <!-- Required -->
+          </div>
+        </div>
+      </span>
+    </div>
+    <div class="input-group-append">
+      <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+      <button
+        *ngFor="let action of actions"
+        (click)="action.callAction($event)"
+        [disabled]="action.disabled"
+        [title]="action.name"
+        class="btn btn-{{ action.type | lowercase }}"
+        type="button"
+      >
+        <span *ngIf="action.icon" class="fa-regular fa-{{ action.icon }}"></span>
+      </button>
+    </div>
+  </div>
+  <div>
+    <small *ngIf="required" class="text-truncate form-text text-muted is-invalid" title="obbligatorio">
+      {{ 'LABEL.REQUIRED' | translate }}
+    </small>
+    <span class="text-truncate warning-feedback d-block" *ngIf="warningMessage">{{ warningMessage }}</span>
+    <eaf-input-error [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  </div>
+</div>
+<!-- </div> -->

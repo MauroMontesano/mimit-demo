@@ -1,0 +1,51 @@
+<!-- <div class="{{ _size.toClass() }} form-group input-group-TODO"> -->
+<div class="form-group">
+  <input
+    #input
+    type="text"
+    class="form-control {{ _sizeInput.toClass() }}"
+    [ngClass]="{
+      'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+      'is-warning': warningMessage
+    }"
+    id="{{ id + extId }}"
+    placeholder="0,00 €"
+    (blur)="onUnBlur($event)"
+    (focus)="onFocus($event)"
+    (paste)="onChangeValue($event)"
+    (keyup)="onChangeValue($event)"
+    [readonly]="readonly || disabled"
+    title="{{ _label && _label !== '' ? _label : '' }}"
+    [attr.aria-label]="_label && _label !== '' ? 'label' : 'Valore'"
+  />
+  <label *ngIf="_label && _label !== ''" class="control-label active {{ _sizeLabel.toClass() }}" for="{{ id + extId }}">
+    {{ _label | translate }}
+  </label>
+  <div class="{{ _sizeMessages.toClass() }}">
+    <small
+      title="obbligatorio"
+      *ngIf="required"
+      class="text-truncate form-text text-muted is-invalid"
+      id="{{ id + extId }}_help-block"
+      role="alert"
+    >
+      {{ 'LABEL.REQUIRED' | translate }}</small
+    >
+    <span class="warning-feedback" *ngIf="warningMessage">{{ warningMessage }}</span>
+    <eaf-input-error [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  </div>
+</div>
+<div class="input-group-append">
+  <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  <button
+    *ngFor="let action of actions"
+    class="btn btn-{{ action.type | lowercase }}"
+    type="button"
+    [title]="action.name"
+    [disabled]="action.disabled"
+    (click)="action.action($event)"
+  >
+    <span *ngIf="action.icon" class="fa-regular fa-{{ action.icon }}"></span>
+  </button>
+</div>
+<!-- </div> -->

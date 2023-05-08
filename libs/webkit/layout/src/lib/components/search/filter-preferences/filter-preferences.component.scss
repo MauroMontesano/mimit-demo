@@ -1,0 +1,23 @@
+eaf-filter-preferences {
+  .new-preference-section {
+    left: -310px !important;
+    width: 350px;
+
+    &.new-preference-section-open {
+      display: block;
+    }
+
+    .form-group {
+      margin: 0;
+    }
+  }
+
+  .dropdown-menu.drop-filters {
+    margin-top: -1em;
+    margin-left: 1.5em;
+  }
+
+  .dropdown-preferences {
+    z-index: 1;
+  }
+}

@@ -1,0 +1,211 @@
+<!-- <sport-form-section> -->
+<!-- <sport-form-group> -->
+<!-- <sport-form-title>FILTRA PER:</sport-form-title> -->
+<eaf-panel [isOpen]="isPanelOpen" [closable]="true" [title]="title" [actions]="actions" [headerActions]="headerActions">
+  <form onsubmit="return false;">
+    <div class="container-fluid">
+      <div class="row">
+        <ng-container *ngFor="let filter of filters">
+          <ng-container *ngIf="!filter.advancedFilter">
+            <ng-container *ngTemplateOutlet="filtersTemplate; context: { $implicit: 1, filter: filter }">
+            </ng-container>
+            <div *ngIf="filter['needsClearfix']" class="clearfix"></div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <div class="" *ngIf="withAdvancedFilter">
+        <eaf-button
+          (click)="toggleAdvancedFilter()"
+          title="BUTTON.SHOW_ADVANCED_SEARCH_FILTERS"
+          [isLink]="true"
+          [icon]="showAdvancedFilter ? 'minus-circle' : 'plus-circle'"
+          aria-controls="collapseFields"
+          aria-expanded="false"
+        >
+        </eaf-button>
+      </div>
+      <ng-container *ngIf="showAdvancedFilter">
+        <div class="row">
+          <ng-container *ngFor="let filter of filters">
+            <ng-container *ngIf="filter.advancedFilter">
+              <ng-container *ngTemplateOutlet="filtersTemplate; context: { $implicit: 1, filter: filter }">
+              </ng-container>
+              <div *ngIf="filter['needsClearfix']" class="clearfix"></div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </ng-container>
+      <!-- col-xs-6 col-sm-4 col-md-4 col-lg-3 -->
+      <div class="float-right btn-group ps-0 pt-4 mt-3" role="group" aria-label="gruppo di azioni">
+        <eaf-button
+          type="reset"
+          (click)="reset()"
+          title="BUTTON.RESET"
+          color="outline-primary"
+          extraClass="me-2"
+          [isLink]="true"
+        >
+        </eaf-button>
+
+        <eaf-button type="submit" (click)="search()" [disabled]="!form.valid" [title]="buttonName"> </eaf-button>
+      </div>
+      <div class="col-5 float-right">
+        <eaf-filter-preferences
+          *ngIf="preferences"
+          [managePreferenceKey]="managePreferenceKey"
+          [filters]="filters"
+          [criteriaForm]="form"
+          #preferenceComponent
+        ></eaf-filter-preferences>
+      </div>
+    </div>
+  </form>
+</eaf-panel>
+<!-- </sport-form-group> -->
+<!-- </sport-form-section> -->
+
+<ng-template #filtersTemplate let-filter="filter">
+  <ng-container [ngSwitch]="filter.type">
+    <eaf-input-text
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.TEXT"
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [error-labels]="filter.errorMessageLabel"
+      [placeholder]="filter.placeholder"
+      [tooltip]="filter.tooltip"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-text>
+    <eaf-input-select
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.SELECT"
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [options]="filter['optionsList']"
+      [field-for-id]="filter['fieldForId']"
+      [field-for-option]="filter['fieldForOptionElement']"
+      [tooltip]="filter.tooltip"
+      [multi]="filter.multi"
+      [error-labels]="filter.errorMessageLabel"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-select>
+    <eaf-input-date
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.DATE"
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [placeholder]="'GG/MM/AAAA'"
+      [tooltip]="filter.tooltip"
+      [error-labels]="filter.errorMessageLabel"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-date>
+    <eaf-input-date-range
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.DATE_INTERVAL"
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [error-labels]="filter.errorMessageLabel"
+      [fromLabel]="filter['fromLabel']"
+      [toLabel]="filter['toLabel']"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+      [atLeastOne]="filter.atLeastOne"
+    >
+    </eaf-input-date-range>
+    <eaf-input-number
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.NUMBER"
+      [formControl]="getFormControl(filter.dtoField)"
+      [size]="filter.size"
+      [label]="filter.id"
+      [error-labels]="filter.errorMessageLabel"
+      [placeholder]="filter.placeholder"
+      [disable-input]="filter.disabled"
+    ></eaf-input-number>
+    <eaf-input-number-interval
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.NUMBER_INTERVAL"
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [error-labels]="filter.errorMessageLabel"
+      [fromLabel]="filter['fromLabel']"
+      [toLabel]="filter['toLabel']"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-number-interval>
+    <!-- <eng-input-space *ngSwitchCase="FILTER_TYPE_CONSTANT.SPACE" [size]="filter.size"></eng-input-space> -->
+    <ng-container *ngSwitchCase="FILTER_TYPE_CONSTANT.TEMPLATE">
+      <ng-container *ngTemplateOutlet="filter['template']"></ng-container>
+    </ng-container>
+    <!-- <ng-container *ngSwitchCase="FILTER_TYPE_CONSTANT.BREAK"> <eng-form-row-break></eng-form-row-break> </ng-container> -->
+    <eaf-input-radio
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.RADIO"
+      #radioFilter
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [options]="filter['options']"
+      [field-for-id]="filter['fieldForId']"
+      [field-for-option]="filter['fieldForOptionElement']"
+      [line]="filter['line']"
+      [tooltip]="filter.tooltip"
+      [error-labels]="filter.errorMessageLabel"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-radio>
+    <eaf-input-multicheckbox
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.CHECKBOX"
+      #checkboxFilter
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [options]="filter['options']"
+      [field-for-id]="filter['fieldForId']"
+      [field-for-option]="filter['fieldForOptionElement']"
+      [tooltip]="filter.tooltip"
+      [error-labels]="filter.errorMessageLabel"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-multicheckbox>
+    <eaf-input-checkbox
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.SINGLE_CHECKBOX"
+      [label]="filter.id"
+      [formControl]="getFormControl(filter.dtoField)"
+      [tooltip]="filter.tooltip"
+      [error-labels]="filter.errorMessageLabel"
+      [checked-value]="filter.checkedValue || true"
+      [unchecked-value]="filter.uncheckedValue || false"
+      [size]="filter.size"
+      [disable-input]="filter.disabled"
+    >
+    </eaf-input-checkbox>
+    <!-- <eaf-autocomplete
+			*ngSwitchCase="FILTER_TYPE_CONSTANT.SEARCH_AUTOCOMPLETE"
+			[label]="filter.id"
+			[formControl]="form.get(filter.dtoField)"
+			[remote]="filter.remote"
+			[options]="filter['optionsList']"
+			[error-labels]="filter.errorMessageLabel"
+			[size]="filter.size"
+			[fieldForLabel]="filter['fieldForLabel']"
+			[placeholder]="filter.placeholder"
+			[disableInput]="filter.disabled"
+		>
+		</sport-autocomplete> -->
+    <eaf-input-linebreak *ngSwitchCase="FILTER_TYPE_CONSTANT.LINEBREAK" [size]="filter.size"> </eaf-input-linebreak>
+    <ng-container *ngSwitchDefault> {{ filter.type }} not supported </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-container *ngIf="configurable">
+  <eaf-modal #filterModal (closed)="onFilterConfigClose()" [buttons]="configurationModalActions">
+    <div class="h1">Impostazioni campi di ricerca</div>
+    <eaf-filter-config
+      #sportFilter
+      [fields]="filtersForConfig"
+      (save)="onFilterConfigSave($event)"
+      [showButton]="false"
+    ></eaf-filter-config>
+  </eaf-modal>
+</ng-container>

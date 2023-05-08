@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li
+    *ngFor="let t of tabs"
+    class="nav-item"
+    id="{{ t.id }}-button"
+    (click)="tabChanging(t)"
+    eafClickFromKeyboardWebkit
+  >
+    <a
+      [title]="'Seleziona tab ' + t.title"
+      [ngClass]="{ active: activeTab && activeTab.id === t.id }"
+      class="nav-link"
+      role="button"
+      data-bs-toggle="tab"
+      [attr.aria-controls]="activeTab.id + '_tab-parent'"
+    >
+      <span *ngIf="t.icon" class="fa-regular fa-{{ t.icon }}"></span>&nbsp;{{ t.title }}
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content tabs-grid">
+  <div role="tabpanel" id="{{ activeTab.id }}_tab-parent" class="xactive">
+    <!-- <form class="form-group form-grey row" *ngIf="activeTab"> -->
+    <ng-container *ngTemplateOutlet="activeTab.templateNo"> </ng-container>
+    <!-- </form> -->
+  </div>
+  <ng-container *ngFor="let t of tabs; let i = index">
+    <div *ngIf="t !== activeTab" [attr.aria-labelledby]="activeTab.id + '_tab-parent'" role="tabpanel" id="{{ i }}_tab">
+      <!-- <form class="form-group form-grey row" *ngIf="activeTab"> -->
+      <ng-container *ngTemplateOutlet="t.templateNo"> </ng-container>
+      <!-- </form> -->
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,14 @@
+<button
+  id="{{ id + extId }}"
+  [type]="type"
+  class="btn {{ extraClass }}"
+  [class.disabled]="disabled"
+  [ngClass]="getBtnClasses()"
+  title="{{ title | translate }}"
+  (click)="manageClick($event)"
+>
+  <i class="fa fa-{{ icon }}" [ngClass]="{ 'me-2': !onlyIcon }" *ngIf="icon"></i>
+  <ng-container *ngIf="!onlyIcon"> {{ label ? label : (title | translate) }} </ng-container>
+  <i class="fa fa-{{ iconRight }}" [ngClass]="{ 'ms-2': !onlyIcon }" *ngIf="iconRight"></i>
+  <span class="visually-hidden">{{ '&nbsp;' + title | translate }}</span>
+</button>

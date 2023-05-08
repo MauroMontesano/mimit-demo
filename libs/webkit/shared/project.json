@@ -1,0 +1,32 @@
+{
+  "name": "webkit-shared",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/webkit/shared/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/webkit/shared"],
+      "options": {
+        "project": "libs/webkit/shared/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/webkit/shared/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/webkit/shared/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/webkit/shared/src/**/*.ts", "libs/webkit/shared/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

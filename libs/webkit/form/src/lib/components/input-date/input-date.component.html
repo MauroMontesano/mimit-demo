@@ -1,0 +1,39 @@
+<div class="mb-3">
+  <div [ngClass]="{ 'input-group': tooltip }">
+    <div [ngClass]="{ 'form-floating': tooltip }">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ _label | translate }}</label
+      >
+      <input
+        #inputDate
+        type="date"
+        id="{{ id + extId }}"
+        name="{{ id + extId }}"
+        class="form-control {{ _sizeInput.toClass() }}"
+        placeholder="{{ placeholder! | translate }}"
+        (paste)="onChangeDate($event)"
+        (keyup)="onChangeDate($event)"
+        (change)="onChangeDate($event)"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-valid': formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)
+        }"
+        [required]="required"
+        [readonly]="readonly || disabled"
+        [disabled]="disabled"
+        [min]="minDate"
+        [max]="maxDate"
+      />
+    </div>
+    <eaf-input-tooltip [tooltip]="tooltip"></eaf-input-tooltip>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</div>

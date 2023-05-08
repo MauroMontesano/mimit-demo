@@ -1,0 +1,9 @@
+eaf-input-radio {
+    .custom-control.custom-control-brbnrd {
+        display: flex;
+        justify-content: space-between;
+    }
+    .custom-control.custom-control-inline .custom-control-label {
+        white-space: nowrap !important;
+    }
+}

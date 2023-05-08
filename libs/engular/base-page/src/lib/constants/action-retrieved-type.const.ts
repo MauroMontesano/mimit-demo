@@ -1,0 +1,9 @@
+export enum ActionRetrievedType {
+  BACK = 'BACK',
+  CANCEL = 'CANCEL',
+  CONFIRM = 'CONFIRM',
+  ERROR = 'ERROR',
+  SUBMIT = 'SUBMIT',
+  SUBMIT_COMPLETE = 'SUBMIT_COMPLETE',
+  SUBMIT_ERROR = 'SUBMIT_ERROR',
+}

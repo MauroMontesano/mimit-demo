@@ -1,0 +1,81 @@
+<div class="row me-4 pt-4 mt-3" *ngIf="filterPreferenceForm">
+  <eaf-input-select
+    label="Filtri salvati"
+    class="pe-0 me-0 dropdown-preferences"
+    size="9|9|9|9"
+    [multi]="false"
+    [filterable]="true"
+    [formControl]="filterPreferenceForm.getFormControl('activePreference')"
+    [options]="filterPreferences"
+    [field-for-option]="'name'"
+    [disable-input]="
+      !filterPreferences ||
+      (filterPreferences.salvati.length === 0 && filterPreferences.predefiniti.length === 0) ||
+      showSaveNewPreference
+    "
+  ></eaf-input-select>
+
+  <div class="col-3 ps-0 ms-0">
+    <eaf-action [action]="showSaveNewPreferenceAction" [onlyIcon]="true"></eaf-action>
+    <eaf-action
+      [loading]="deleteLoading"
+      *ngIf="
+        !showSaveNewPreference &&
+        filterPreferenceForm.getFormControl('activePreference').value &&
+        (!filterPreferenceForm.getFormControl('activePreference').value.preset || canSetPermissionPredefinito)
+      "
+      [action]="deletePreferenceAction"
+      [onlyIcon]="true"
+    ></eaf-action>
+
+    <eaf-modal
+      #confirmationModal
+      title="Conferma operazione"
+      [confirmation]="true"
+      (cancel)="onCancelConfirmation()"
+      (confirm)="deletePreference()"
+    >
+      <div>Sei sicuro di voler rimuovere il filtro?</div>
+    </eaf-modal>
+    <div
+      class="dropdown-menu drop-filters new-preference-section"
+      [ngClass]="{ 'new-preference-section-open': showSaveNewPreference }"
+      id="newPreferenceDropDown-{{ idRandom }}"
+    >
+      <div class="row">
+        <eaf-input-text
+          class="ms-2 pe-0 me-0"
+          size="9|9|9|9"
+          [formControl]="filterPreferenceForm.getFormControl('preferenceName')"
+          [error-labels]="filterPreferencesFormErrorMessages"
+          placeholder="inserire il nome desiderato"
+        >
+        </eaf-input-text>
+        <eaf-action
+          class="ps-0 ms-0"
+          size="3|3|3|3"
+          [action]="saveNewPreferenceAction"
+          [onlyIcon]="true"
+          [loading]="loadingSaveFilter"
+          [disabled]="isDuplicate && !filterPreferenceForm.getFormControl('rewrite').value"
+        ></eaf-action>
+      </div>
+      <eaf-input-checkbox
+        *ngIf="canSetPermissionPredefinito"
+        size="12|12|12|12"
+        [formControl]="filterPreferenceForm.getFormControl('isPreset')"
+        label="Predefinito"
+      ></eaf-input-checkbox>
+      <eaf-input-checkbox
+        *ngIf="isDuplicate === true || (isDuplicate && canSetPermissionPredefinito)"
+        size="12|12|12|12"
+        [formControl]="filterPreferenceForm.getFormControl('rewrite')"
+        label="Sovrascrivi"
+      ></eaf-input-checkbox>
+      <div class="col-12" *ngIf="isDuplicate === 'preset' && !canSetPermissionPredefinito">
+        Non puoi utilizzare questo nome perchè già usato da un predefinito
+      </div>
+      <!-- <sport-action [action]="cancelNewPreferenceAction" [onlyIcon]="true"></sport-action> -->
+    </div>
+  </div>
+</div>

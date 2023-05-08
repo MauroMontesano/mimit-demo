@@ -1,0 +1,30 @@
+eaf-header-title {
+  .hero-section {
+    background: linear-gradient(135deg, #f2f5f8 0%, #e2e7ed 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-section-body {
+    @media all and (min-width: 992px) {
+      min-height: 200px;
+    }
+  }
+  .hero-section-icon-dx {
+    position: absolute;
+    right: 2.5rem;
+    top: 0;
+    bottom: 0;
+    font-size: 13rem;
+    color: #f8faff;
+    span {
+      vertical-align: bottom;
+    }
+
+    .hw-w-250 {
+      height: 250px;
+      width: 250px;
+      filter: brightness(0) invert(1);
+    }
+  }
+}

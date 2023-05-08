@@ -1,0 +1,60 @@
+<fieldset
+  [ngClass]="{
+    'fieldset-bordered': !line
+  }"
+>
+  <legend
+    [ngClass]="{
+      'legend-inline': line
+    }"
+    *ngIf="_label && _label !== ''"
+  >
+    {{ _label | translate }}
+  </legend>
+  <eaf-input-loading [loading]="formControl.pending || !options || options.length === 0"></eaf-input-loading>
+  <div
+    [ngClass]="{
+      'form-check-inline': line
+    }"
+    *ngFor="let option of options; let i = index"
+    class="form-check"
+  >
+    <input
+      #input
+      type="radio"
+      id="{{ id + extId + i }}"
+      class="form-check-input"
+      [value]="option.payload"
+      (click)="onClick(option)"
+      [checked]="option.payload === value"
+      [value]="option.payload"
+      title="{{ option.label | translate }}"
+      [disabled]="disabled || option.disabled"
+      [readonly]="readonly"
+      [ngClass]="{
+        'is-invalid': !formControl.valid && !formControl.disabled,
+        'is-warning': warningMessage
+      }"
+    />
+    <label
+      *ngIf="option && option.label && option.label !== ''"
+      for="{{ id + extId + i }}"
+      class="form-check-label"
+      [ngClass]="{ noPaddingLeft: !id }"
+      (click)="$event.stopPropagation(); onClick(option)"
+      >{{ option.label | translate }}</label
+    >
+  </div>
+  <div *ngIf="line">
+    <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</fieldset>

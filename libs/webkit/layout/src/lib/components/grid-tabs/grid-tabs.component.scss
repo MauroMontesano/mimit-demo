@@ -1,0 +1,10 @@
+eaf-grid-tabs {
+  .tabs-grid {
+    grid-template-rows: max-content;
+    display: grid;
+    grid-template-columns: repeat(100, 100%);
+    & > *:not(.xactive) {
+      visibility: hidden;
+    }
+  }
+}

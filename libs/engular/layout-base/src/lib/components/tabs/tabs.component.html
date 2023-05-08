@@ -1,0 +1,35 @@
+<!-- 
+	THIS IS ONLY A EXAMPLE TO USE AS MAPPING REFERENCE
+-->
+<!--<div class="row content">
+	<div class="tab">
+		<ul class="nav nav-pills" role="tablist">
+			<li *ngFor='let t of tabs' class="col-xs-{{numberOfTabs}}" role="presentation" [ngClass]="{ 'active': activeTab.id===t.id}">
+				<a (click)="tabChanging(t)">
+					
+					<span class="labelTabTitle">{{t.title}}</span>
+				</a>
+
+			</li>
+		</ul>
+		<div class="tab-content" *ngIf="destroyTemplate">
+			<div id="{{id}}_tab1" class="tab-pane in active" *ngIf="activeTab">
+				<form class="form-group form-grey row" *ngIf="activeTab">
+					<ng-container *ngTemplateOutlet="activeTemplate">
+					</ng-container>
+				</form>
+			</div>
+		</div>
+		<div class="tab-content" *ngIf="!destroyTemplate">
+			<div id="{{id}}_tab1" class="tab-pane in active" >
+				<ng-container  *ngFor="let template of templates;let i=index;">
+					
+				<form class="form-group form-grey row" [hidden]="activeTab && activeTab.templateNo!=(i+1)">
+									<ng-container *ngTemplateOutlet="template">
+									</ng-container>	
+				</form></ng-container>
+			</div>
+		</div>
+	</div>
+</div>
+-->

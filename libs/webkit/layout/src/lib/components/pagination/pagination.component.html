@@ -1,0 +1,36 @@
+<nav *ngIf="_totalPage && _totalPage >= 1" aria-label="Paginazione ...">
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [ngClass]="{ disabled: pageActive === 0 }">
+      <a class="page-link" (click)="changePage(0)">
+        <span class="visually-hidden">Prima pagina</span>
+        <i class="bi bi-chevron-double-left"></i>
+      </a>
+    </li>
+    <li class="page-item" [ngClass]="{ disabled: pageActive === 0 }">
+      <a (click)="changePage(pageActive - 1)" class="page-link">
+        <span class="visually-hidden">Pagina precedente</span>
+        <i class="bi bi-chevron-left"></i>
+      </a>
+    </li>
+    <li
+      [ngClass]="{ active: page - 1 === pageActive }"
+      *ngFor="let page of _totalPageSlice"
+      class="page-item active"
+      aria-current="page"
+    >
+      <a (click)="changePage(page - 1)" class="page-link"> <span class="visually-hidden">Pagina </span>{{ page }} </a>
+    </li>
+    <li class="page-item" [ngClass]="{ disabled: pageActive === _totalPage - 1 }">
+      <a (click)="changePage(pageActive + 1)" class="page-link">
+        <span class="visually-hidden">Pagina successiva</span>
+        <i class="bi bi-chevron-right"></i>
+      </a>
+    </li>
+    <li class="page-item" [ngClass]="{ disabled: pageActive === _totalPage - 1 }">
+      <a class="page-link" (click)="changePage(_totalPage - 1)">
+        <span class="visually-hidden">Ultima pagina</span>
+        <i class="bi bi-chevron-double-right"></i>
+      </a>
+    </li>
+  </ul>
+</nav>

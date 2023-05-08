@@ -1,0 +1,49 @@
+<div
+  class="{{ _size.toClass() }} form-group"
+  [ngClass]="{
+    'has-error': !formControl.valid && !formControl.disabled,
+    'has-warning': warningMessage
+  }"
+>
+  <div class="row">
+    <!-- etichetta -->
+    <div class="{{ _sizeLabel.toClass() }}">
+      <label class="control-label" for="{{ id + extId }}"
+        ><span *ngIf="required">*</span>{{ _label | translate }}</label
+      >
+      <!-- popover -->
+      <eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+    </div>
+
+    <div class="{{ _sizeInput.toClass() }} input-group-TODO">
+      <input
+        type="text"
+        id="{{ id + extId }}"
+        class="form-control"
+        placeholder="{{ placeholder | translate }}"
+        (paste)="onChange($event)"
+        (keyup)="onChange($event)"
+        [readonly]="readonly || disabled"
+        #input
+      />
+
+      <div class="input-group-btn" *ngIf="actions">
+        <eng-button
+          *ngFor="let action of actions"
+          [size]="'none'"
+          [isLink]="true"
+          (onClick)="action.action($event)"
+          [icon]="action.icon"
+          [title]="''"
+          [disabled]="action.disabled"
+        ></eng-button>
+      </div>
+    </div>
+    <div class="{{ _sizeMessages.toClass() }}">
+      <small class="help-block" id="{{ id + extId }}_help-block" role="alert">
+        <span class="help-block--warning" *ngIf="warningMessage">{{ warningMessage }}</span>
+        <eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+      </small>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,144 @@
+<eng-form-section>
+  <eng-form-group>
+    <eng-form-title>FILTRA PER:</eng-form-title>
+    <ng-container *ngFor="let filter of filters">
+      <ng-container *ngIf="!filter.advancedFilter">
+        <ng-container *ngTemplateOutlet="filtersTemplate; context: { $implicit: 1, filter: filter }"> </ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="showAdvancedFilter">
+      <ng-container *ngFor="let filter of filters">
+        <ng-container *ngIf="filter.advancedFilter">
+          <ng-container *ngTemplateOutlet="filtersTemplate; context: { $implicit: 1, filter: filter }"> </ng-container>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <!-- col-xs-6 col-sm-4 col-md-4 col-lg-3 -->
+    <div class="btn-group mt-2 pull-left" role="group" aria-label="gruppo di azioni">
+      <eng-button type="reset" (onClick)="reset()" title="BUTTON.RESET" [isLink]="true"> </eng-button>
+      <eng-button type="button" (onClick)="search()" [disabled]="!form.valid" title="BUTTON.SEARCH"> </eng-button>
+    </div>
+  </eng-form-group>
+  <div class="" *ngIf="withAdvancedFilter">
+    <eng-button
+      (onClick)="toggleAdvancedFilter()"
+      title="BUTTON.SHOW_ADVANCADED_SEARCH_FILTERS"
+      [isLink]="true"
+      icon="plus-circle"
+      aria-controls="collapseFields"
+      aria-expanded="false"
+    >
+    </eng-button>
+  </div>
+</eng-form-section>
+
+<ng-template #filtersTemplate let-filter="filter">
+  <ng-container [ngSwitch]="filter.type">
+    <eng-input
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.TEXT"
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [errors-label]="filter.errmessageLabel"
+      [placeholder]="filter.id"
+      [tooltip]="filter.tooltip"
+      [size]="filter.size"
+    >
+    </eng-input>
+    <eng-select
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.SELECT"
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [options]="filter['optionsList']"
+      [field-for-id]="filter['fieldForId']"
+      [field-for-option]="filter['fieldForOptionElement']"
+      [tooltip]="filter.tooltip"
+      [errors-label]="filter.errmessageLabel"
+      [size]="filter.size"
+    >
+    </eng-select>
+    <eng-input-date
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.DATE"
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [placeholder]="filter.placeholder"
+      [tooltip]="filter.tooltip"
+      [errors-label]="filter.errmessageLabel"
+      [size]="filter.size"
+    >
+    </eng-input-date>
+    <eng-input-double-date
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.DDATE"
+      [label]="filter.id"
+      [placeholder]="filter.placeholder"
+      [formControl]="form.get(filter.dtoField)"
+      [errors-label]="filter.errmessageLabel"
+      [fromLabel]="filter['fromLabel']"
+      [toLabel]="filter['toLabel']"
+      [size]="filter.size"
+    >
+    </eng-input-double-date>
+    <eng-input-number
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.NUMBER"
+      [formControl]="form.get(filter.dtoField)"
+      [size]="filter.size"
+      [label]="filter.id"
+      [errors-label]="filter.errmessageLabel"
+      [placeholder]="filter.id"
+    ></eng-input-number>
+    <eng-input-number-interval
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.NUMBER_INTERVAL"
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [errors-label]="filter.errmessageLabel"
+      [fromLabel]="filter['fromLabel']"
+      [toLabel]="filter['toLabel']"
+      [size]="filter.size"
+    >
+    </eng-input-number-interval>
+    <eng-input-space *ngSwitchCase="FILTER_TYPE_CONSTANT.SPACE" [size]="filter.size"></eng-input-space>
+    <ng-container *ngSwitchCase="FILTER_TYPE_CONSTANT.TEMPLATE">
+      <ng-container *ngTemplateOutlet="filter['template']"></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="FILTER_TYPE_CONSTANT.BREAK">
+      <eng-form-row-break></eng-form-row-break>
+    </ng-container>
+    <eng-checkbox
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.CHECKBOX"
+      #checkboxFilter
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [options]="filter['options']"
+      [field-for-id]="filter['fieldForId']"
+      [field-for-option]="filter['fieldForOptionElement']"
+      [tooltip]="filter.tooltip"
+      [errors-label]="filter.errmessageLabel"
+      [size]="filter.size"
+    >
+    </eng-checkbox>
+    <eng-single-checkbox
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.SINGLE_CHECKBOX"
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [tooltip]="filter.tooltip"
+      [errors-label]="filter.errmessageLabel"
+      [checked-value]="filter.checkedValue"
+      [unchecked-value]="filter.uncheckedValue"
+      [size]="filter.size"
+    >
+    </eng-single-checkbox>
+    <eng-input-combobox
+      *ngSwitchCase="FILTER_TYPE_CONSTANT.INPUT_COMBOBOX"
+      [label]="filter.id"
+      [formControl]="form.get(filter.dtoField)"
+      [remote]="filter.remote"
+      [options]="filter['optionsList']"
+      [field-for-option]="filter['fieldForOptionElement']"
+      [errors-label]="filter.errmessageLabel"
+      [size]="filter.size"
+    >
+    </eng-input-combobox>
+    <eng-form-row-break> *ngSwitchCase="FILTER_TYPE_CONSTANT.LINEBREAK" [size]="filter.size" </eng-form-row-break>
+
+    <ng-container *ngSwitchDefault> {{ filter.type }} not supported </ng-container>
+  </ng-container>
+</ng-template>

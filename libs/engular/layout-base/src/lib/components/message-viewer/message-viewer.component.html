@@ -1,0 +1,38 @@
+<!-- 
+	THIS IS ONLY A EXAMPLE TO USE AS MAPPING REFERENCE
+-->
+<!--
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="messageModalTitle" id="message-modal">
+	<div class="modal-title" *ngIf="!message" id="messageModalTitle">No title</div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content" *ngIf="message">
+			<div class="modal-header">
+				<button type="button" class="close" (click)="close()" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				
+				<div class="modal-title" *ngIf="message" id="messageModalTitle">{{message.title|translate:message.i18NPlaceHolder}}</div>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					{{message.message|translate:message.i18NPlaceHolder}}
+				</div>
+				<div class="row error-list" *ngIf="message['errorList']">
+					<ul>
+						<li *ngFor="let error of message['errorList']">{{error.message||'ERROR.CODE_'+error.code|translate}}</li>
+					</ul>
+				</div>
+				<div class="row validation-error-list" *ngIf="message['validationErrors']">
+					<ul>
+						<li *ngFor="let error of message['validationErrors']">{{error.message||'ERROR.CODE_'+error.code|translate}}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" (click)="close()">{{'BUTTON.CLOSE'|translate}}</button>
+			</div>
+		</div>
+
+	</div>
+
+</div>-->

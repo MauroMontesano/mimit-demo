@@ -1,0 +1,36 @@
+<div class="card stepper-wrapper">
+  <div class="collapse stepper-collapse" id="collapseStepper">
+    <div class="media align-items-center">
+      <div class="media-body">
+        <ul class="stepper stepper-horizontal">
+          <ng-container *ngFor="let step of steps; let first = first; let last = last; let i = index">
+            <li
+              [ngClass]="{
+                completed: step.visited && activeStep.id !== step.id,
+                active: activeStep.id === step.id,
+                warning: step.hasError && activeStep.id !== step.id
+              }"
+              *ngIf="step.visible"
+            >
+              <a (click)="manageClick(step)" href="javascript:void(0)" [title]="'seleziona ' + step.title">
+                <span class="circle">
+                  <span *ngIf="step.hasError && activeStep.id !== step.id">
+                    <span title="icona" class="fas fa-times"></span>
+                  </span>
+                  <span *ngIf="step.visited && activeStep.id !== step.id && !step.hasError">
+                    <span title="icona" class="fas fa-check"></span>
+                  </span>
+                  <ng-container *ngIf="showNumber(step)">
+                    {{ i + 1 }}
+                  </ng-container>
+                </span>
+                <span class="label">{{ step.title }}</span>
+                <small class="status">{{ getStateDescription(step) | translate }} </small>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

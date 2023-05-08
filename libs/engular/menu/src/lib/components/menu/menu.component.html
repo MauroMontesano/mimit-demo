@@ -1,0 +1,17 @@
+<aside class="menu">
+  <header class="menu__header">
+    <div class="h2 menu__header-title" *ngIf="title">{{ title }}</div>
+    <button type="button" class="btn btn-link menu__button--close" title="chiudi il menu">
+      <span class="icon i-close1"></span>
+    </button>
+  </header>
+  <eng-content-loader [loading]="links.length === 0"></eng-content-loader>
+
+  <nav>
+    <ul class="menu__ul--parent panel-group list-unstyled" role="tablist" aria-multiselectable="true">
+      <ng-container *ngFor="let link of links">
+        <eng-menu-item [item]="link" (manageClick)="manageClick($event)"></eng-menu-item>
+      </ng-container>
+    </ul>
+  </nav>
+</aside>

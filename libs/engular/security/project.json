@@ -1,0 +1,40 @@
+{
+  "name": "engular-security",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/security/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/security"],
+      "options": {
+        "project": "libs/engular/security/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/security/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/security/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/security"],
+      "options": {
+        "jestConfig": "libs/engular/security/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/security/src/**/*.ts", "libs/engular/security/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,10 @@
+<table>
+  <tbody>
+    <tr *ngFor="let info of dataDaVisualizzare">
+      <td style="width: 60%">
+        <span *ngIf="info.icon" class=" me-3 fa-solid fa-{{ info.icon }}"></span>{{ info.label }}
+      </td>
+      <td>{{ info.valore }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,63 @@
+<div id="ex-slider-alt" class="carousel carousel-dark carousel-indicators-bottom carousel-controls-bottom slide">
+  <eaf-content-loader [loading]="itemsLoading"></eaf-content-loader>
+  <div class="carousel-indicators" *ngIf="items && items.length > 0">
+    <ng-container *ngFor="let item of items; let i = index">
+      <button
+        *ngIf="i < maxElement"
+        [class.active]="selectedIndex === i"
+        type="button"
+        (click)="selectItem(i)"
+        [title]="'Seleziona item numero ' + (i + 1)"
+        data-bs-target="#ex-slider-alt"
+        attr.aria-label="Contenuto {{ i }}"
+        aria-controls="ex-slider-alt"
+        class="bg-primary"
+      ></button>
+    </ng-container>
+    <div class="carousel-controls order-2 ms-3 d-none d-lg-block">
+      <button
+        type="button"
+        class="btn link-primary"
+        title="Pausa"
+        aria-label="Metti in pausa lo scorrimento delle notizie"
+        (click)="pause()"
+      >
+        <i class="bi bi-pause-circle bi-lg"></i>
+      </button>
+      <button
+        type="button"
+        class="btn link-primary"
+        title="Play"
+        aria-label="Avvia lo scorrimento delle notizie"
+        (click)="play()"
+      >
+        <i class="bi bi-play-circle bi-lg"></i>
+      </button>
+    </div>
+  </div>
+  <div class="carousel-inner" aria-live="polite">
+    <ng-container *ngFor="let item of items; let i = index">
+      <div *ngIf="i < maxElement" class="carousel-item" [class.active]="selectedIndex === i">
+        <ng-container *ngTemplateOutlet="item"></ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <button
+    (click)="selectItem(selectedIndex - 1)"
+    title="Seleziona item precedente"
+    class="carousel-control-prev"
+    type="button"
+  >
+    <span class="carousel-control-prev-icon"></span>
+    <span class="visually-hidden">Precedente</span>
+  </button>
+  <button
+    (click)="selectItem(selectedIndex + 1)"
+    title="Seleziona item successivo"
+    class="carousel-control-next"
+    type="button"
+  >
+    <span class="carousel-control-next-icon"></span>
+    <span class="visually-hidden">Successivo</span>
+  </button>
+</div>

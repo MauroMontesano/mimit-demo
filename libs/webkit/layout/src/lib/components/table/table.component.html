@@ -1,0 +1,221 @@
+<!-- TABELLA -->
+<div class="table-responsive">
+  <table class="table table-hover">
+    <caption class="sr-only">
+      {{
+        title
+      }}
+    </caption>
+    <thead>
+      <tr class="table-dark">
+        <!-- INIZIO COLONNE-->
+        <ng-container *ngFor="let field of tableStructure; let i = index">
+          <th
+            *ngIf="field.fieldType !== EafTableFieldTypeConstant.ACTIONS"
+            scope="col"
+            [style.width]="field.size"
+            [attr.id]="'th' + i + '-' + id"
+          >
+            {{ field.label | translate }}
+            <!-- SE E' ORDINABILE-->
+            <!-- <div
+                  *ngIf="field.sortable"
+                  class="eaf-fieldTyps-typs-{{ field.fieldType.toLowerCase() }}"
+                  (click)="changeSort(field); (true)"
+                  id="{{ id + '_' + field.fieldType + '_' + i }}"
+                > -->
+            <!-- <span class="table__th-text" *ngIf="field.label">{{ field.label | translate }}&nbsp;</span> -->
+            <!-- <eaf-input-tooltip *ngIf="field.tooltip" [tooltip]="field.tooltip"></eaf-input-tooltip> -->
+
+            <!-- <span *ngIf="field.sortable" tabindex="0" role="button">
+                    <span
+                      class="table__th-icon fa"
+                      [ngClass]="{
+                        'fa-sort': sortColumn !== (field.propertyNameToUse || field.sortDtoField),
+                        'fa-sort-up': sortColumn === (field.propertyNameToUse || field.sortDtoField) && !isDesc,
+                        'fa-sort-down': isDesc && sortColumn === (field.propertyNameToUse || field.sortDtoField)
+                      }"
+                      attr.aria-label="Ordina il campo {{ field.label | translate }} in ordine {{
+                        sortColumn === field.propertyNameToUse && isDesc ? 'decrescente' : 'crescente'
+                      }}"
+                    >
+                    </span>
+                  </span> -->
+            <!-- </div> -->
+            <!-- SE NON E' ORDINABILE  -->
+          </th>
+        </ng-container>
+        <th *ngIf="actions" scope="col" [attr.id]="'th' + (tableStructure.length - 1) + '-' + id">
+          <span class="visually-hidden">Azioni</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let result of data; let i = index">
+        <tr *ngIf="i < pageSizeSelected">
+          <td *ngFor="let field of tableStructure; let ind = index" [attr.headers]="'th' + ind + '-' + id">
+            <ng-container [ngSwitch]="field.fieldType">
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.ACCORDION">
+                <!-- <button
+                  (click)="toogleAccordion(result)"
+                  class="btn btn-link collapsed"
+                  [attr.aria-expanded]="accordion && result.equals(accordionItem)"
+                  [ngClass]="{
+                    collapsed: accordion && result.equals(accordionItem)
+                  }"
+                  title="apri"
+                >
+                  <span class="fa-regular fa-plus-circle fa-2x"></span> 
+                </button>-->
+                NON SUPPORTATO
+              </ng-container>
+              <ng-container class="text-end" *ngSwitchCase="EafTableFieldTypeConstant.TEXT_ARRAY">
+                <span *ngFor="let e of result | deepObject: field.propertyNameToUse; let last = last">
+                  {{ e }}
+                  <span *ngIf="!last">,&nbsp;</span>
+                </span>
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.RADIO">
+                <!-- <div class="form-group block">
+                  <div class="input-radio">
+                    <input
+                      type="radio"
+                      id="{{ id }}_radio_button_{{ i }}"
+                      name="{{ id }}_radio_button_name"
+                      [value]="result | deepObject: field.propertyNameToUse"
+                      (click)="field.handleClick(result); field.selectedValue = result; $event.stopPropagation()"
+                      [checked]="field.isSelected(result)"
+                    />
+                    <label for="{{ id }}_radio_button_{{ i }}" class="control-label">
+                      <span class="sr-only">{{ field.label | translate }}</span>
+                    </label>
+                  </div>
+                </div> -->
+                NON SUPPORTATO
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.CHECKBOX">
+                <!-- <div class="form-group block">
+                  <div class="input-checkbox">
+                    <input
+                      type="checkbox"
+                      [checked]="field.isSelected(result)"
+                      id="{{ id }}_checkbox_{{ i }}"
+                      [value]="result | deepObject: field.propertyNameToUse"
+                      [checked]="field.isSelected(result)"
+                      (click)="field.toggle(result)"
+                    />
+
+                    <label for="{{ id }}_checkbox_{{ i }}" class="control-label">
+                      <span class="sr-only">{{ field.label | translate }}</span>
+                    </label>
+                  </div>
+                </div> -->
+                NON SUPPORTATO
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.NORMAL">
+                {{ result | deepObject: field.propertyNameToUse }}
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.NUMBER">
+                {{ result | deepObject: field.propertyNameToUse }}
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.DATE">
+                {{ (result | deepObject: field.propertyNameToUse)?.toString() }}
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.CURRENCY">
+                {{ result | deepObject: field.propertyNameToUse | currency: 'EUR':'symbol':'1.2-2' }}
+              </ng-container>
+              <ng-container *ngSwitchCase="'PROGRESS'">
+                <!-- <eng-progress-bar [percent]="result | deepObject: field.propertyNameToUse">
+										 </eng-progress-bar>-- -->
+                NON IMPLEMENTATO
+              </ng-container>
+              <ng-container *ngSwitchCase="'STRING[]'">
+                <ng-container *ngFor="let el of result | deepObject: field.propertyNameToUse; let last = last"
+                  >{{ el.descrizione }}
+                  <ng-container *ngIf="!last">,</ng-container>
+                </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="'LINK'">
+                <!-- <a [routerLink]="field.link(result)">{{ result | deepObject: field.propertyNameToUse }}</a> -->
+                NON SUPPORTATO
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.ACTIONS">
+                <div class="btn-group dropdown mx-3" role="group">
+                  <!-- prima i buoni -->
+                  <ng-container *ngFor="let action of getActionForRow(result, field).visible">
+                    <eaf-action
+                      [action]="action"
+                      [model]="result"
+                      [onlyIcon]="true"
+                      [title]="action.dynamicName(result)"
+                    >
+                    </eaf-action>
+                  </ng-container>
+
+                  <!-- poi gli extra -->
+
+                  <eaf-action
+                    [action]="getActionForRow(result, field).drop[0]"
+                    *ngIf="getActionForRow(result, field).drop.length === 1"
+                    [model]="result"
+                    [onlyIcon]="true"
+                    [title]="getActionForRow(result, field).drop[0].dynamicName(result)"
+                  >
+                  </eaf-action>
+                  <div class="position-relative">
+                    <ul class="dropdown-menu table-dropdown">
+                      <ng-container *ngFor="let action of getActionForRow(result, field).drop">
+                        <li>
+                          <eaf-action
+                            [action]="action"
+                            [model]="result"
+                            [onlyIcon]="true"
+                            [title]="action.dynamicName(result)"
+                          >
+                          </eaf-action>
+                        </li>
+                      </ng-container>
+                    </ul>
+                    <button
+                      *ngIf="getActionForRow(result, field).drop.length > 1"
+                      class="btn btn-link"
+                      title="Altre azioni"
+                      id="action_{{ id }}_{{ i }}"
+                      type="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      <span class="fa-regular fa-ellipsis-v"></span>
+                    </button>
+                  </div>
+                  <!-- /.btn-group -->
+                </div>
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.TEMPLATE">
+                <ng-container *ngTemplateOutlet="field.template; context: { item: result }"> </ng-container>
+              </ng-container>
+              <ng-container *ngSwitchCase="EafTableFieldTypeConstant.ICON">
+                <span class="{{ field.cssCLass(result) }}" aria-hidden="true"></span>
+              </ng-container>
+              <ng-container *ngSwitchDefault> {{ field.fieldType }} not supported </ng-container>
+            </ng-container>
+          </td>
+        </tr>
+        <!-- dettaglio della riga espansa -->
+        <tr *ngIf="accordion && result && result.equals(accordionItem)" class="bg-light">
+          <td [colSpan]="tableStructure.length + 1" class="td--collapse">
+            <ng-container *ngTemplateOutlet="accordion; context: { $implicit: 1, item: accordionItem }"> </ng-container>
+          </td>
+        </tr>
+
+        <!-- / dettaglio della riga espansa -->
+      </ng-container>
+    </tbody>
+    <tfoot *ngIf="footerTRTemplate">
+      <tr>
+        <ng-container *ngTemplateOutlet="footerTRTemplate"> </ng-container>
+      </tr>
+    </tfoot>
+  </table>
+</div>

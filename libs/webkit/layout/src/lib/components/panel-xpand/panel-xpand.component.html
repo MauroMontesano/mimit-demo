@@ -1,0 +1,55 @@
+<div class="panel-collapse" [id]="id + '-panelActionsHeading'">
+  <div class="row">
+    <div class="flex-grow-1">
+      <div
+        (click)="utilityToggle()"
+        [id]="id + '-panelActionsCollapse-show'"
+        [hidden]="!isOpen"
+        aria-expanded="true"
+        class="btn-link"
+        data-toggle="collapse"
+        role="button"
+      >
+        <span class="{{ iconOpen }}" role="presentation"></span>
+        <span class="ps-2">{{ panelTitle | translate }}</span>
+      </div>
+      <div
+        (click)="utilityToggle()"
+        [id]="id + '-panelActionsCollapse-hide'"
+        [hidden]="isOpen"
+        aria-expanded="false"
+        class="btn-link"
+        data-toggle="collapse"
+        role="button"
+      >
+        <span class="{{ iconClose }}" role="presentation"></span>
+        <span class="ps-2">{{ panelTitle | translate }}</span>
+      </div>
+    </div>
+    <!-- / sezione extra -->
+    <div class="flex-shrink-1 panel-heading__icon" *ngIf="panelContent">
+      <ng-container *ngTemplateOutlet="panelContent; context: { $implicit: 1, model: model }"> </ng-container>
+    </div>
+    <!-- azioni -->
+    <div class="flex-shrink-1 text-right" *ngIf="actions && actions.length > 0">
+      <eaf-actions-dropdown [extraClass]="'panel-heading__btn-group btn-group'" [actions]="actions" [model]="model">
+      </eaf-actions-dropdown>
+    </div>
+  </div>
+
+  <div
+    class="collapse"
+    [ngClass]="{ show: isOpen }"
+    [attr.aria-expanded]="isOpen"
+    [id]="id + '-panelActionsCollapse-content'"
+  >
+    <div class="panel-body">
+      <ng-container *ngTemplateOutlet="accordion; context: { $implicit: 1, model: model }"></ng-container>
+      <ng-content *ngIf="!accordion"></ng-content>
+      <div *ngIf="editMode || editMode === 0" class="text-right">
+        <eaf-button [title]="'BUTTON.EDIT_STEP'" [icon]="'pencil'" [isLink]="true" (click)="editClicked()">
+        </eaf-button>
+      </div>
+    </div>
+  </div>
+</div>

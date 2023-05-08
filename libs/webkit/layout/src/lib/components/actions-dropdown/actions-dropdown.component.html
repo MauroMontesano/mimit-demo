@@ -1,0 +1,22 @@
+<div class="dropdown {{ extraClass }}">
+  <!-- prima i buoni -->
+  <ng-container *ngFor="let action of actions.visible">
+    <eaf-action [action]="action" [model]="model" [onlyIcon]="true"> </eaf-action>
+  </ng-container>
+  <ng-container *ngIf="actions.drop && actions.drop.length > 1">
+    <eaf-action [action]="openMenuAction" [onlyIcon]="true"></eaf-action>
+  </ng-container>
+  <!-- poi gli extra -->
+
+  <div [ngClass]="{ open: dropdownOpen }">
+    <ul class="dropdown-menu dropdown-menu-right">
+      <ng-container *ngFor="let action of actions.drop">
+        <li>
+          <eaf-action [action]="action" [model]="model" [onlyIcon]="!labeledMenu"> </eaf-action>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <eaf-action [action]="actions.drop[0]" *ngIf="actions.drop.length === 1" [model]="model" [onlyIcon]="true">
+  </eaf-action>
+</div>

@@ -1,0 +1,35 @@
+<!-- <div
+	class="{{_size.toClass()}} form-group"
+	[ngClass]="{
+		'has-error': !formControl.valid && !formControl.disabled,
+		'has-warning': warningMessage,
+		block: !line
+	}"
+>
+	<div class="row">
+		<div class=" input-checkbox">
+			<input
+				id="input-checkbox-{{id+extId}}"
+				(click)="$event.stopPropagation(); onClick()"
+				[checked]="value === checkedValue"
+				type="checkbox"
+				title="{{id|translate : i18nExtra}}"
+				[disabled]="disabled"
+				[readonly]="readonly"
+			/>
+
+			<label class="control-label" [ngClass]="{ noPaddingLeft: !id }" (click)="$event.stopPropagation(); onClick()">{{ _label | translate: i18nExtra }}</label>
+			<eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+		</div>
+		<!-- messaggio -->
+		<div class="{{_sizeMessages.toClass()}}">
+			<small class="help-block" id="{{id+extId}}_help-block" role="alert">
+				<span class="help-block--warning" *ngIf="warningMessage">{{ warningMessage }}</span>
+				<eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+			</small>
+		</div>
+	</div>
+	<!-- /.row -->
+</div>
+<!-- /.form-group -->
+ 

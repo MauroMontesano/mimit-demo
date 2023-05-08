@@ -1,0 +1,8 @@
+<div class="{{_size.toClass()}} noPadding" [ngClass]="{'has-error': !formControl.valid}">
+    <label class="control-label" for="{{id+extId}}">
+        <span *ngIf="required">*</span>{{_label|translate}}</label>
+    <input #input type="text" class="form-control" [class.disabled]="disabled" id="{{id+extId}}" placeholder="{{placeholder|translate}}"
+        (paste)="onChange($event)" (keyup)="onChange($event)" [disabled]="disabled" />
+   <eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+    <eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+</div>

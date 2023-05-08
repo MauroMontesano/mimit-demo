@@ -1,0 +1,14 @@
+<button
+  type="button"
+  (click)="manageClick($event)"
+  title="{{ dynamicTitle ? dynamicTitle : (title || action.name | translate) }}"
+  class="btn btn-xs btn-{{ action.type ? mapActionType(action.type) : 'link' }} {{ extraClass }} {{
+    mapColorType(action.type)
+  }}"
+  [ngClass]="{ disabled: action.disabled || disabled || loading }"
+>
+  <i [ngClass]="'fa-solid fa-' + action.icon" *ngIf="action.icon && !loading"></i>
+  <span class="visually-hidden">{{ dynamicTitle ? dynamicTitle : (title || action.name | translate) }}</span>
+  <span *ngIf="!onlyIcon">&nbsp;{{ dynamicTitle ? dynamicTitle : (title || action.name | translate) }}</span>
+  <span class="fa-regular fa-spinner fa-pulse" [attr.aria-label]="loading" *ngIf="loading"></span>
+</button>

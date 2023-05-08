@@ -1,0 +1,60 @@
+<fieldset class="fieldset-bordered">
+  <legend>Date time</legend>
+  <div class="row g-4">
+    <div class="col-12 col-sm">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ dateLabel | translate }}</label
+      >
+      <input
+        #inputDate
+        type="date"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        class="form-control {{ _sizeInput.toClass() }}"
+        (paste)="onChangeDataOrTime($event)"
+        (keyup)="onChangeDataOrTime($event)"
+        (change)="onChangeDataOrTime($event)"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-valid': formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)
+        }"
+        [required]="required"
+        [readonly]="readonly || disabled"
+        [disabled]="disabled"
+        [min]="minDate"
+        [max]="maxDate"
+      />
+    </div>
+    <div class="col-6 col-sm-auto">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ timeLabel | translate }}</label
+      >
+      <input
+        #inputTime
+        type="time"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        class="form-control {{ _sizeInput.toClass() }}"
+        (paste)="onChangeDataOrTime($event)"
+        (keyup)="onChangeDataOrTime($event)"
+        (change)="onChangeDataOrTime($event)"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-valid': formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)
+        }"
+        [required]="required"
+        [readonly]="readonly || disabled"
+        [disabled]="disabled"
+      />
+    </div>
+  </div>
+  <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+  <small
+    *ngIf="required"
+    id="{{ id + extId }}_help-block"
+    role="alert"
+    class="text-truncate form-text text-muted is-invalid"
+    title="obbligatorio"
+    >{{ 'LABEL.REQUIRED' | translate }}</small
+  >
+</fieldset>

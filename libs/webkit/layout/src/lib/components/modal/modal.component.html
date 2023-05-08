@@ -1,0 +1,44 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="{{ id }}"
+  tabindex="-1"
+  role="dialog"
+  [attr.aria-labelledby]="id + '_myModalLabel'"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    [ngClass]="{ 'modal-lg': size === 'lg', 'modal-sm': size === 'sm', 'modal-xl': size === 'xl' }"
+    role="document"
+  >
+    <div class="modal-content" id="{{ id }}_myModalLabel">
+      <div class="modal-header">
+        <span *ngIf="title" id="{{ id }}_myModalLabel_title" class="modal-title h5">{{ title | translate }}</span>
+        <eaf-actions-dropdown
+          *ngIf="headerActions"
+          [actions]="headerActions"
+          [maxAction]="3"
+          [labeledMenu]="false"
+        ></eaf-actions-dropdown>
+      </div>
+
+      <div class="modal-body modal-scroll" (scroll)="manageScroll()">
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-footer" *ngIf="buttons && buttons.length > 0">
+        <eaf-button
+          *ngFor="let button of buttons"
+          class="me-2"
+          [isLink]="button.type === 'LINK'"
+          [icon]="button.icon"
+          [disabled]="button.disabled"
+          (click)="button.action(button.action, button)"
+          [title]="button.name"
+          [color]="button.type"
+        >
+        </eaf-button>
+      </div>
+    </div>
+  </div>
+</div>

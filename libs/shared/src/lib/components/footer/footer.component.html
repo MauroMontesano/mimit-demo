@@ -1,0 +1,53 @@
+<div class="footer" role="contentinfo">
+  <div class="row mx-0 bandiera m-0">
+    <div class="col-4 bv"></div>
+    <div class="col-4 bb"></div>
+    <div class="col-4 br"></div>
+  </div>
+  <div class="footerADM1">
+    <div class="container py-4">
+      <eaf-panel role="alert" [ngClass]="{ 'd-none': status }" tabindex="2">
+        Attenzione: l'applicazione è fornita di un timeout di sessione. Al termine del quale, laddove l'utente non
+        esegua nessuna operazione, renderà nulle tutte le operazioni eseguite.
+        <span class="close-btn" tabindex="1">
+          <button type="button" (click)="closeAlert()" class="btn btn-white">
+            <i class="bi bi-x-lg"></i><span class="visually-hidden">Chiudi avviso di sezione</span>
+          </button>
+        </span>
+      </eaf-panel>
+      <div class="row mx-0">
+        <p>
+          ADM Agenzia delle Dogane e dei Monopoli Piazza Mastai, 12 — 00153 Roma<br />
+          Partita Iva: 06409601009
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="footerADM2">
+    <div class="container py-4">
+      <div class="row mx-0 align-items-center">
+        <div class="col-md-8 p-0">
+          <div class="h3 sr-only">Sezione Link Utili</div>
+          <ul class="py-3 list-inline mb-0">
+            <li class="list-inline-item">
+              <a
+                href="./assets/pdf/informativa_privacy.pdf"
+                target="_blank"
+                title="Vai al file: Informativa Privacy - pdf"
+                >Privacy Policy</a
+              >
+            </li>
+            <li class="list-inline-item">
+              <a href="./assets/pdf/FAQ.pdf" target="_blank" title="Vai al file: FAQ - pdf">FAQ</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="./assets/pdf/regolamento_v5.pdf" target="_blank" title="Vai al file: Regolamento - pdf"
+                >Regolamento</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

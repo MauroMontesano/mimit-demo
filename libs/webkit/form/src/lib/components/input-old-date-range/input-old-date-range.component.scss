@@ -1,0 +1,39 @@
+eaf-input-date-range {
+  .datepicker-button.disabled,
+  input[readonly] ~ .datepicker-button,
+  input[disabled] ~ .datepicker-button {
+    display: none;
+  }
+
+  .labelRange{
+    position: absolute;
+    top: -25px;
+    left: 0;
+    font-weight: 600;
+  }
+
+  input[disabled] ~ .datepicker-button {
+    display: none;
+  }
+
+  .input-sx {
+    padding-right: 1rem;
+  }
+
+  .input-dx {
+    padding-left: 1rem;
+  }
+
+  .input-group .col {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .input-group-append.readonly,
+  .input-group-prepend.readonly {
+    background-color: var(--light);
+    .input-group-text {
+      border-color: var(--light);
+    }
+  }
+}

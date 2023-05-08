@@ -1,0 +1,75 @@
+<nav aria-label="Menù" id="menu" role="navigation">
+  <div class="sidebar-header text-primary d-lg-none">
+    <div class="h1 sidebar-title">{{ menuName }}</div>
+    <button
+      type="button"
+      class="navbar-toggler collapsed"
+      title="seleziona per chiudere sidebar"
+      (click)="toggleCollapse('sidebar-menu')"
+    >
+      <span class="visually-hidden">Apri menu</span>
+      <i class="bi bi-list text-primary"></i>
+    </button>
+  </div>
+  <div class="sidebar sidebar-expand-lg sidebar-light">
+    <div class="sidebar-collapse collapse" id="sidebar-menu">
+      <ul class="nav">
+        <ng-container *ngIf="this.config">
+          <ng-container *ngFor="let father of this.config; let i = index">
+            <ng-container *ngIf="father.data">
+              <ng-container *ngIf="!father.children">
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    [routerLink]="father.path"
+                    href="#"
+                    [title]="father.data.breadcrumbs"
+                  >
+                    <span class="nav-link-text">{{
+                      father.data.breadcrumbs
+                    }}</span>
+                  </a>
+                </li>
+              </ng-container>
+              <ng-container *ngIf="father.children">
+                <li class="nav-item dropdown">
+                  <a
+                    (click)="initMenu('collapseLayouts' + i, father)"
+                    class="nav-link collapse-toggle collapsed"
+                    [title]="father.data.breadcrumbs"
+                  >
+                    <span class="nav-link-text">{{
+                      father.data.breadcrumbs
+                    }}</span></a
+                  >
+                  <div
+                    [id]="'collapseLayouts' + i"
+                    class="collapse"
+                    data-parent="#sidenavAccordion"
+                  >
+                    <ul class="nav">
+                      <ng-container *ngFor="let children of father.children">
+                        <li class="nav-item">
+                          <a
+                            (click)="open(father.path + '/' + children.path)"
+                            [title]="children.data.breadcrumbs"
+                            class="nav-link"
+                            href="#"
+                          >
+                            <span class="nav-link-text">{{
+                              children.data.breadcrumbs
+                            }}</span>
+                          </a>
+                        </li>
+                      </ng-container>
+                    </ul>
+                  </div>
+                </li>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>

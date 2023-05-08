@@ -1,0 +1,15 @@
+<ng-container *ngIf="tooltip">
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    id="{{ idRandom }}"
+    data-html="true"
+    data-container="body"
+    tabindex="0"
+    [attr.title]="tooltip.title! | translate: tooltip.i18NPlaceHolder"
+    [attr.data-bs-content]="tooltip.content | translate: tooltip.i18NPlaceHolder"
+  >
+    <i class="bi bi-question bi-2x"></i>
+    <span class="visually-hidden">Help sul campo ...</span>
+  </button>
+</ng-container>

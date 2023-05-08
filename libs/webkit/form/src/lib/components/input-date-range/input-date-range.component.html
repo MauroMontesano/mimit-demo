@@ -1,0 +1,64 @@
+<fieldset class="fieldset-bordered">
+  <legend>{{ label }}</legend>
+  <div class="row g-4">
+    <div class="col-12 col-sm">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ fromLabel | translate }}</label
+      >
+      <input
+        #inputFrom
+        type="date"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        class="form-control {{ _sizeInput.toClass() }}"
+        placeholder="{{ placeholder! | translate }}"
+        (paste)="onChangeDate($event, 'from')"
+        (keyup)="onChangeDate($event, 'from')"
+        (change)="onChangeDate($event, 'from')"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-valid': formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)
+        }"
+        [required]="required"
+        [readonly]="readonly || disabled"
+        [disabled]="disabled"
+        [min]="minDate"
+        [max]="maxDate"
+      />
+    </div>
+    <div class="col-12 col-sm">
+      <label *ngIf="_label && _label !== '' && !tooltip" class="form-label" for="{{ id + extId }}">
+        {{ toLabel | translate }}</label
+      >
+      <input
+        #inputTo
+        type="date"
+        id="{{ id + extId }}"
+        name="{{ placeholder }}"
+        class="form-control {{ _sizeInput.toClass() }}"
+        placeholder="{{ placeholder! | translate }}"
+        (paste)="onChangeDate($event, 'to')"
+        (keyup)="onChangeDate($event, 'to')"
+        (change)="onChangeDate($event, 'to')"
+        [ngClass]="{
+          'is-invalid': !formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched),
+          'is-valid': formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)
+        }"
+        [required]="required"
+        [readonly]="readonly || disabled"
+        [disabled]="disabled"
+        [min]="minToDate"
+        [max]="maxDate"
+      />
+    </div>
+    <eaf-input-error [id]="id + extId" [error-labels]="errorLabels" [control]="formControl"></eaf-input-error>
+    <small
+      *ngIf="required"
+      id="{{ id + extId }}_help-block"
+      role="alert"
+      class="text-truncate form-text text-muted is-invalid"
+      title="obbligatorio"
+      >{{ 'LABEL.REQUIRED' | translate }}</small
+    >
+  </div>
+</fieldset>

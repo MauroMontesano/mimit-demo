@@ -1,0 +1,3 @@
+.datepicker-button.disabled, input[readonly]~.datepicker-button, input[disabled]~.datepicker-button {
+    display: none;
+}

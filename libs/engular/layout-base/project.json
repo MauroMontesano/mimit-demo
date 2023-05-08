@@ -1,0 +1,40 @@
+{
+  "name": "engular-layout-base",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/layout-base/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/layout-base"],
+      "options": {
+        "project": "libs/engular/layout-base/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/layout-base/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/layout-base/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/layout-base"],
+      "options": {
+        "jestConfig": "libs/engular/layout-base/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/layout-base/src/**/*.ts", "libs/engular/layout-base/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

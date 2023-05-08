@@ -1,0 +1,47 @@
+<!-- <div
+	class="{{_size.toClass()}} form-group"
+	[ngClass]="{
+		'has-error': !formControl.valid && !formControl.disabled,
+		'has-warning': warningMessage,
+		block: !line
+	}"
+>
+	<div class="row">
+		
+		<div class="{{_sizeLabel.toClass()}}">
+			<label class="control-label" for="{{id+extId}}"><span *ngIf="required">*</span>{{ _label | translate }}</label>
+			
+			<eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+		</div>
+
+		<div class="{{_sizeInput.toClass()}} input-radio" [ngClass]="{ disabled: disabled }">
+			<eng-input-loading [loading]="formControl.pending || !options || options.length === 0"></eng-input-loading>
+			<ng-container *ngFor="let option of options; let i = index">
+				<input
+					id="{{id+extId+i}}"
+					(click)="onClick(option)"
+					[checked]="option.payload === value"
+					type="radio"
+					name="{{id}}"
+					[value]="option.payload"
+					title="{{option.label|translate}}"
+					[disabled]="disabled"
+				/>
+
+				<label class="control-label" [ngClass]="{ noPaddingLeft: !id }" (click)="$event.stopPropagation(); onClick(option)">{{ option.label | translate }}</label>
+				<eng-input-tooltip [tooltip]="option.tooltip"></eng-input-tooltip>
+			</ng-container>
+		</div>
+
+		
+		<div class="{{_sizeMessages.toClass()}}">
+			<small class="help-block" id="{{id+extId}}_help-block" role="alert">
+				<span class="help-block--warning" *ngIf="warningMessage">{{ warningMessage }}</span>
+				<eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+			</small>
+		</div>
+	</div>
+	
+</div>
+
+ -->

@@ -1,0 +1,21 @@
+<div *ngIf="breadcrumbs">
+  <nav aria-label="Ti trovi in:">
+    <ol class="breadcrumb mb-0">
+      <li
+        *ngFor="let breadcrumb of breadcrumbs; let last = last"
+        class="breadcrumb-item"
+        [ngClass]="{ 'active ': last }"
+        [attr.aria-current]="last ? 'page' : null"
+      >
+        <a
+          href="#"
+          *ngIf="!last && breadcrumb.url"
+          [routerLink]="breadcrumb.url"
+          [queryParams]="breadcrumb.queryParams"
+          >{{ breadcrumb.name }}</a
+        >
+        <ng-container *ngIf="last || !breadcrumb.url">{{ breadcrumb.name }}</ng-container>
+      </li>
+    </ol>
+  </nav>
+</div>

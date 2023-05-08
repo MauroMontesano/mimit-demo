@@ -1,0 +1,13 @@
+<div class="row panel panel-default form-accordion pd-zero {{ _size.toBootstrapClass() }}">
+  <div class="row panel-heading heading-form-grey" [attr.data-target]="'#' + id + 'table-panel'" (click)="toggle()">
+    <div class="h3 title-modulo">{{ title | translate }}</div>
+    <span
+      class="fa"
+      [ngClass]="{ 'fa-chevron-up': isOpen, 'fa-chevron-down': !isOpen }"
+      title="Espandi/Riduci la riga"
+    ></span>
+  </div>
+  <div [id]="id + 'table-panel'" class="row panel-body body-form-grey" [ngClass]="{ collapse: !isOpen }">
+    <ng-content></ng-content>
+  </div>
+</div>

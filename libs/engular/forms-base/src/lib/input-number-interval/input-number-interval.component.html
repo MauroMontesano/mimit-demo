@@ -1,0 +1,62 @@
+<div
+  class="{{ _size.toClass() }}  form-group"
+  [ngClass]="{ 'has-error': !formControl.valid && !formControl.disabled, 'has-warning': warningMessage }"
+>
+  <div class="row">
+    <!-- etichetta -->
+    <div class="{{ _sizeLabel.toClass() }}">
+      <p class="control-label"><span *ngIf="required">*</span>{{ _label | translate }}</p>
+      <!-- popover -->
+      <eng-input-tooltip [tooltip]="tooltip"></eng-input-tooltip>
+    </div>
+
+    <!-- inputs -->
+    <div class="{{ _sizeInput.toClass() }} input-group-TODO">
+      <!-- input "DAL" -->
+      <label class="control-label input-group-addon" for="{{ id + extId + '-from' }}">{{
+        fromLabel | translate
+      }}</label>
+      <input
+        #input1
+        type="text"
+        id="{{ id + extId + '-from' }}"
+        class="form-control"
+        title="From"
+        placeholder="{{ placeholder | translate }}"
+        (paste)="onIntervalChange($event)"
+        (keyup)="onIntervalChange($event)"
+        (change)="onIntervalChange($event)"
+        (blur)="onIntervalChange($event)"
+        [readonly]="readonly || disabled"
+        attr.aria-describedby="{{ id + extId }}_help-block"
+      />
+
+      <!-- input "AL" -->
+      <label class="control-label input-group-addon" for="{{ id + extId + '-to' }}">{{ toLabel | translate }}</label>
+      <input
+        #input2
+        type="text"
+        id="{{ id + extId + '-to' }}"
+        class="form-control"
+        title="From"
+        placeholder="{{ placeholder | translate }}"
+        (paste)="onIntervalChange($event)"
+        (keyup)="onIntervalChange($event)"
+        (change)="onIntervalChange($event)"
+        (blur)="onIntervalChange($event)"
+        [readonly]="readonly || disabled"
+        attr.aria-describedby="{{ id + extId }}_help-block"
+      />
+    </div>
+    <!-- /.input-group-TODO -->
+
+    <div class="{{ _sizeMessages.toClass() }}">
+      <small class="help-block" id="{{ id + extId }}_help-block" role="alert">
+        <span class="help-block--warning" *ngIf="warningMessage">{{ warningMessage }}</span>
+        <eng-input-error [errors-label]="errorsLabel" [control]="formControl"></eng-input-error>
+      </small>
+    </div>
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.form-group -->

@@ -1,0 +1,40 @@
+{
+  "name": "engular-base-page",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/engular/base-page/src",
+  "prefix": "eaf",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/engular/base-page"],
+      "options": {
+        "project": "libs/engular/base-page/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/engular/base-page/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/engular/base-page/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/engular/base-page"],
+      "options": {
+        "jestConfig": "libs/engular/base-page/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/engular/base-page/src/**/*.ts", "libs/engular/base-page/src/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

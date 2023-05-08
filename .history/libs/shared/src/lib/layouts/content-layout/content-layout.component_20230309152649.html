@@ -1,0 +1,25 @@
+<!-- <eaf-message></eaf-message> -->
+<eaf-customized-nav-bar
+  [floatingNavbar]="false"
+  [startOpen]="true"
+  [title]="title"
+  [nomeUser]="nomeUtente"
+  [ruoloUser]="nickname"
+  [permissions]="permissions"
+  [userDropdownActions]="userDropdownActions"
+>
+  <div data-body>
+    <router-outlet></router-outlet>
+    <!-- <eaf-panel [ngClass]="{ 'd-none': status }" tabindex="2">
+      Attenzione: l'applicazione è fornita di un timeout di sessione. Al termine del quale, laddove l'utente non esegua
+      nessuna operazione, renderà nulle tutte le operazioni eseguite.
+      <span class="close-btn" tabindex="1">
+        <button type="button" (click)="closeAlert()" class="btn btn-white">
+          <i class="bi bi-x-lg"></i><span class="visually-hidden">Chiudi avviso di sezione</span>
+        </button>
+      </span>
+    </eaf-panel> -->
+  </div>
+</eaf-customized-nav-bar>
+<eaf-multi-modal-viewer></eaf-multi-modal-viewer>
+<eaf-footer></eaf-footer>
