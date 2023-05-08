@@ -1,3 +1,4 @@
+import { AuthenticationService } from '@adm/agenda-trasparente/core';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseConverter } from '@engular/core-services';
@@ -18,8 +19,14 @@ export class CommissarioService extends EafBaseHttpService<CommissarioModel, Com
     http: HttpClient,
     protected config: EafConfigurationService,
     private eafMessageService: EafMessageService,
+    private authService: AuthenticationService
   ) {
     super(http, config);
+    this.authService.getdatiUtente().subscribe((datiUtente) => {
+      if (datiUtente) {
+        this.nickName = datiUtente.nickname;
+      }
+    });
     this.baseUrl = this.config.get('baseUrl');
   }
 

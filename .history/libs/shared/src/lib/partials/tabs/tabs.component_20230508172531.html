@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs" role="tablist">
+  <!-- <li *ngFor="let t of tabs" class="nav-item" id="{{ t.id }}-button">
+    <a
+      (click)="tabChanging(t)"
+      [title]="'Seleziona tab ' + t.title"
+      [ngClass]="{ active: activeTab && activeTab.id === t.id }"
+      class="nav-link"
+      role="tab"
+      data-bs-toggle="tab"
+      [attr.aria-controls]="t.id + '-tab'"
+    >
+      <span *ngIf="t.icon" class="fa-regular fa-{{ t.icon }}"></span>&nbsp;{{ t.title }}
+    </a>
+  </li> -->
+</ul>
+ciao pippo  {{tabs | json}}
+<router-outlet></router-outlet>

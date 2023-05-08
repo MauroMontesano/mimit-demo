@@ -20,7 +20,7 @@ export class TabsComponent {
   changeTab(tab: TabModel) {
     console.log(tab, this.activeTab);
     this.tabsManager.openTab(tab);
-    this.router.navigateByUrl(tab.path);
+    this.router.navigateByUrl(`/commissari/table`);
   }
 
   // tabChange(evt: MatTabChangeEvent) {

@@ -23,7 +23,9 @@ export class TabsManagerService {
   }
 
   openTab(tab: TabModel) {
-    if (this._tabs.some((t) => t.nome === tab.nome)) {
+    console.log(this._tabs.indexOf(tab));
+    
+    if (this._tabs.indexOf(tab) > 0) {
       this.activeTab.next(tab);
       return;
     }

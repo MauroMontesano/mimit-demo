@@ -1,5 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  ViewEncapsulation
+} from '@angular/core';
 import { TabModel, TabsManagerService } from '@mimit/core';
 
 @Component({
@@ -12,7 +14,7 @@ export class TabsComponent {
   tabs: TabModel[] | null = null;
   activeTab: TabModel | null = null;
 
-  constructor(private tabsManager: TabsManagerService, private router: Router) {
+  constructor(private tabsManager: TabsManagerService) {
     tabsManager.getTabs().subscribe((res) => (this.tabs = res));
     tabsManager.getactiveTab().subscribe((res) => (this.activeTab = res));
   }
@@ -20,7 +22,6 @@ export class TabsComponent {
   changeTab(tab: TabModel) {
     console.log(tab, this.activeTab);
     this.tabsManager.openTab(tab);
-    this.router.navigateByUrl(tab.path);
   }
 
   // tabChange(evt: MatTabChangeEvent) {

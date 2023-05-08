@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs" role="tablist">
-  <li *ngFor="let t of tabs" class="nav-item" id="{{ t.nome }}-button">
+  <li *ngFor="let t of tabs" class="nav-item" id="{{ t.nome }}-button cursor-pointer">
     <a
       (click)="changeTab(t)"
       [title]="'Seleziona tab ' + t.nome"

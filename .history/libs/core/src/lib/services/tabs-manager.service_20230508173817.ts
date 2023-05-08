@@ -23,7 +23,7 @@ export class TabsManagerService {
   }
 
   openTab(tab: TabModel) {
-    if (this._tabs.some((t) => t.nome === tab.nome)) {
+    if (this._tabs.indexOf(tab) > 0) {
       this.activeTab.next(tab);
       return;
     }
