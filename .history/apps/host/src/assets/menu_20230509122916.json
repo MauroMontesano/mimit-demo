@@ -1,0 +1,44 @@
+[
+  {
+    "path": "",
+    "data": {
+      "breadcrumbs": "Lista Attività",
+      "disableBreadcrumbLink": false,
+      "icon": "fa-home"
+    }
+  },
+  {
+    "path": "commissari",
+    "data": {
+      "breadcrumbs": "Commissari",
+      "disableBreadcrumbLink": false,
+      "icon": "fa-home"
+    },
+    "children": [
+      {
+        "path": "table",
+        "data": {
+          "breadcrumbs": "Ricerca commissari",
+          "disableBreadcrumbLink": false,
+          "icon": "fa-home"
+        }
+      },
+      {
+        "path": "form",
+        "data": {
+          "breadcrumbs": "Caricamento valutazioni",
+          "disableBreadcrumbLink": false,
+          "icon": "fa-home"
+        }
+      }
+    ]
+  },
+  {
+    "path": "ispettori",
+    "data": {
+      "breadcrumbs": "Ispettori",
+      "disableBreadcrumbLink": false,
+      "icon": "fa-home"
+    }
+  }
+]

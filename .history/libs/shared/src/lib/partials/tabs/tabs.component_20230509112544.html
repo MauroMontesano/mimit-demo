@@ -1,0 +1,17 @@
+<ul class="nav nav-tabs mb-3" role="tablist">
+  <li *ngFor="let t of tabs" class="nav-item" id="{{ t.nome }}-button">
+    <a
+      (click)="changeTab(t)"
+      [title]="'Seleziona tab ' + t.nome"
+      [ngClass]="{ active: activeTab && activeTab.nome === t.nome }"
+      class="nav-link cursor-pointer"
+      role="tab"
+      data-bs-toggle="tab"
+      [attr.aria-controls]="t.nome + '-tab'"
+    >
+      {{ t.nome }}<i class="ms-2 fa fa-window-close" aria-hidden="true" (click)="closeTab($event, t)"></i>
+    </a>
+  </li>
+</ul>
+<!-- ciao pippo {{ tabs | json }} -->
+<router-outlet></router-outlet>

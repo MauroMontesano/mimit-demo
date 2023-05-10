@@ -1,0 +1,96 @@
+<div class="sr-only">
+  Skip-links
+  <ul tabindex="1">
+    <li><a [skipTo]="'menu'">Vai al menù</a></li>
+    <li><a [skipTo]="'main'">Vai al contenuto principale</a></li>
+  </ul>
+</div>
+<header aria-label="Intestazione" role="banner">
+  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-primary">
+    <div class="container navbar-container">
+      <div class="row w-100 mx-0">
+        <div class="col-12 col-lg-4 px-0">
+          <span style="margin-right: 1em"
+            ><img src="./img/mimit.jpg" style="height: 60px" alt="Mimit"
+          /> <h1>Ecosistema Digitale</h1></span>
+        </div>
+        <nav aria-label="Contatti" class="col-12 col-lg-4 px-0">
+          <ul class="ps-3 navbar-nav mb-0">
+            <li class="nav-item ps-4 separatore">
+              <a
+                class="text-white"
+                title="Contatti e assistenza"
+                aria-label="Vai a 
+              Contatti e assistenza"
+                routerLink="/contatti-e-assistenza"
+              >
+                Contatti e assistenza
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="col-12 col-lg-4 px-0">
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul
+              aria-label="Menù profilo"
+              role="navigation"
+              class="navbar-nav ms-0 ms-lg-auto auto ps-3"
+            >
+              <li class="nav-item separatore">
+                <div class="btn-nav-link nav-link px-2">
+                  <span
+                    class="fas fa-user-circle fa-lg me-2"
+                    title="icona"
+                  ></span>
+                  <span class="header__dropdown-text">{{ nomeUser }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<ng-container>
+  <div class="container">
+    <div class="row">
+      <div
+        class="transition"
+        [ngClass]="{ 'col-12 col-lg-2': toggleStato }"
+        [style.width]="!toggleStato ? '5%' : null"
+      >
+        <mimit-sidebar
+          [(toggleStato)]="toggleStato"
+          *ngIf="config"
+          [config]="config"
+        ></mimit-sidebar>
+      </div>
+      <div
+        [ngClass]="{ 'col-12 col-lg-10': toggleStato }"
+        [style.width]="!toggleStato ? '95%' : null"
+      >
+        <main id="main" aria-label="Contenuto principale" role="main-content">
+          <!-- <eaf-header-title></eaf-header-title> -->
+          <div class="container-fluid">
+            <div
+              #headerWrapper
+              [ngClass]="{ 'pt-3': headerWrapper.childNodes.length > 0 }"
+            >
+              <ng-content select="[header]"></ng-content>
+            </div>
+            <div
+              [ngClass]="{
+                'py-3': headerWrapper.childNodes.length <= 0,
+                'py-4': headerWrapper.childNodes.length > 0
+              }"
+            >
+              <ng-content select="[data-body]"></ng-content>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+</ng-container>
