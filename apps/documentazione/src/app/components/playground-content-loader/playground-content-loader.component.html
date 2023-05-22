@@ -1,0 +1,60 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Content loader
+  Used to show a spinner which fully covers the container where it is defined.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [loading] | boolean | Whether loading is running. |
+  | [color] | string | For selecting color (look) of loading. One of 'primary', 'success' |
+	| [type] | string | Defines type of loading. One of 'grow', 'border' |
+	| [type] | string | Defines type of loading. One of 'grow', 'border' |
+	| [size] | string | Size of . One of '1x', '2x', '3x', '4x', '5x' |
+
+</markdown>
+
+<!--
+	*************************
+	BASIC CONTENT LOADER
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic content loader</div>
+<eaf-button title="{{ loading ? 'stop' : 'start' }}" (click)="toggleLoading()"></eaf-button>
+
+<eaf-play-section
+  md='
+  ```html
+  <eaf-button title="start" (click)="toggleLoading()"></eaf-button>
+  <eaf-panel title="Title of the basic panel">
+    <eaf-content-loader [loading]="loading"></eaf-content-loader>
+    <div style="height: 500px">
+      <div class="h4">Content heading</div>
+      <div><p>This is the content for this panel.</p>
+      </div>
+    </div>
+  </eaf-panel>
+```'
+>
+  <eaf-panel title="Title of the basic panel">
+    <div class="h4">Border Spinner size</div>
+    <eaf-content-loader [loading]="loading" size="1x"></eaf-content-loader>
+    <eaf-content-loader [loading]="loading" size="2x"></eaf-content-loader>
+    <eaf-content-loader [loading]="loading" size="3x"></eaf-content-loader>
+    <eaf-content-loader [loading]="loading" size="4x"></eaf-content-loader>
+    <eaf-content-loader [loading]="loading" size="5x"></eaf-content-loader>
+    <div class="h4">Grow Spinner size</div>
+    <eaf-content-loader type="grow" [loading]="loading" size="1x"></eaf-content-loader>
+    <eaf-content-loader type="grow" [loading]="loading" size="2x"></eaf-content-loader>
+    <eaf-content-loader type="grow" [loading]="loading" size="3x"></eaf-content-loader>
+    <eaf-content-loader type="grow" [loading]="loading" size="4x"></eaf-content-loader>
+    <eaf-content-loader type="grow" [loading]="loading" size="5x"></eaf-content-loader>
+    <!-- <eaf-content-loader [loading]="loading"></eaf-content-loader> -->
+    <div class="h4">Spinner color</div>
+    <eaf-content-loader color="primary" [loading]="loading" size="3x"></eaf-content-loader>
+    <eaf-content-loader color="secondary" [loading]="loading" size="3x"></eaf-content-loader>
+    <eaf-content-loader color="primary" type="grow" [loading]="loading" size="3x"></eaf-content-loader>
+    <eaf-content-loader color="secondary" type="grow" [loading]="loading" size="3x"></eaf-content-loader>
+  </eaf-panel>
+</eaf-play-section>

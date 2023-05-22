@@ -1,0 +1,12 @@
+<div class="modal-header">
+  <div class="h2">Custom template title in H2 tag</div>
+</div>
+<div class="modal-body">
+  <p>
+    Valore: <input [formControl]="form.get('valore')" />
+    <eaf-button title="fatto" (click)="mandaValore()"></eaf-button>
+  </p>
+</div>
+<div class="modal-footer">
+  <eaf-button title="Bottone test footer" (click)="onFooterButtonClick()"></eaf-button>
+</div>

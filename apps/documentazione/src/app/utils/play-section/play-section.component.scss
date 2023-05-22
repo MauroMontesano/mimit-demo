@@ -1,0 +1,17 @@
+eaf-play-section {
+    background: #fbfbfb;
+    border-radius: 20px;
+    display: block;
+    margin-top: .5em;
+    padding:  2em;
+    border: 1px solid #ddd;
+    clear: both;
+
+    .playvalue {
+        padding: 1em;
+        background: #d0f4c3;
+        border: 1px solid #afafaf;
+        width: 95%;
+        margin: auto;
+    }
+}

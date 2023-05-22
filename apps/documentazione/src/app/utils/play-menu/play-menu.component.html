@@ -1,0 +1,48 @@
+<ng-template #voce let-item="item">
+  <ul class="menu__ul--parent panel-group list-unstyled" role="tablist" aria-multiselectable="true">
+    <li class="panel" role="presentation" *ngFor="let l of item">
+      <div class="panel-heading" *ngIf="l.data">
+        <button (click)="navigate(l.path)" class="btn btn-link menu__button" type="button">
+          <!-- <span class="fa"></span> -->
+          <span class="menu__button-text">{{ l.data.breadcrumbs }}</span>
+        </button>
+      </div>
+      <ng-container *ngIf="l.data && l.children">
+        <eaf-play-menu [url]="l.path + '/'" [config]="l.children"></eaf-play-menu>
+      </ng-container>
+    </li>
+  </ul>
+</ng-template>
+
+<ng-container *ngIf="first">
+  <div class="main__nav">
+    <button
+      type="button"
+      style="top: 0px; left: 0px"
+      class="btn btn-primary main__nav__button--menu"
+      (click)="toogleMenu = !toogleMenu"
+      title="apri il menu"
+    >
+      <span class="fa fa-bars"></span>
+    </button>
+
+    <aside class="menu menu--visibile" *ngIf="toogleMenu" style="top: 0px; left: 0px; overflow: visible">
+      <header class="menu__header">
+        <div class="h2 sr-only">menu</div>
+        <button type="button" class="btn btn-link menu__button--close" title="chiudi il menu">
+          <span class="fa fa-times"></span>
+        </button>
+        <button type="button" class="btn btn-link menu__button--back" title="Torna indietro">
+          <span class="fa fa-arrow-circle-left"></span> Indietro
+        </button>
+      </header>
+      <nav>
+        <ng-container *ngTemplateOutlet="voce; context: { item: this.config }"> </ng-container>
+      </nav>
+    </aside>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!first">
+  <ng-container *ngTemplateOutlet="voce; context: { item: this.config }"> </ng-container>
+</ng-container>

@@ -1,0 +1,291 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Modal
+  Used to show a modal.
+
+	-------------------------------------------------------------------------
+	| [Input]/[Output] | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [modal-title] | string | Modal title. |
+	| [id] | string | Used when random modal id has to be overridden. |
+	| [size] | string | Modal size. One of 'sm', 'md', 'lg'. Default 'lg'. |
+  | [closable] | boolean=true | if modal it's closable |
+  | [headerActions] | ActionItem[] | ActionItem array to be shown in modal header. |
+  | [buttons] | ActionItem[] | ActionItem array to be shown in modal footer. |
+  | [confirmation] | boolean | Whether the modal should have confirmation buttons. |
+  | (closed) | EventEmitter | Emits the id of the closed modal. |
+  | (cancel) | EventEmitter | Whether the confirmation modal has been canceled. |
+  | (confirm) | EventEmitter | Whether the confirmation modal has been confirmed. |
+</markdown>
+
+<!--
+	*************************
+	BASIC MODAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic modal</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal #modal1 modal-title="titolo prova" (closed)="onClose()">
+    <div>Basic modal content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open modal" color="primary" (click)="openFirstModal()"></eaf-button>
+```'
+>
+  <eaf-modal #modal1 modal-title="titolo prova" (closed)="onClose()">
+    <div>Basic modal content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open modal" color="primary" (click)="openFirstModal()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	BASIC MODAL WITH FOOTER BUTTONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic modal with footer buttons</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal #modalWithButtons modal-title="titolo prova" [buttons]="buttons" (closed)="onClose()">
+    <div>Modal with buttons content</div>
+    <div style="height: 300px">ciao</div>
+    <div>
+      <eaf-input-select
+        label="Basic select label"
+        size="12|12|12|12"
+        ext-id="unique-id-basic"
+        [options]="optionsList"
+        placeholder="Basic placeholder"
+      ></eaf-input-select>
+    </div>
+    <div style="height: 2200px">ciao2</div>
+  </eaf-modal>
+  <eaf-button modal-title="Open modal" (click)="openModalWithButtons()"></eaf-button>
+```
+
+```typescript
+# TS
+const firstButton = new ActionItem(
+  "First button name",
+  (item,action) => this.firstButtonMethod(),
+  undefined,
+  "SECONDARY"
+);
+const closeButton = new ActionItem(
+  "Close",
+  (item,action) => this.modalWithButtons.close(),
+  undefined,
+  "PRIMARY"
+);
+this.buttons.push(firstButton);
+this.buttons.push(closeButton);
+```'
+>
+  <eaf-modal #modalWithButtons modal-title="titolo prova" [buttons]="buttons" (closed)="onClose()">
+    <div>Modal with buttons content</div>
+    <div style="height: 300px">ciao</div>
+    <div>
+      <eaf-input-select
+        label="Basic select label"
+        size="12|12|12|12"
+        ext-id="unique-id-basic"
+        [options]="optionsList"
+        placeholder="Basic placeholder"
+      ></eaf-input-select>
+    </div>
+    <div style="height: 2200px">ciao2</div>
+  </eaf-modal>
+  <eaf-button modal-title="Open modal" (click)="openModalWithButtons()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	MODAL WITH HEADER ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Modal with header actions</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal #modal2 modal-title="Modal with header actions title" [headerActions]="headerButtons" (closed)="onClose()">
+    <div>Modal with header actions content</div>
+  </eaf-modal>
+  <eaf-button modal-title="Open it" icon="external-link-square" [isLink]="true" (click)="openSecondModal()"></eaf-button>
+```
+
+```typescript
+# TS
+const firstHeaderButton = new ActionItem(
+  "First header button",
+  (item,action) => this.firstButtonMethod(),
+  "fighter-jet"
+);
+const secondHeaderButton = new ActionItem(
+  "Second header button",
+  (item,action) => this.secondButtonMethod(),
+  "cab"
+);
+this.headerButtons.push(firstHeaderButton);
+this.headerButtons.push(secondHeaderButton);
+```'
+>
+  <eaf-modal #modal2 modal-title="Modal with header actions title" [headerActions]="headerButtons" (closed)="onClose()">
+    <div>Modal with header actions content</div>
+  </eaf-modal>
+  <eaf-button
+    modal-title="Open it"
+    icon="external-link-square"
+    [isLink]="true"
+    (click)="openSecondModal()"
+  ></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	MODAL WITH LOTS OF HEADER ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Modal with lots of header actions</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal
+  #modalWithLotsOfActions
+  modal-title="Modal with lots of header actions title"
+  [headerActions]="lotOfHeaderButtons"
+  (closed)="onClose()"
+>
+  <div>Modal with lots of actions content</div>
+</eaf-modal>
+<eaf-button modal-title="open modal" color="primary" (click)="openModalWithLotsOfActions()"></eaf-button>
+```
+
+```typescript
+# TS
+const thirdHeaderButton = new ActionItem(
+  "Third header button",
+  (item,action) => this.thirdButtonMethod(),
+  "tree"
+);
+const fourthHeaderButton = new ActionItem(
+  "Fourth header button",
+  (item,action) => this.fourthButtonMethod(),
+  "bug"
+);
+this.lotOfHeaderButtons.push(firstHeaderButton);
+this.lotOfHeaderButtons.push(secondHeaderButton);
+this.lotOfHeaderButtons.push(thirdHeaderButton);
+this.lotOfHeaderButtons.push(fourthHeaderButton);
+```'
+>
+  <eaf-modal
+    #modalWithLotsOfActions
+    modal-title="Modal with lots of header actions title"
+    [headerActions]="lotOfHeaderButtons"
+    (closed)="onClose()"
+  >
+    <div>Modal with lots of actions content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open modal" color="primary" (click)="openModalWithLotsOfActions()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	CONFIRMATION MODAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Confirmation modal</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal
+  #confirmationModal
+  modal-title="Confirmation modal title"
+  [confirmation]="true"
+  (cancel)="onCancel()"
+  (confirm)="onConfirm()"
+>
+  <div>Do you confirm whatever i am asking?</div>
+</eaf-modal>
+<eaf-button modal-title="open confirmation" color="primary" (click)="openConfirmationModal()"></eaf-button>
+```'
+>
+  <eaf-modal
+    #confirmationModal
+    modal-title="Confirmation modal title"
+    [confirmation]="true"
+    (cancel)="onCancel()"
+    (confirm)="onConfirm()"
+  >
+    <div>Do you confirm whatever i am asking?</div>
+  </eaf-modal>
+  <eaf-button modal-title="open confirmation" color="primary" (click)="openConfirmationModal()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	SMALL MODAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Small modal</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal
+  #smallModal
+  modal-title="Small modal title"
+  size="sm"
+  (closed)="onClose()"
+  >
+  <div>Small modal content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open small" color="warning" (click)="openSmallModal()"></eaf-button>
+```'
+>
+  <eaf-modal #smallModal modal-title="Small modal title" size="sm" (closed)="onClose()">
+    <div>Small modal content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open small" color="warning" (click)="openSmallModal()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	MEDIUM MODAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Medium modal</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-modal
+  #mediumModal
+  modal-title="Medium modal title"
+  size="md"
+  (closed)="onClose()"
+  >
+  <div>Medium modal content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open medium" color="danger" (click)="openMediumModal()"></eaf-button>
+```'
+>
+  <eaf-modal #mediumModal modal-title="Medium modal title" size="md" (closed)="onClose()">
+    <div>Medium modal content</div>
+  </eaf-modal>
+  <eaf-button modal-title="open medium" color="danger" (click)="openMediumModal()"></eaf-button>
+</eaf-play-section>

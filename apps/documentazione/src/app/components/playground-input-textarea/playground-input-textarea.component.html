@@ -1,0 +1,211 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Textarea
+	This element is used in a form as textarea input.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [error-labels] | ErrorLabel[] | This is used to display errors linked with this form element. |
+	| [placeholder] | i18n Key | This is the default input text. |
+	| [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+	| [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+	| [disable-input] | boolean | If true the input is disabled. Note: in this case the placeholder is hidden. |
+	| [actions] | ActionItem[] | Actions displayed on the right of input. |
+	| [warning] | string | A warning message that will always display bottom the input. |
+	| [rows] | number | Number of textarea rows. |
+	| [maxlength] | number | Limits the number of characters that can be inserted. |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required input</div>
+<eaf-play-section
+  md='
+	```html
+	<eaf-input-textarea
+	label="Required textarea label"
+	size="12|12|12|12"
+	ext-id="inputTextAreaRequired"
+	[formControl]="form.getFormControl("required")"
+	[error-labels]="errorLabels["required"]"
+	warning="Consider this a warning."
+	placeholder="Required"
+	rows="5"
+></eaf-input-textarea>
+```'
+>
+  <eaf-input-textarea
+    label="Required textarea label"
+    size="12|12|12|12"
+    ext-id="inputTextAreaRequired"
+    [formControl]="form.getFormControl('required')"
+    [error-labels]="errorLabels['required']"
+    placeholder="Required"
+    warning="Consider this a warning."
+    [rows]="5"
+  ></eaf-input-textarea>
+  {{ form.getFormControl('required').value }}
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled input</div>
+<eaf-play-section
+  md='
+	```html
+	<eaf-input-textarea
+	label="Disabled textarea label"
+	ext-id="inputTextAreaDisabled"
+	size="12|12|12|12"
+	[formControl]="form.getFormControl("disabled")"
+	placeholder="This placeholder will be hidden."
+	[disable-input]="true"
+></eaf-input-textarea>
+```'
+>
+  <eaf-input-textarea
+    [disable-input]="true"
+    [formControl]="this.form.getFormControl('disabled')"
+    ext-id="inputTextAreaDisabled"
+    label="Disabled textarea label"
+    size="12|12|12|12"
+    placeholder="This placeholder will be hidden."
+  ></eaf-input-textarea>
+</eaf-play-section>
+
+<!--
+	*************************
+	READONLY
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Readonly input</div>
+<eaf-play-section
+  md='
+	```html
+	<eaf-input-textarea
+	label="Readonly textarea label"
+	ext-id="inputTextAreaReadOnly"
+	size="12|12|12|12"
+	[formControl]="form.getFormControl("readonly")"
+	placeholder="This placeholder will be hidden."
+	[readonly-input]="true"
+></eaf-input-textarea>
+```'
+>
+  <eaf-input-textarea
+    [readonly-input]="true"
+    ext-id="inputTextAreaReadOnly"
+    [formControl]="form.getFormControl('readonly')"
+    label="Readonly textarea label"
+    size="12|12|12|12"
+    placeholder="This placeholder will be hidden."
+  ></eaf-input-textarea>
+</eaf-play-section>
+
+<!--
+	*************************
+	MAX LENGTH CASE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with maxlength</div>
+<eaf-play-section
+  md='
+	```html
+	<eaf-input-textarea
+	label="Max length textarea label"
+	size="12|12|12|12"
+	ext-id="inputTextAreaMaxLength"
+	[formControl]="form.getFormControl("maxlength")"
+	[error-labels]="errorLabels["maxlength"]"
+	placeholder="Max 400 characters can be inserted"
+	maxLength="400"
+></eaf-input-textarea>
+```'
+>
+  <eaf-input-textarea
+    label="Max length textarea label"
+    size="12|12|12|12"
+    ext-id="inputTextAreaMaxLength"
+    placeholder="Max 4 characters can be inserted"
+    [formControl]="form.getFormControl('maxlength')"
+    [error-labels]="errorLabels['maxlength']"
+    [maxLength]="maxLenght"
+  ></eaf-input-textarea>
+</eaf-play-section>
+
+<!--
+	*************************
+	INPUT WITH TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with tooltip</div>
+<eaf-play-section
+  md='
+	```html
+	<eaf-input-textarea
+	label="Textarea with tooltip label"
+	size="12|12|12|12"
+	[formControl]="form.getFormControl("tooltip")"
+	[tooltip]="tooltip"
+	placeholder="Hover to see more information"
+	rows="2"
+></eaf-input-textarea>
+```'
+>
+  <eaf-input-textarea
+    label="Textarea with tooltip label"
+    size="12|12|12|12"
+    [tooltip]="tooltip"
+    [formControl]="form.getFormControl('tooltip')"
+    placeholder="Hover to see more information"
+    [rows]="2"
+  ></eaf-input-textarea>
+</eaf-play-section>
+
+<!--
+	*************************
+	INPUT WITH ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with actions</div>
+<eaf-play-section
+  md='
+	```html
+	<eaf-input-textarea
+	label="Textarea with actions label"
+	size="12|12|12|12"
+	[actions]="actions"
+	[formControl]="form.getFormControl("actions")"
+	placeholder="Buttons on the right allow actions to be performed."
+></eaf-input-textarea>
+```'
+>
+  <eaf-input-textarea
+    label="Textarea with actions label"
+    size="12|12|12|12"
+    [actions]="actions"
+    [formControl]="form.getFormControl('actions')"
+    placeholder="Buttons on the right allow actions to be performed."
+  ></eaf-input-textarea>
+</eaf-play-section>

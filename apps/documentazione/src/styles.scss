@@ -1,0 +1,196 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.xeaf-input{
+  display: block;
+}
+
+.xwk-playground {
+  .menu {
+    visibility: hidden;
+    height: 100%;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    background-color: #253651;
+    -webkit-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+    /* ol, */
+    ul,
+    dir,
+    menu,
+    dd {
+      margin-left: 40px;
+    }
+  }
+
+  .menu__header {
+    position: relative;
+    background-color: #253651;
+    border-bottom: 1px solid #fff;
+  }
+
+  .menu__button {
+    text-transform: none;
+    text-align: left;
+    display: block;
+    width: 100%;
+
+    // .fa {
+    //   display: table-cell;
+    // }
+
+    // .fa::before {
+    //   display: inline-block;
+    //   content: " ";
+    //   min-width: 15px;
+    //   margin-right: 10px;
+    // }
+  }
+
+  .menu__button--close {
+    font-size: 19px;
+    line-height: 21px;
+    color: #fff !important;
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .menu__button-text {
+    display: table-cell;
+    width: 10000px;
+  }
+
+  .menu__ul--parent {
+    white-space: normal;
+    color: #fff;
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .menu__ul--parent::-webkit-scrollbar {
+    width: 15px;
+  }
+
+  .menu__ul--parent::-webkit-scrollbar-track {
+    -webkit-box-shadow: none;
+  }
+
+  .menu__ul--parent::-webkit-scrollbar-thumb {
+    background-color: #f56800;
+    border-radius: 10px;
+    border: 5px solid #253651;
+  }
+
+  .menu.menu--visibile {
+    visibility: visible;
+    width: 100%;
+    z-index: 99999;
+  }
+
+  .main__nav__button--menu {
+    border-radius: 0;
+    background-color: #253651;
+  }
+
+  pre {
+    display: block;
+    padding: 10px;
+    margin: 0 0 10.5px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #4d575f;
+    word-break: break-all;
+    word-wrap: break-word;
+    background-color: #f5f6fa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  h3 {
+    margin-top: 15px;
+  }
+
+  .main__nav {
+    .menu {
+      .btn-link {
+        color: #fff;
+      }
+    }
+  }
+
+  .main {
+    min-height: 600px;
+    position: relative;
+    padding: 0 !important;
+
+    .main__nav,
+    .main__content {
+      margin-left: 0 !important;
+      -webkit-transition: all 0.2s ease-out;
+      transition: all 0.2s ease-out;
+    }
+
+    .main__nav {
+      .menu {
+        .panel-group {
+          .panel + .panel {
+            margin-top: 0;
+          }
+
+          .panel-heading {
+            padding: 10px 5px 0 10px;
+          }
+        }
+
+        .panel,
+        .panel-collapse {
+          background-color: #253651;
+          border: 1px solid transparent;
+        }
+
+        .panel {
+          .btn-link {
+            padding: 0;
+            font-weight: normal;
+            white-space: normal;
+          }
+        }
+        .panel-collapse {
+          border-bottom: 1px solid #fff;
+
+          .panel-heading {
+            padding-left: 0;
+          }
+        }
+      }
+    }
+
+    &.menu--visibile {
+      .menu__button {
+        padding: 7px 10px;
+      }
+
+      .menu__button--close {
+        display: inline-block;
+      }
+
+      .main__nav,
+      .main__content {
+        margin-left: 250px !important;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .xwk-playground .menu.menu--visibile {
+    width: 250px;
+    z-index: 1;
+  }
+}

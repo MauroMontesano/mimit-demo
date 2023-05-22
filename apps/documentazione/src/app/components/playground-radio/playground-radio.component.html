@@ -1,0 +1,273 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Radio
+	This element is used in a form as radio options.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [options] | RadioOption | Option list for the input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [error-labels] | ErrorLabel[] | This is used to display errors linked with this form element. |
+	| [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+	| [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+	| [disable-input] | boolean | If true the input is disabled. Note: in this case the placeholder is hidden. |
+	| [actions] | ActionItem[] | Actions displayed on the right of input. |
+	| [warning] | string | A warning message that will always display bottom the input. |
+	| [line] | boolean | Whether the input should appear on a single line. |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Simple radio</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  label="Simple radio label"
+  size="12|12|12|12"
+  ext-id="inputRadioRequired"
+  [formControl]="form.getFormControl("required")"
+  [error-labels]="errorLabels["required"]"
+  [options]="options"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    label="Simple radio label"
+    size="12|12|12|12"
+    ext-id="inputRadioRequired"
+    [formControl]="form.getFormControl('required')"
+    [error-labels]="errorLabels['required']"
+    [options]="options"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	WARNING
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Simple radio with warning</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  label="Radio with warning label"
+  size="12|12|12|12"
+  ext-id="unique-id-required"
+  [formControl]="form.getFormControl("warning")"
+  warning="Consider this a warning."
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    label="Radio with warning label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl('warning')"
+    [options]="options"
+    warning="Consider this a warning."
+    field-for-id="id"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled radio</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  label="Disabled radio label"
+  ext-id="inputRadioDisabled"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("disabled")"
+  [options]="options"
+  [disable-input]="true"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    [disable-input]="true"
+    ext-id="inputRadioDisabled"
+    [formControl]="this.form.getFormControl('disabled')"
+    label="Disabled radio label"
+    size="12|12|12|12"
+    [options]="options"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	READONLY
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Readonly radio</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  ext-id="inputRadioReadOnly"
+  label="Readonly radio label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("readonly")"
+  [options]="options"
+  [readonly-input]="true"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    [readonly-input]="true"
+    ext-id="inputRadioReadOnly"
+    [formControl]="form.getFormControl('readonly')"
+    [options]="options"
+    label="Readonly radio label"
+    size="12|12|12|12"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	RADIO INLINE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">One line radio</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  label="one line radio label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("oneLiner")"
+  [options]="options"
+  [line]="true"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    label="One line radio label"
+    size="12|12|12|12"
+    [line]="true"
+    [formControl]="form.getFormControl('oneLiner')"
+    [options]="options"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	RADIO  WITH TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Radio with main tooltip</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  label="Radio with main tooltip label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("tooltip")"
+  [options]="options"
+  [tooltip]="tooltip"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    label="Radio with main tooltip label"
+    size="12|12|12|12"
+    [tooltip]="tooltip"
+    [formControl]="form.getFormControl('tooltip')"
+    [options]="options"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	RADIO  WITH OPTION TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Radio with option tooltip</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #json
+  label="Radio with option tooltip label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("tooltipOption")"
+  [options]="optionsWithTooltip"
+  [line]="true"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #json
+    label="Radio with option tooltip label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('tooltipOption')"
+    [options]="optionsWithTooltip"
+    [line]="true"
+  ></eaf-input-radio>
+</eaf-play-section>
+
+<!--
+	*************************
+	RADIO  WITH ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Radio with actions</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-radio
+  #value
+  label="Radio with actions label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("actions")"
+  [actions]="actions"
+  [options]="options"
+  ></eaf-input-radio>
+```'
+>
+  <eaf-input-radio
+    #value
+    label="Radio with actions label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('actions')"
+    [actions]="actions"
+    [options]="options"
+  ></eaf-input-radio>
+</eaf-play-section>

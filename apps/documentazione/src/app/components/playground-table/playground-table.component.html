@@ -1,0 +1,499 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	This element is used in a form as text input.
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|--------------------|------|-------------------------------------------|
+	| [data] | [] | Represents all result. |
+	| [totalPages] | number | Number of pages fo all result. |
+	| [loading] | boolean = false | manage table loading animation |
+	| [structure] | EafAbstractTableField[] = [] | Definition of property that will be used to print the table (label, types, field name, etc.) |
+	| [table-title] | string | Title of the table |
+	| [showPageSize] | boolean = true | Show or not the select to change page size | 
+	| [showActions] | boolean = true | Show or not the action on the row |
+	| [sortColumn] | string | only input not two way |
+	| [isDesc] | boolean | only input not two way |
+	| (onPageChanged) | number | |
+	| (onSortChange) | string | Used for <strong>eng-select element</strong>, field that will be used as value to work with (if you need to check condition, or calculate something for example). |
+	| (isHighlighted) | | It's a callback function that recieves the row's model and returns true o false if the row must be highlighted |
+	| (topbarActions) | ActionItem[] =[] | Enable and popolate topbar actions |
+	| (topbarTemplate) | template | Set the reference to the template that has to be put in the topbar |
+	| [noResultMessage] | string='MESSAGE.NO_ELEMENTS_FOUND' | Set the key/or message that table will display when there aren't result |
+
+</markdown>
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+>> Descrizione di un  field
+
+- filtrable: 
+
+- size:
+
+- 
+
+
+</markdown>
+
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	>> Edit mode
+	
+	- filtrable: 
+	
+	- size:
+	
+	- 
+	
+	
+	</markdown>
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	>> Filtrable
+	
+	- filtrable: 
+	
+	- size:
+	
+	- 
+	
+	
+	</markdown>
+<div class="h1">Table result</div>
+<div class="description">
+  Table result component is used used to present search data either from search filter component, that is commonly used
+  with this component, where you define the criteria to be searched or with criteria that will be passed to table so
+  data will show on ngOnInit (when the component loads).
+</div>
+<p></p>
+
+<!-- <eaf-panel> Criteri ricerca: {{ criteria | json }} </eaf-panel> -->
+
+<div class="input-definition">
+  <eaf-table
+    [data]="showResult?.content"
+    [totalPages]="showResult?.totalPages"
+    [loading]="searchLoading"
+    [structure]="tableStructure"
+    [showPageSize]="true"
+    data-title="data"
+    description="descrione di prova"
+    (onPageChanged)="changePage($event)"
+    (onSortChange)="changeSort($event)"
+    (onPageSizeChange)="this.changePageElementsShowed($event)"
+    [topbarActions]="multiActionExample"
+    [accordion]="documentsLookup"
+    [topbarTemplate]="topbar"
+    [filterable]="updateFilters"
+    [footerTRTemplate]="footer"
+  >
+  </eaf-table>
+
+  <ng-template #documentsLookup let-model="item ">
+    <form>
+      <input [value]="model.nome" data-size="12|4|4" />
+      <input [value]="model.email" data-size="12|4|4" />
+      <input [value]="model.citta" data-size="12|4|4" />
+    </form>
+  </ng-template>
+  <ng-template #topbar>
+    <div style="border: 2px dashed blue; padding: 0.5em; width: 400px">spazio per template <b>[topbarTemplate]</b></div>
+  </ng-template>
+  <ng-template #footer>
+    <td colspan="5" aria-hidden="true">
+      <div style="border: 2px dashed blue; padding: 0.5em; width: 400px">
+        All the footer it's a template input <b>[footerTRTemplate]</b>
+      </div>
+    </td>
+    <th scope="row">Totale</th>
+    <td class="text-right"><strong>100.000,00€</strong></td>
+  </ng-template>
+</div>
+
+<!--
+	*************************
+	ACCORDION
+	*************************
+-->
+<!-- prettier-ignore -->
+<eaf-play-section md='
+	To insert an accordion we have to define accordion input in table based on a ng-template:`[accordion]="templateName"` in the same HTML where our table result is. 
+
+```html
+	<ng-template #templateAccordion let-model="item ">
+		<form>
+			<input [value]="model.nome" data-size="12|4|4">
+			<input [value]="model.email" data-size="12|4|4">
+			<input [value]="model.citta" data-size="12|4|4">
+		</form>
+	</ng-template>
+	
+	<eaf-table
+	[data]="fewResult"
+	[structure]="tableAccordion"
+	[showPageSize]="false"
+	
+	[accordion]="templateAccordion"
+	></eaf-table>		
+```
+Here you can insert some fields / details / sub-scomponent that will show certain data related to that particular item (selected/opened)
+that we picked up from varibile definited `let-model="item"`. 
+
+If you want more control where/when the (+) icon will show you can specify the field type accordion. It has a optional function (item)=>boolean that will be use by table to detemine to show or not the (+) icon. Ex: ` this.tableAccordion2=[this.tableAccordion[0],new EafAccordionField((item)=>item.id%2!==0),this.tableAccordion[1]];`
+' title="Accordion">
+<eaf-table
+[data]="fewResult"
+[structure]="tableAccordion"
+[showPageSize]="false"
+[loading]="!fewResult"
+[accordion]="accordion"
+>
+
+</eaf-table>
+
+<div class="h4">Change position and set optional conditional show</div>
+<eaf-table
+[data]="fewResult"
+[structure]="tableAccordion2"
+[showPageSize]="false"
+[loading]="!fewResult"
+[accordion]="accordion"
+>
+
+</eaf-table>
+
+</eaf-play-section>
+
+<!--
+	*************************
+	Text
+	*************************
+-->
+<!-- prettier-ignore -->
+<eaf-play-section md='
+	
+
+```js
+this.tableText.push(new EafTableField(EafTableFieldTypeConstant.NORMAL, "Name", "nome"));
+this.tableText.push(new EafTableField(EafTableFieldTypeConstant.NORMAL, "Email", "email"));
+
+```
+
+' title="Text">
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="this.tableText"
+[showPageSize]="false"
+
+(onSortChange)="changeSort($event)"
+></eaf-table>
+
+</eaf-play-section>
+
+<!--
+	*************************
+	NUMBER
+	*************************
+-->
+<!-- prettier-ignore -->
+<eaf-play-section md='
+	
+
+```js
+
+this.tableNumber.push(
+	new EafTableField(EafTableFieldTypeConstant.NUMBER, "Number1", "numero"),
+);
+
+```
+
+' title="Number">
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="this.tableNumber"
+[showPageSize]="false"
+
+(onSortChange)="changeSort($event)"
+></eaf-table>
+
+</eaf-play-section>
+
+<!--
+	*************************
+	Date
+	*************************
+-->
+<!-- prettier-ignore -->
+<eaf-play-section md='
+	
+
+```js
+
+this.tableDate.push(
+	new EafTableField(EafTableFieldTypeConstant.NORMAL, "Birthday", "dataNascita"),
+);
+
+```
+
+' title="Date">
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="this.tableDate"
+[showPageSize]="false"
+
+(onSortChange)="changeSort($event)"
+></eaf-table>
+
+</eaf-play-section>
+
+<ng-template #accordion let-model="item">
+  <div style="border: 2px dashed blue; padding: 0.5em">
+    Here you can insert some fields / details / sub-scomponent that will show certain data related to that particular
+    item (selected/opened) that we picked up from varibile definited let-model="item".
+  </div>
+</ng-template>
+
+<ng-template #templateExample let-model="item">
+  <div style="border: 2px dashed blue">this is a template</div>
+</ng-template>
+
+<!--
+	*************************
+	ACTIONS
+	*************************
+	-->
+<!-- prettier-ignore -->
+
+<eaf-play-section md='
+	
+	If the number of actions will be a lot the table will group them in a dropdown (see tableActionsToMuchAction) 
+	```js
+	this.tableActionsToMuchAction.push(
+		new EafActionsField("Action buttons", [openpdf, openfolder, archive, bug, file]),
+	);
+	```
+
+	You could pass an optional function to filter the actions showed. This function
+	will be called for each row and each action. If method will return true the action will be showed otherwise the action will be hidden.
+	
+	```js
+	this.tableActions.push(
+		new EafActionsField(
+			"Action buttons",
+			[openpdf, openfolder, archive, bug, file],
+			(model, action) => {
+				
+				if (model.id % 2 == 0 && (action === openfolder || action == openpdf)) {
+					return false;
+				}
+				if (model.id % 2 == 1 && (action === archive || action == bug)) {
+					return false;
+				}
+				return true;
+			},
+		),
+	);
+
+```' title="Actions">
+
+<div class="h4">Example with a lot of actions</div>
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="tableActionsToMuchAction"
+[showPageSize]="false"
+
+(onSortChange)="changeSort($event)"
+></eaf-table>
+
+<div class="h4">Example with filtred actions</div>
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="this.tableActions"
+[showPageSize]="false"
+
+(onSortChange)="changeSort($event)"
+></eaf-table>
+	
+	</eaf-play-section>
+
+<!--
+	*************************
+	ICON
+	*************************
+	-->
+<!-- prettier-ignore -->
+
+<eaf-play-section md='
+	
+	If the number of actions will be a lot the table will group them in a dropdown (see tableActionsToMuchAction) 
+	```js
+	this.tableActionsToMuchAction.push(
+		new EafActionsField("Action buttons", [openpdf, openfolder, archive, bug, file]),
+	);
+	```
+
+	You could pass an optional function to filter the actions showed. This function
+	will be called for each row and each action. If method will return true the action will be showed otherwise the action will be hidden.
+	
+	```js
+	this.tableActions.push(
+		new EafActionsField(
+			"Action buttons",
+			[openpdf, openfolder, archive, bug, file],
+			(model, action) => {
+				
+				if (model.id % 2 == 0 && (action === openfolder || action == openpdf)) {
+					return false;
+				}
+				if (model.id % 2 == 1 && (action === archive || action == bug)) {
+					return false;
+				}
+				return true;
+			},
+		),
+	);
+
+```' title="Icon">
+
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="tableIcon"
+[showPageSize]="false"
+data-title="Icon"
+(onSortChange)="changeSort($event)"
+></eaf-table>
+
+	
+	</eaf-play-section>
+
+<!--
+	*************************
+	CHECKBOX
+	*************************
+-->
+<!-- prettier-ignore -->
+<eaf-play-section md='
+	
+When you define a radioField the 3th params its a funciton that will be called each time user will change radio. The function will receive a model of row.
+
+```typescript
+
+this.radioField = new EafRadioField("Radio", "nome", (item) =>
+alert("hai scelto " + item.nome + " " + item.cognome),
+);
+```
+
+For checkbox you can subscribe on checkbox change. The checkbox field notify you each time a 
+checkbox will be selected or deselect with an object ` { payload: item, type: operation }` where 
+type its the operation and paylaod its the row model linked at checkbox.
+You can get all the element selected from field itself `this.checkBoxField.selectedItems`
+```js
+
+this.checkBoxField = new EafCheckboxField("Checkbox", "check", []);
+this.checkBoxField.getObservable().subscribe((elementoSelezionato) => {
+	console.error("Elementi selezionato:", elementoSelezionato);
+	alert("Elementi selezionati #" + this.checkBoxField.selectedItems.length);
+});
+
+```
+
+' title="Checkbox and Radio">
+<eaf-table
+[data]="fewResult"
+[loading]="pageLoading"
+[structure]="this.tableWithRadioAndCheckBox"
+[showPageSize]="false"
+(onSortChange)="changeSort($event)"
+></eaf-table>
+
+</eaf-play-section>
+
+<!--
+	*************************
+	TABLE FORM
+	*************************
+-->
+<!-- prettier-ignore -->
+<!-- <eaf-play-section md='
+	
+Invece di passare un array di dati passo un formArray di formgroup. La tabella per ogni elemento del form array disegna una riga e popola il formgroup con il fieldToUse e poi disegna l opportuno tipo di input
+```html
+	
+```
+
+' title="TABLE FORM">
+
+
+<br/>
+<eaf-table
+[data]="formArray"
+[structure]="tableForm"
+[showPageSize]="false"
+
+
+></eaf-table>
+
+<eaf-action [action]="add"></eaf-action> 
+<div class="col-xs-12">
+<div class="h5">Dati</div>
+<ul>
+	 <li *ngFor="let o of formArray.controls">
+		{{o.value|json}}
+	</li> 
+</ul>
+</div>
+
+</eaf-play-section> -->
+
+<!--
+	*************************
+	TABLE RESULT
+	*************************
+-->
+<!-- prettier-ignore -->
+<!-- <eaf-play-section md='
+	
+
+```html
+	
+```
+
+' title="TABLE FORM">
+
+
+<br/>
+<div class="h4">data = undefined e loading = false</div>
+<div style="border: 2px dashed blue;
+padding: 1em;">
+<eaf-table
+table-title=""
+[data]="undefined"
+[structure]="tableForm"
+[showPageSize]="false"
+></eaf-table></div>
+
+<div class="h4">data = undefined e loading = true</div>
+<eaf-table
+[data]="undefined"
+[loading]="true"
+[structure]="tableForm"
+></eaf-table>
+
+<div class="h4">data = [] </div>
+<eaf-table
+[data]="[]"
+[structure]="tableForm"
+></eaf-table>
+
+<div class="h4">data = [] setto noResultMessage</div>
+<eaf-table
+[data]="[]"
+
+noResultMessage='messaggio personalizzato'
+[structure]="tableForm"
+></eaf-table> -->

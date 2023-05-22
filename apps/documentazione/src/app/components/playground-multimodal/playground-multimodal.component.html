@@ -1,0 +1,166 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Modal Service
+  Used to show modals
+
+	-------------------------------------------------------------------------
+	| Service method | Parameters | Description |
+	|----------------------|-------|----------------------------------------|
+	| show | template: TemplateRef, options?: SportMultiModalOptions | Shows in a modal the template reference. See below for the options |
+	| hide | - | Closes the currently visible modal |
+</markdown>
+
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	-------------------------------------------------------------------------
+	| Options prop | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| title | string | Modal title. |
+	| size | string | Modal size. One of 'sm', 'md', 'lg'. Default 'lg'. |
+  | headerActions | ActionItem[] | ActionItem array to be shown in the modal header. |
+  | buttons | ActionItem[] | ActionItem array to be shown in the modal footer. |
+  | staticBackdrop | boolean | If set to TRUE the modal won't close when the backdrop is clicked. |
+  | confirmation | boolean | Whether the modal should have confirmation buttons. |
+  | customTemplate | boolean | If set to TRUE the template reference must specify its own .modal-header, .modal-body and .modal-footer div's. In this case you have to handle actions directly in your template. |
+  | onClose | function | Callback executed when the modal will be closed |
+  | onCancel | function | Callback executed when the modal is canceled (in confirmation mode) |
+  | onConfirm | function | Callback executed when the modal is confirmed (in confirmation mode) |
+</markdown>
+
+<!--
+	*************************
+	BASIC MODAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic modal</div>
+<eaf-play-section
+  md="
+  ```html
+  # HTML
+  <eaf-button title=&quot;open modal&quot; (click)=&quot;showModal()&quot;></eaf-button>
+  <ng-template #template0>
+    The following form component encloses a call to another modal.
+    <doc-form1 (provaOutput)=&quot;onProvaOutput($event)&quot;></doc-form1>
+  </ng-template>
+
+  # HTML form1 component
+  <p>
+    Somma: {{ 'form.get(somma).value' }}
+    <eaf-button title=&quot;aggiungi&quot; (click)=&quot;prova()&quot;></eaf-button>
+  </p>
+  
+  <ng-template #template1>
+    <doc-form2 (valore)=&quot;aggiungi($event)&quot;></doc-form2>
+  </ng-template>
+
+  # HTML form2 component
+
+  <div class=&quot;modal-header&quot;>
+    <div class='h2'>Custom template title in H2 tag</div>
+  </div>
+  <div class=&quot;modal-body&quot;>
+    <p>
+      Valore: <input [formControl]=&quot;form.get(&quot;valore&quot;)&quot; />
+      <eaf-button title=&quot;fatto&quot; (click)=&quot;mandaValore()&quot;></eaf-button>
+    </p>
+  </div>
+  <div class=&quot;modal-footer&quot;>
+    <eaf-button title=&quot;Bottone test footer&quot; (click)=&quot;onFooterButtonClick()&quot;></eaf-button>
+  </div>
+```
+```typescript
+# TS
+@ViewChild(&quot;template0&quot;) template;
+
+options: SportMultiModalOptions;
+
+constructor(private modalService: ModalService) { }
+
+ngAfterViewInit() {
+  const action = new ActionItem(&quot;prova&quot;, () => console.log(&quot;action prova&quot;), &quot;pencil&quot;);
+  this.options = {
+    title: &quot;titoletto&quot;,
+    buttons: [action],
+    onClose: this.onClose
+  };
+}
+
+onProvaOutput(event: any): void {
+  alert(&quot;current sum is &quot; + event);
+}
+
+onClose = (): void => {
+  alert(&quot;close triggered&quot;);
+}
+
+showModal(): void {
+  this.modalService.show(this.template, this.options);
+}
+
+# TS form1 component
+prova(): void {
+  const options = { staticBackdrop: true, customTemplate: true, onClose: this.onClose };
+  this.modalService.show(this.template, options);
+}
+```"
+>
+  <eaf-button title="open modal" (click)="showModal()"></eaf-button>
+  <ng-template #template0>
+    <p>The following form component encloses a call to another modal.</p>
+    <p>Note that the second modal will have the staticBackdrop set to true</p>
+    <eaf-form1 (provaOutput)="onProvaOutput($event)"></eaf-form1>
+  </ng-template>
+</eaf-play-section>
+
+<!--
+	*************************
+	CONFIRMATION MODAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Confirmation modal</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-button title="open confirmation modal" (click)="showConfirmationModal()"></eaf-button>
+  <ng-template #template1>
+    <p>Do you confirm you are happy and positive?</p>
+  </ng-template>
+```
+```typescript
+# TS
+@ViewChild("template1") confirmationTemplate;
+
+this.confirmationModalOptions = {
+  title: "confirmation modal",
+  buttons: [otherAction],
+  headerActions: [action],
+  confirmation: true,
+  onCancel: this.onCancel,
+  onConfirm: this.onConfirm
+};
+
+onCancel = (): void => {
+  alert("reacting to cancel event");
+}
+
+onConfirm = (): void => {
+  alert("reacting to confirm event");
+}
+
+showModal(): void {
+  this.modalService.show(this.template, this.options);
+}
+
+showConfirmationModal(): void {
+  this.modalService.show(this.confirmationTemplate, this.confirmationModalOptions);
+}
+```'
+>
+  <eaf-button title="open confirmation modal" (click)="showConfirmationModal()"></eaf-button>
+  <ng-template #template1>
+    <p>Do you confirm you are happy and positive?</p>
+  </ng-template>
+</eaf-play-section>

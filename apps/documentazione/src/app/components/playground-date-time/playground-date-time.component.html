@@ -1,0 +1,250 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Date
+	This element is used in a form as date input.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [error-labels] | ErrorLabel[] | This is used to display errors linked with this form element. |
+	| [placeholder] | i18n Key | This is the default input text. |
+	| [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+	| [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+	| [disable-input] | boolean | If true the input is disabled. Note: in this case the placeholder is hidden. |
+	| [actions] | ActionItem[] | Actions displayed on the right of input. |
+	| [warning] | string | A warning message that will always display bottom the input. |
+	| [regex] | Regexp or string or string[] | Regular expression |
+	| [format] | string | Format to be used for the date. |
+	| [minDate] | string \| Date \| Moment | Minimum valid date. |
+	| [maxDate] | string \| Date \| Moment | Maximum valid date. |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required date input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time
+  label="Required date label"
+  size="12|12|12|12"
+  ext-id="inputDateRequired"
+  [formControl]="form.getFormControl("required")"
+  [error-labels]="errorLabels["required"]"
+  warning="Consider this a warning."
+  placeholder="Required"
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    label="Required date label"
+    size="12|12|12|12"
+    ext-id="inputDateRequired"
+    #value
+    [formControl]="form.getFormControl('required')"
+    [error-labels]="errorLabels['required']"
+    placeholder="Required"
+    warning="Consider this a warning."
+  ></eaf-input-date-time>
+  {{ form.getFormControl('required').value.toStringTimeDate() }}
+</eaf-play-section>
+
+<!--
+	*************************
+	MIN MAX
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Min - max date input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time 
+  label="Minmax date label"
+  size="12|12|12|12"
+  #value
+  ext-id="inputDateMinMax"
+  [formControl]="form.getFormControl("minMax")"
+  [error-labels]="errorLabels["minMax"]"
+  minDate="10/01/2020"
+  maxDate="28/02/2020"
+  placeholder="Minmax"
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    label="Minmax date label"
+    size="12|12|12|12"
+    #value
+    ext-id="inputDateMinMax"
+    [formControl]="form.getFormControl('minMax')"
+    [error-labels]="errorLabels['minMax']"
+    placeholder="Minmax"
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+  ></eaf-input-date-time>
+  {{ form.getFormControl('minMax').value }}
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled date input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time
+  label="Disabled date label"
+  size="12|12|12|12"
+  #value
+  ext-id="inputDateDisabled"
+  [formControl]="form.getFormControl("disabled")"
+  placeholder="This placeholder will be hidden."
+  [disable-input]="true"
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    [disable-input]="true"
+    #value
+    ext-id="inputDateDisabled"
+    [formControl]="this.form.getFormControl('disabled')"
+    label="Disabled date label"
+    size="12|12|12|12"
+    placeholder="This placeholder will be hidden."
+  ></eaf-input-date-time>
+</eaf-play-section>
+
+<!--
+	*************************
+	READONLY
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Readonly date input </div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time
+  label="Readonly date label"
+  size="12|12|12|12"
+  #value
+  ext-id="inputDateReadOnly"
+  [formControl]="form.getFormControl("readonly")"
+  placeholder="This placeholder will be hidden."
+  [readonly-input]="true"
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    [readonly-input]="true"
+    #value
+    ext-id="inputDateReadOnly"
+    [formControl]="form.getFormControl('readonly')"
+    label="Readonly date label"
+    size="12|12|12|12"
+    placeholder="This placeholder will be hidden."
+  ></eaf-input-date-time>
+</eaf-play-section>
+
+<!--
+	*************************
+	DATE INPUT  WITH TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Date input with tooltip</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time
+  label="Date input with tooltip label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("tooltip")"
+  [tooltip]="tooltip"
+  placeholder="Hover to see more information"
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    label="Date input with tooltip label"
+    #value
+    size="12|12|12|12"
+    [tooltip]="tooltip"
+    [formControl]="form.getFormControl('tooltip')"
+    placeholder="Hover to see more information"
+  ></eaf-input-date-time>
+</eaf-play-section>
+
+<!--
+	*************************
+	DATE INPUT CUSTOM FORMAT
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Date input with custom format</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time
+  label="Date input with custom format"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("custom")"
+  placeholder="Placeholder for custom format"
+  format="yyyy-MM-dd"
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    #value
+    label="Date input with custom format"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('custom')"
+    placeholder="Placeholder for custom format"
+    format="yyyy-MM-dd"
+  ></eaf-input-date-time>
+</eaf-play-section>
+
+<!--
+	*************************
+	DATE INPUT WITH ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Date input with actions</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-time
+  label="Date input with actions label"
+  size="12|12|12|12"
+  [actions]="actions"
+  [formControl]="form.getFormControl("actions")"
+  placeholder="Buttons on the right allow actions to be performed."
+  ></eaf-input-date-time>
+```'
+>
+  <eaf-input-date-time
+    label="Date input with actions label"
+    size="12|12|12|12"
+    [actions]="actions"
+    #value
+    [formControl]="form.getFormControl('actions')"
+    placeholder="Buttons on the right allow actions to be performed."
+  ></eaf-input-date-time>
+</eaf-play-section>

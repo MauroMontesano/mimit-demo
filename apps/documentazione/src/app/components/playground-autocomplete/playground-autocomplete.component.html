@@ -1,0 +1,231 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+    # Autocomplete
+    This element is used in a form as autocomplete input.
+
+    -------------------------------------------------------------------------
+    | [Input] / (Output) | Type | Description |
+    |----------------------|-------|----------------------------------------|
+    | [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+    | [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input
+    to guarantee the uniqueness of the internal input id. |
+    | [formControl] | FormControl | Angular Form control to map with this input. |
+    | [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default
+    '12\|12\|6\|4\'. |
+    | [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default
+    '12\|12\|12\|12\'. |
+    | [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default
+    '12\|12\|12\|12\'. |
+    | [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like
+    '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+    | [error-labels] | ErrorLabel[] | This is used to display errors linked with this form element. |
+    | [placeholder] | i18n Key | This is the default input text. |
+    | [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+    | [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+    | [disable-input] | boolean | If true the input is disabled. Note: in this case the placeholder is hidden. |
+    | [actions] | ActionItem[] | Actions displayed on the right of input. |
+    | [warning] | string | A warning message that will always display bottom the input. |
+    | [remote] | Observable(any[]) | Observable containing the data to be displayed. |
+    | [options] | any[] | Array of options to populate the input with local data. |
+    | [renderItem] | TempleteRef or string | Receives a template to redesign the autocomplete list. |
+    | [closeOnScoll] | boolean | se lo usi parla con ale. per questo non è documentato |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required input with remote</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-text
+    label="Required input label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl("required")"
+    [remote]="remoteCallRequired"
+    [error-labels]="errorLabels["required"]"
+    placeholder="Required">
+   </eaf-input-text>
+```
+
+```typescript
+remoteCallRequired = (key): Observable(any[]) => {
+	let url = "http://localhost:3000/tipologia?size=10";
+	if (key) {
+		url += "&descrizione=" + key;
+	}
+	return this.http.post(url, undefined).pipe(
+		delay(1000),
+		map((response) => {
+			return response["content"].map((res) => {
+				return {
+					label: res["descrizione"],
+					value: res,
+				};
+			});
+		}),
+	);
+}
+
+```'
+>
+  <eaf-input-autocomplete
+    label="Required input label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl('required')"
+    [remote]="remoteCallRequired"
+    [error-labels]="errorLabels['required']"
+    placeholder="Required"
+  ></eaf-input-autocomplete>
+  {{ form.getFormControl('required').value | json }}
+
+  <!-- <eaf-button title="Reset" (click)="form.reset()"></eaf-button> -->
+</eaf-play-section>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<div class="h3">Autocomplete with myRender</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-text
+    [renderItem]="myRender"
+    label="Required input label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl("required")"
+    [remote]="remoteCallRequired"
+    [error-labels]="errorLabels["required"]"
+    placeholder="Required">
+  </eaf-input-text>
+```
+
+```typescript
+<!-- Create a new Template for redesign list -->
+
+    myRender = (item):string => {
+		return "<a style="display: block">" + "Label: " +
+		    item.label + " Value: " + item.value + "<br>" +
+            + " Numero Doc: " + item.option.value.numeroDoc +
+            "</a>";
+    }
+
+```'
+>
+  <eaf-input-autocomplete
+    [renderItem]="myRender"
+    label="Required input label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl('required')"
+    [remote]="remoteCallRequired"
+    [error-labels]="errorLabels['required']"
+    placeholder="Required"
+  >
+  </eaf-input-autocomplete>
+  {{ form.getFormControl('required').value | json }}
+
+  <!-- <eaf-button title="Reset" (click)="form.reset()"></eaf-button> -->
+</eaf-play-section>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with local data</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-text
+  label="Input with local data label"
+  size="12|12|12|12"
+	[formControl]="form.getFormControl("local")"
+	[options]="options"
+	[error-labels]="errorLabels["local"]"
+  placeholder="Local data"
+  ></eaf-input-text>
+```'
+>
+  <eaf-input-autocomplete
+    label="Input with local data label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('local')"
+    [options]="options"
+    [error-labels]="errorLabels['local']"
+    placeholder="Local data"
+  ></eaf-input-autocomplete>
+  {{ form.getFormControl('local').value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Tooltip input (remote)</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-text
+  label="Tooltip input label"
+  size="12|12|12|12"
+	[formControl]="form.getFormControl("tooltip")"
+	[remote]="remoteCallTooltip"
+	[tooltip]="tooltip"
+  placeholder="Tooltip input"
+  ></eaf-input-text>
+```'
+>
+  <eaf-input-autocomplete
+    label="Tooltip input label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('tooltip')"
+    [remote]="remoteCallTooltip"
+    [tooltip]="tooltip"
+    placeholder="Tooltip input"
+  ></eaf-input-autocomplete>
+  {{ form.getFormControl('tooltip').value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with actions (remote)</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-text
+  label="Actions input label"
+  size="12|12|12|12"
+	[formControl]="form.getFormControl("actions")"
+	[remote]="remoteCallActions"
+	[actions]="actions"
+  placeholder="Actions input"
+  ></eaf-input-text>
+```'
+>
+  <eaf-input-autocomplete
+    label="Actions input label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('actions')"
+    [remote]="remoteCallActions"
+    [actions]="actions"
+    placeholder="Actions input"
+  ></eaf-input-autocomplete>
+  {{ form.getFormControl('actions').value | json }}
+</eaf-play-section>

@@ -1,0 +1,117 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Alert
+  Used to show messages to the user inside the view.
+
+	-------------------------------------------------------------------------
+	| [Input]/[Output] | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [title] | string | Title for the alert. |
+	| [content] | string | Content for the alert. |
+  | [type] | 'success' \| 'error' \| 'warning' \| 'info' | Sets the appearance of the alert. Default 'info'. |
+  | [closable] | boolean=true | if the alert it's closable |
+</markdown>
+
+<!--
+	*************************
+  BASIC ALERT
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic alert</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-alert
+    [title]="basicTitle"
+    [content]="basicContent"
+  ></eaf-alert>
+```'
+>
+  <eaf-alert [title]="basicTitle" [content]="basicContent"></eaf-alert>
+</eaf-play-section>
+
+<!--
+	*************************
+ NO CLOSABLE ALERT
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">No closable alert</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-alert
+    [title]="basicTitle"
+    [content]="basicContent"
+    [closable]="false"
+  ></eaf-alert>
+```'
+>
+  <eaf-alert [title]="basicTitle" [content]="basicContent" [closable]="false"></eaf-alert>
+</eaf-play-section>
+
+<!--
+	*************************
+	SUCCESS ALERT
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Success alert</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-alert
+    [title]="successTitle"
+    [content]="successContent"
+    type="success"
+  ></eaf-alert>
+```'
+>
+  <eaf-alert [title]="successTitle" [content]="successContent" type="success"></eaf-alert>
+</eaf-play-section>
+
+<!--
+	*************************
+	ERROR ALERT
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Error alert</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-alert
+    [title]="errorTitle"
+    [content]="errorContent"
+    type="error"
+  ></eaf-alert>
+```'
+>
+  <eaf-alert [title]="errorTitle" [content]="errorContent" type="error"></eaf-alert>
+</eaf-play-section>
+
+<!--
+	*************************
+	ERROR ALERT
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Warning alert</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-alert
+    [title]="warningTitle"
+    [content]="warningContent"
+    type="warning"
+  ></eaf-alert>
+```'
+>
+  <eaf-alert [title]="warningTitle" [content]="warningContent" type="warning"></eaf-alert>
+</eaf-play-section>

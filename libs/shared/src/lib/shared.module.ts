@@ -11,6 +11,7 @@ import { NotAuthorizedComponent } from './components/not-authorized/not-authoriz
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ClickFromKeyboardDirective } from './directives/click-from-keyboard.directive';
 import { FluidHeightDirective } from './directives/fluid-height.directive';
+import { NotificationDirective } from './directives/notification.directive';
 import { SkipToDirective } from './directives/skip-to.directive';
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { ContentLayoutComponent } from './layouts/content-layout/content-layout.component';
@@ -43,7 +44,8 @@ import { BffImagePipe } from './pipes/bff-image.pipe';
     PaginationComponent,
     ClickFromKeyboardDirective,
     DetailsTableComponent,
-    TabsComponent
+    TabsComponent,
+    NotificationDirective,
   ],
   exports: [
     WebkitFormModule,
@@ -63,7 +65,8 @@ import { BffImagePipe } from './pipes/bff-image.pipe';
     PaginationComponent,
     ClickFromKeyboardDirective,
     DetailsTableComponent,
-    TabsComponent
+    TabsComponent,
+    NotificationDirective,
   ],
 })
 export class SharedModule {}

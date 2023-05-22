@@ -1,0 +1,303 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Select
+	This element is used for selecting various options.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [placeholder] | string | Used to set field placeholder value. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [options] | any[] | Used in <b>sport-select</b> element as the array of values represented by the options in the field. |
+	| [options] | Object of kind key: any[]  | You can also group the value in a map of key (of groups) list of opstion for group. see "Group Multi filterable select label" example |
+	| [field-for-id] | string | Used in <b>sport-select</b> element, field used as the value to work with (e.g. if you need to check conditions, or to calculate something). |
+	| [field-for-option] | string | Used in <b>sport-select</b> element, used as value representing options in the select field. |
+	| [actions] | ActionItem[] | Actions displayed on the right of input. |
+	| [warning] | string | A warning message that will always display bottom the input. |
+	| [filterable] | boolean | Whether the select is filterable. |
+	| [liveSearchStyle] | 'contains' \| 'startsWith' | Whether the filter is based on "contains" or "startWith" search string. |
+	| [selectElementToDisplay] | number | Number of elements to display before the count is shown. |
+	| [multi] | boolean | Whether the select is a multi select |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [error-labels] | ErrorLabel[] | This is used to display errors linked with this form element. |
+</markdown>
+
+<!--
+	*************************
+	NORMAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Basic select label"
+  size="12|12|12|12"
+  ext-id="selectBasic"
+  [formControl]="myWrappedForm.getFormControl("simple")"
+  [options]="optionsList"
+  placeholder="Basic placeholder"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Basic select label"
+    size="3|3|3|3"
+    ext-id="selectBasic"
+    [formControl]="myWrappedForm.getFormControl('simple')"
+    [options]="optionsList"
+    placeholder="Basic placeholder"
+    [error-labels]="errorLabels['simple']"
+    field-for-id="id"
+    field-for-option="descrizione"
+  ></eaf-input-select>
+  value:{{ myWrappedForm.getFormControl('simple')?.value | json }} - valid:{{
+    myWrappedForm.getFormControl('simple')?.valid | json
+  }}
+  - errors:{{ myWrappedForm.getFormControl('simple')?.errors | json }} - label {{ errorLabels['simple'] | json }} --
+  dirty {{ myWrappedForm.getFormControl('simple')?.dirty | json }} -- touched
+  {{ myWrappedForm.getFormControl('simple')?.touched | json }}
+</eaf-play-section>
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Required select label"
+  size="12|12|12|12"
+  ext-id="selectRequired"
+  [formControl]="myWrappedForm.getFormControl("required")"
+  [options]="optionsList"
+  placeholder="required placeholder"
+  [error-labels]="errorLabels["required"]"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Required select label"
+    size="12|12|12|12"
+    ext-id="selectRequired"
+    [formControl]="myWrappedForm.getFormControl('required')"
+    [options]="optionsList"
+    placeholder="required placeholder"
+    [error-labels]="errorLabels['required']"
+  ></eaf-input-select>
+</eaf-play-section>
+
+<!--
+	*************************
+	TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Tooltip select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Tooltip select label"
+  size="12|12|12|12"
+  ext-id="selectTooltip"
+  [formControl]="myWrappedForm.getFormControl("tooltip")"
+  [options]="optionsList"
+  placeholder="Tooltip placeholder"
+  [error-labels]="errorLabels["tooltip"]"
+  [tooltip]="tooltip"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Tooltip select label"
+    size="12|12|12|12"
+    ext-id="selectTooltip"
+    [formControl]="myWrappedForm.getFormControl('tooltip')"
+    [options]="optionsList"
+    placeholder="Tooltip placeholder"
+    [error-labels]="errorLabels['tooltip']"
+    [tooltip]="tooltip"
+  ></eaf-input-select>
+</eaf-play-section>
+
+<!--
+	*************************
+	ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Action select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Action select label"
+  size="12|12|12|12"
+  ext-id="selectAction"
+  [formControl]="myWrappedForm.getFormControl("actions")"
+  [options]="optionsList"
+  placeholder="actions placeholder"
+  [error-labels]="errorLabels["actions"]"
+  [actions]="actions"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Action select label"
+    size="12|12|12|12"
+    ext-id="selectAction"
+    [formControl]="myWrappedForm.getFormControl('actions')"
+    [options]="optionsList"
+    placeholder="actions placeholder"
+    [error-labels]="errorLabels['actions']"
+    [actions]="actions"
+  ></eaf-input-select>
+</eaf-play-section>
+
+<!--
+	*************************
+	MULTIPLE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Multi select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Multi select label"
+  ext-id="selectMulti"
+  size="12|12|12|12"
+  [multi]="true"
+  [formControl]="myWrappedForm.getFormControl("select")"
+  [options]="optionsList"
+  placeholder="Multi select placeholder"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Multi select label"
+    size="12|12|12|12"
+    ext-id="selectMulti"
+    [multi]="true"
+    [formControl]="myWrappedForm.getFormControl('select')"
+    [options]="optionsList"
+    placeholder="Multi select placeholder"
+  ></eaf-input-select>
+  {{ myWrappedForm.getFormControl('select')?.value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	FIELD-FOR
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Multi select - use of field-for-id, field-for-option</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Multi field-for select label"
+  size="12|12|12|12"
+  [multi]="true"
+  [formControl]="myWrappedForm.getFormControl("selectById")"
+  [options]="optionsList"
+  placeholder="Multi field-for placeholder"
+  field-for-id="id"
+  field-for-option="descrizione"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Multi field-for label"
+    size="12|12|12|12"
+    [multi]="true"
+    [formControl]="myWrappedForm.getFormControl('selectById')"
+    [options]="optionsList"
+    placeholder="Multi field-for placeholder"
+    field-for-id="id"
+    field-for-option="descrizione"
+  ></eaf-input-select>
+  <!-- {{ myWrappedForm.getFormControl('selectById')?.value | json }} -->
+</eaf-play-section>
+
+<!--
+	*************************
+	LONG
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">LOOOONG select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Basic select label"
+  size="12|12|12|12"
+  ext-id="unique-id-basic"
+  [formControl]="myWrappedForm.getFormControl("simple")"
+  [options]="optionsLong"
+  placeholder="Basic placeholder"
+  [action]="actions"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Basic select label"
+    size="12|12|12|12"
+    ext-id="unique-id-basic"
+    [options]="optionsLong"
+    placeholder="long list"
+    [actions]="actions"
+  ></eaf-input-select>
+  <!-- {{ myWrappedForm.getFormControl('simple').value | json }} - valid:{{ myWrappedForm.getFormControl('simple').valid | json }} - errors:{{ myWrappedForm.getFormControl('simple').errors | json }} - label {{errorLabels['simple']|json}} -->
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled select</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-select
+  label="Basic select label"
+  size="12|12|12|12"
+  ext-id="selectDisabled"
+  [formControl]="myWrappedForm.getFormControl("simple")"
+  [options]="optionsLong"
+  placeholder="Basic placeholder"
+  [action]="actions"
+  [disable-input]="true"
+  ></eaf-input-select>
+```'
+>
+  <eaf-input-select
+    label="Basic select label"
+    size="12|12|12|12"
+    ext-id="selectDisabled"
+    [options]="optionsList"
+    placeholder="long list"
+    [actions]="actions"
+    [disable-input]="true"
+  ></eaf-input-select>
+  <!-- {{ myWrappedForm.getFormControl('simple').value | json }} - valid:{{ myWrappedForm.getFormControl('simple').valid | json }} - errors:{{ myWrappedForm.getFormControl('simple').errors | json }} - label {{errorLabels['simple']|json}} -->
+</eaf-play-section>

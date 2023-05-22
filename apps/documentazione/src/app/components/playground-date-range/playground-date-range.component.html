@@ -1,0 +1,328 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Date range
+	This element is used in a form as date range input.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+  | [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+	| [fromLabel] | string | Label to be used for the 'from' input. |
+	| [toLabel] | string | Label to be used for the 'to' input. |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [error-labels] | ErrorLabel[] | This is used to display errors linked with this form element. |
+	| [placeholder] | i18n Key | This is the default input text. |
+	| [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+	| [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+	| [disable-input] | boolean | If true the input is disable-input. Note: in this case the placeholder is hidden. |
+	| [warning] | string | A warning message that will always display bottom the input. |
+	| [regex] | Regexp or string or string[] | Regular expression. |
+	| [minDate] | string \| Date \| Moment | Min date. |
+	| [maxDate] | string \| Date \| Moment | Max date. |
+	| [disableFrom] | boolean | disable only from field |
+	| [disableFrom] | boolean | disable only from field |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required date range input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="Required date range label"
+  fromLabel="Label from"
+  toLabel="Label to"
+  size="12|12|12|12"
+  ext-id="unique-id-required"
+  [formControl]="form.getFormControl("required")"
+  [error-labels]="errors["dateRangeRequired"]"
+  placeholder="Required"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="Required date range label"
+    fromLabel="Label from"
+    toLabel="Label to"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl('required')"
+    [error-labels]="errors['dateRangeRequired']"
+    placeholder="Required"
+  ></eaf-input-date-range>
+  da: {{ form.getFormControl('required').value?.from }} a: {{ form.getFormControl('required').value?.to }} da:
+  {{ form.getFormControl('required').errors | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	MIN MAX DATE RANGE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Min max date range input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="Min max date range label"
+  fromLabel="Label from"
+  toLabel="Label to"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("minMax")"
+  [error-labels]="errors["minMax"]"
+  placeholder="Min max"
+  minDate = "12/02/2020"
+  maxDate = "12/03/2020"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="Min max date range label"
+    fromLabel="Label from"
+    toLabel="Label to"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('minMax')"
+    [error-labels]="errors['minMax']"
+    placeholder="Min max"
+    minDate="12/02/2020"
+    maxDate="12/03/2020"
+  ></eaf-input-date-range>
+  da: {{ form.getFormControl('minMax').value?.from }} a: {{ form.getFormControl('minMax').value?.to }}
+</eaf-play-section>
+
+<!--
+	*************************
+	TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Date range input with tooltip</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="Date range with tooltip label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("tooltip")"
+  [error-labels]="errors["tooltip"]"
+  [tooltip]="tooltip"
+  placeholder="Date range tooltip placeholder"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="Date range with tooltip label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('tooltip')"
+    [error-labels]="errors['tooltip']"
+    [tooltip]="tooltip"
+    placeholder="Date range tooltip placeholder"
+  ></eaf-input-date-range>
+  Valore: {{ form.getFormControl('tooltip').value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	WARNING
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Date range input with warning</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="Date range with warning label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("warning")"
+  [error-labels]="errors["warning"]"
+  warning="I am warning you."
+  placeholder="Date range placeholder"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="Date range with warning label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('warning')"
+    [error-labels]="errors['warning']"
+    warning="I am warning you."
+    placeholder="Date range placeholder"
+  ></eaf-input-date-range>
+  Valore: {{ form.getFormControl('warning').value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	disable-input
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">disable-input date range input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="disable-input date range label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("disable-input")"
+  [error-labels]="errors["disable-input"]"
+  [disable-input]="true"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="disable-input date range label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('disabled')"
+    [error-labels]="errors['disabled']"
+    [disable-input]="true"
+  ></eaf-input-date-range>
+  da: {{ form.getFormControl('disabled').value?.from }} a: {{ form.getFormControl('disabled').value?.to }}
+  <!-- <eaf-input-date-range
+    label="disable-input from"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('disabled')"
+    [error-labels]="errors['disable-input']"
+    [disableFrom]="true"
+  ></eaf-input-date-range>
+  <eaf-input-date-range
+    label="disable-input from"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('disabled')"
+    [error-labels]="errors['disable-input']"
+    [disableTo]="true"
+  ></eaf-input-date-range> -->
+</eaf-play-section>
+<div class="h3">disable-input only one input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="disable-input date range label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("disable-input")"
+  [error-labels]="errors["disable-input"]"
+  [disableFrom]="true"
+  ></eaf-input-date-range>
+  <eaf-input-date-range
+  label="disable-input date range label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("disable-input")"
+  [error-labels]="errors["disable-input"]"
+  [disableTo]="true"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="disable-input date range label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('disabled')"
+    [error-labels]="errors['disabled']"
+    [disableFrom]="true"
+  ></eaf-input-date-range>
+  <eaf-input-date-range
+    label="disable-input date range label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('disabled')"
+    [error-labels]="errors['disabled']"
+    [disableTo]="true"
+  ></eaf-input-date-range>
+</eaf-play-section>
+
+<!--
+	*************************
+	READONLY
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Readonly date range input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="Readonly date range label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("readonly")"
+  [error-labels]="errors["readonly"]"
+  [readonly-input]="true"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="Readonly date range label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('readonly')"
+    [error-labels]="errors['readonly']"
+    [readonly-input]="true"
+  ></eaf-input-date-range>
+</eaf-play-section>
+
+<!--
+	*************************
+	ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Date range with actions</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-date-range
+  label="Date range with actions label"
+  size="12|12|12|12"
+  fromLabel="From"
+  toLabel="To"
+  [formControl]="form.getFormControl("actions")"
+  [error-labels]="errors["actions"]"
+  [actions]="actions"
+  ></eaf-input-date-range>
+```'
+>
+  <eaf-input-date-range
+    label="Date range with actions label"
+    size="12|12|12|12"
+    fromLabel="From"
+    toLabel="To"
+    [formControl]="form.getFormControl('actions')"
+    [error-labels]="errors['actions']"
+    [actions]="actions"
+  ></eaf-input-date-range>
+</eaf-play-section>

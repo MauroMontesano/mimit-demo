@@ -1,0 +1,196 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Message service
+  Used to show messages to the user.  
+	All messages last for 10s. The error message must be closed by the user to be dismissed.  
+	The **show()** method of the EafMessageService is used, receiving a Message instance as parameter.  
+	Alternatively the methods **info()**, **success()**, **warning()**, **error()** can be used by passing a content and an optional title.  
+  Based upon the **Message** model:
+
+	-------------------------------------------------------------------------
+	| Property | Type | Description |
+	|----------------------|-------|----------------------------------------|
+  | [text] | string | Message content. |
+	| [title] | string | Message title. |
+	| [type] | MessageType | Used to determine the message type. By default it is an INFO. |
+	| [i18nPlaceHolder] | any | Values for i18n placeholder. |
+
+</markdown>
+
+<eaf-message></eaf-message>
+
+<!--
+	*************************
+	BASIC MESSAGE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic message</div>
+<eaf-play-section
+  md='
+```html
+# HTML
+<eaf-button title="Show basic" color="primary" (click)="showBasic()"></eaf-button>
+<eaf-button title="Show via info method" (click)="showInfoAlt()"></eaf-button>
+```
+```typescript
+# TS
+this.infoMessage = new Message("Content for info message"); // type is INFO by default
+showBasic(): void {
+  this.messageService.show(this.infoMessage);
+}
+showInfoAlt(): void {
+  this.messageService.info("Content for the alternative info message");
+}
+```'
+>
+  <eaf-button title="Show basic" color="primary" (click)="showBasic()"></eaf-button>
+  <eaf-button class="ps-2" title="Show via info method" (click)="showInfoAlt()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	INFO MESSAGE W/ TITLE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Info message with title</div>
+<eaf-play-section
+  md='
+```html
+# HTML
+<eaf-button title="Show info with title" color="primary" (click)="showInfoWithTitle()"></eaf-button>
+```
+```typescript
+# TS
+this.infoMessageWithTitle = new Message("Content for info with title", "Title for info with title");
+showinfoWithTitle(): void {
+  this.messageService.show(this.infoMessageWithTitle);
+}
+```'
+>
+  <eaf-button title="Show info with title" color="primary" (click)="showInfoWithTitle()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	SUCCESS MESSAGE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Success message</div>
+<eaf-play-section
+  md='
+```html
+# HTML
+<eaf-button title="Show success" color="primary" (click)="showSuccess()"></eaf-button>
+<eaf-button title="Show via success method" (click)="showSuccessAlt()"></eaf-button>
+```
+```typescript
+# TS
+this.successMessage = new Message(
+  "Content for success message", // content
+  "Title for success message", // title
+  MessageType.SUCCESS // type
+);
+showSuccess(): void {
+  this.messageService.show(this.successMessage);
+}
+showSuccessAlt(): void {
+  this.messageService.success("Content for the alternative success message", "Title for alt success");
+}
+```'
+>
+  <eaf-button title="Show success" color="primary" (click)="showSuccess()"></eaf-button>
+  <eaf-button class="ps-2" title="Show via success method" (click)="showSuccessAlt()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	WARNING MESSAGE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Warning message</div>
+<eaf-play-section
+  md='
+```html
+# HTML
+<eaf-button title="Show warning" color="primary" (click)="showWarning()"></eaf-button>
+<eaf-button title="Show via warning method" (click)="showWarningAlt()"></eaf-button>
+```
+```typescript
+# TS
+this.warningMessage = new Message(
+  "Content for warning message",
+  "Title for warning message",
+  MessageType.WARNING
+);
+showWarning(): void {
+  this.messageService.show(this.warningMessage);
+}
+showWarningAlt(): void {
+  this.messageService.warning("Content for the alternative warning message", "Title for alt warning");
+}
+```'
+>
+  <eaf-button title="Show warning" color="primary" (click)="showWarning()"></eaf-button>
+  <eaf-button class="ps-2" title="Show via warning method" (click)="showWarningAlt()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	ERROR MESSAGE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Error message</div>
+<eaf-play-section
+  md='
+```html
+# HTML
+<eaf-button title="Show error" color="primary" (click)="showError()"></eaf-button>
+<eaf-button title="Show via error method" (click)="showErrorAlt()"></eaf-button>
+```
+```typescript
+# TS
+this.errorMessage = new Message(
+  "Content for error message",
+  "Title for error message",
+  MessageType.ERROR_MANAGED // or ERROR_BLOCK or ERROR_AUTHENTICATION 
+);
+showError(): void {
+  this.messageService.show(this.errorMessage);
+}
+showErrorAlt(): void {
+  this.messageService.error("Content for the alternative error message", "Title for alt error");
+}
+```'
+>
+  <eaf-button title="Show error" color="primary" (click)="showError()"></eaf-button>
+  <eaf-button class="ps-2" title="Show via error method" (click)="showErrorAlt()"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	MULTIPLE MESSAGES
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Multiple message</div>
+<eaf-play-section
+  md='
+```html
+# HTML
+<eaf-button title="Show multiple" color="primary" (click)="showMultiple()"></eaf-button>
+```
+```typescript
+# TS
+showMultiple(): void {
+  this.messageService.show(this.infoMessage);
+  this.messageService.show(this.warningMessage);
+}
+```'
+>
+  <eaf-button title="Show multiple" color="primary" (click)="showMultiple()"></eaf-button>
+</eaf-play-section>

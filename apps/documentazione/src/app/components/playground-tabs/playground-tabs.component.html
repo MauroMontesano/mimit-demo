@@ -1,0 +1,63 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Tabs
+	Used to create expandable tabs.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [id] | string | html id attribute. |
+	| [tabs] | Tab[]| Array of tabs to show. |
+	| [activeTab] | Tab | Tab that should be opened by default. |
+	| (tabChanged) | Tab | Event emitted when a tab is opened or closed. |
+
+</markdown>
+
+<!--
+	*************************
+	BASIC TABS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic tabs</div>
+<eaf-play-section
+  size="12"
+  md='
+  ```html
+	<eaf-tabs class="mb-3" [tabs]="tabs"></eaf-tabs>
+
+	<ng-template #tab1>
+		Tab 1 content
+	</ng-template>
+	<ng-template #tab2>
+		Tab 2
+		<div>Content for tab 2</div>
+	</ng-template>
+	<ng-template #tab3>
+		This is tab n. 3
+	</ng-template>
+```
+```typescript
+@ViewChild("tab1") tabTemplate1;
+@ViewChild("tab2") tabTemplate2;
+@ViewChild("tab3") tabTemplate3;
+
+this.tabs = [
+	new Tab(1, "First tab title", this.tabTemplate1),
+	new Tab(2, "Second tab title", this.tabTemplate2),
+	new Tab(3, "Third tab with icon", this.tabTemplate3, "bank")
+];
+```
+
+
+'
+>
+  <eaf-tabs class="mb-3" [tabs]="tabs"></eaf-tabs>
+</eaf-play-section>
+
+<ng-template #tab1> Tab 1 content </ng-template>
+<ng-template #tab2>
+  Tab 2
+  <div>Content for tab 2</div>
+</ng-template>
+<ng-template #tab3> This is tab n. 3 </ng-template>

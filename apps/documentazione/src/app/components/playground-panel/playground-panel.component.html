@@ -1,0 +1,140 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Panel
+  Used as wrapping element for custom content.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+  | [panel-title] | string | Defines title property. |
+	| [headerActions] | ActionItem[] | Actions displayed at the top right of the panel. |
+  | [actions] | ActionItem[] | Actions displayed at the bottom right of the panel. |
+  | [disable] | boolean | Disable the panel |
+</markdown>
+
+<!--
+	*************************
+	BASE PANEL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic panel with actions</div>
+<eaf-play-section
+  size="12"
+  md='
+	```html
+  <eaf-panel
+  title="Title of the basic panel"
+  [headerActions]="headerActions"
+  [actions]="actions">
+    <div>
+      <div class="h4">Content heading</div>
+      <div><p>This is the content for this panel.</p></div>
+    </div>
+  </eaf-panel>
+```
+
+```typescript
+actions = [
+  new ActionItem(
+    "Preview",
+    (item,actions) => {
+      alert("eye");
+    },
+    undefined,
+    "PRIMARY",
+  ),
+  new ActionItem(
+    "Delete",
+    (item,actions) => {
+      alert("delete");
+    },
+    undefined,
+  ),
+];
+headerActions = [
+  new ActionItem(
+    "Preview",
+    (item,actions) => {
+      alert("planet saved");
+    },
+    "tree",
+  ),
+  new ActionItem(
+    "Delete",
+    (item,actions) => {
+      alert("WOOF!");
+    },
+    "paw",
+  ),
+];
+```'
+>
+  <eaf-panel title="Title of the basic panel" [headerActions]="headerActions" [actions]="actions">
+    <div>
+      <div class="h4">Content heading</div>
+      <div>
+        <p>This is the content for this panel.</p>
+      </div>
+    </div>
+  </eaf-panel>
+</eaf-play-section>
+
+<!--
+	*************************
+	BASE PANEL WITHOUT TITLE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic panel without title and actions</div>
+<eaf-play-section
+  size="12"
+  md="
+	```html
+  <eaf-panel>
+    <div>
+      <div class='h4'>Content heading</div>
+      <div><p>This is the content for this panel.</p></div>
+    </div>
+  </eaf-panel>
+```"
+>
+  <eaf-panel>
+    <div>
+      <div class="h4">Content heading</div>
+      <div>
+        <p>This is the content for this panel.</p>
+      </div>
+    </div>
+  </eaf-panel>
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLE PANEL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled panel </div>
+<eaf-play-section
+  size="12"
+  md="
+	```html
+  <eaf-panel [disable]=true panel-title='disabled'>
+    <div>
+      <div class='h4'>Content heading</div>
+      <div><p>This is the content for this panel.</p></div>
+    </div>
+  </eaf-panel>
+```
+"
+>
+  <eaf-panel panel-title="disabled" [disable]="true">
+    <div>
+      <div class="h4">Content heading</div>
+      <div>
+        <p>This is the content for this panel.</p>
+      </div>
+    </div>
+  </eaf-panel>
+</eaf-play-section>

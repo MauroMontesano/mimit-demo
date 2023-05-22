@@ -11,8 +11,38 @@
       <div class="row w-100 mx-0">
         <div class="col-12 col-lg-8 px-0">
           <div class="d-flex" style="margin-right: 1em">
-            <img src="./img/mimit.jpg" style="height: 60px" alt="Mimit" />
-            <h1 class="ms-3 text-white">Ecosistema Digitale</h1>
+            <!-- <img src="./img/mimit.jpg" style="height: 60px" alt="Mimit" /> -->
+            <!-- <div
+              _ngcontent-uvs-c112=""
+              class="col d-flex flex-nowrap align-items-center"
+            >
+              <img
+                _ngcontent-uvs-c112=""
+                src="./img/repitaliana.svg"
+                alt="Governo Italiano"
+                routerlink="/homepage"
+                placement="top"
+                ngbtooltip="Logo Repubblica"
+                class="header__second-logo d-none d-md-inline pointer"
+                tabindex="0"
+                ng-reflect-router-link="/homepage"
+                ng-reflect-placement="top"
+                ng-reflect-ngb-tooltip="Logo Repubblica"
+              /><span
+                _ngcontent-uvs-c112=""
+                class="header__border border-start border-white text-white me-1 py-1"
+                ><span
+                  _ngcontent-uvs-c112=""
+                  class="mx-2 d-flex flex-nowrap fs-3"
+                  ><strong _ngcontent-uvs-c112="">
+                    Ministero delle Imprese e del Made in Italy
+                  </strong></span
+                ><span _ngcontent-uvs-c112="" class="d-block mx-2 fs-5"
+                  >Portale commissari</span
+                ></span
+              >
+            </div> -->
+            <h1 class="ms-3 text-white">Ecosistema Vigilanza</h1>
           </div>
         </div>
         <!-- <nav aria-label="Contatti" class="col-12 col-lg-4 px-0">
@@ -74,39 +104,15 @@
                   </div>
                 </div>
               </li>
-              <li *ngIf="titoloDropdown" class="nav-item">
-                <div class="dropdown">
-                  <button
-                    aria-expanded="false"
-                    [attr.aria-haspopup]="_dropdownActions ? true : false"
-                    class="btn nav-link px-2"
-                    [ngClass]="{ 'dropdown-toggle': _dropdownActions }"
-                    [attr.data-toggle]="_dropdownActions ? 'dropdown' : null"
-                    id="headerDropdown2"
-                    [title]="titoloDropdown"
-                    type="button"
-                  >
-                    <span class="fas fa-question-circle" title="icona"></span>
-                    <span class="header__dropdown-text">{{
-                      titoloDropdown
-                    }}</span>
-                  </button>
-                  <div
-                    aria-labelledby="headerDropdown2"
-                    class="dropdown-menu dropdown-menu-right"
-                  >
-                    <eaf-action
-                      *ngFor="let action of _dropdownActions"
-                      [action]="action"
-                      [extraClass]="'dropdown-item'"
-                    ></eaf-action>
-                  </div>
-                </div>
-              </li>
             </ul>
           </div>
           <div class="d-flex align-items-center">
-            <i class="fa-solid fa-bell fa-shake fa-xl" style="color: red"></i>
+            <i
+              mimitNotification
+              [badge]="4"
+              class="fa-solid fa-bell fa-shake fa-2xl"
+              style="color: red"
+            ></i>
           </div>
         </div>
       </div>

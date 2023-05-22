@@ -1,0 +1,92 @@
+{
+	"ESEMPIO": {
+		"SEMPLICE": "Esempio semplice",
+		"CON_PARAMETRI": "Il parametro è {{value}}."
+	},
+	
+	"LABEL": { "REQUIRED" : "Questo campo è obbligatorio"},
+	"BUTTON": {
+		"BACK": "< Indietro",
+		"SAVE_AND_CONTINUE": "Continua >",
+		"EXIT_WIP": "Annulla lavorazione",
+		"SAVE": "Salva",
+		"CHOOSE": "Scegli",
+		"RESET": "Azzera",
+		"SEARCH": "Filtra",
+		"ANTEPRIMA": "Anteprima",
+		"REJECT_DOCUMENT": "Respingi",
+		"FORWARD_TO_ANOTHER_HQ": "Inoltra ad  altra sede",
+		"PERSON": "Inizia lavorazione",
+		"NUOVO_EVENTO": "NUOVO EVENTO",
+		"ASSOCIA": "ASSOCIA",
+		"PERSONAL_ROLES": "RUOLI PERSONA",
+		"CANCEL_WIP": "Annulla lavorazione",
+		"SEARCH_EMPLOYEE": "CERCA DATORE",
+		"DOCASSOCIARE": "Documenti da associare",
+		"EJECT": "Estrai dal fascicolo",
+		"CONFIRM": "Conferma",
+		"CREATE": "Crea",
+		"CANCEL": "Annulla",
+		"CLOSE": "Chiudi",
+		"RETURN_TO_LIST": "Torna alla lista",
+		"OPEN_PDF":"Apri il pdf"
+	},
+	"INPUT": {
+		"PAGE_SIZE": "Elementi per pagina",
+		"SELECT_PLACEHOLDER": "- seleziona opzione -",
+		
+		"FROM": "da",
+		"TO": "a",
+		"DDATE": {
+			"LABEL": "Data",
+			"FROM": "da",
+			"TO": "a"
+		}
+		
+	},
+	"TOOLTIP": {
+		"PROVA": {
+			"TITLE": "Nome",
+			"DESCRIPTION": "QUESTO E' IL MEX PRESO DA IT.JSON"
+		}
+	},
+	"ERROR": {
+		"TEST": "PARAMETRICO {{mex}}",
+        "GENERIC": "C'è stato un errore imprevisto. Contattare l'assistenza se il problema persiste",
+        "NO_AUTHENTICATED": "Utente non autenticato!",
+		"NO_AUTHORIZED": "Non sei autorizzato a eseguire questa azione",
+		"REQUIRED": "Campo obbligatorio",
+		"LENGTH": "Lunghezza massima {{maxValue}} caratteri",
+		"INVALID": "{{value}} non valido",
+		"ALREADY_EXIST": "{{value}} già esistente",
+		"DATA_NOT_EXIST": "Dati {{value}} non presenti",
+		"REGEX": "Formato non valido",
+		"DOCUMENT_RESERVATION_ERROR": "Non è possibile iniziare la lavorazione del documento",
+		"MAX_LENGTH": "Numero caratteri consentiti superato ({{maxValue}})",
+		
+		"DATE": {
+			"LESS_THAN": "Data {{firstDate}}\nanteriore alla\ndata {{secondDate}}",
+			"LESS_OR_EQUAL_THAN": "Data {{firstDate}}\nanteriore o uguale\nalla data {{secondDate}}",
+			"GREATER_THAN": "Data {{firstDate}}\nposteriore alla\ndata {{secondDate}}",
+			"GREATER_OR_EQUAL_THAN": "Data {{firstDate}}\nposteriore o uguale\nalla data {{secondDate}}",
+			"BETWEEN": "La Data {{thisDate}}\ndeve essere posteriore\nalla data {{afterDate}}\ne anteriore alla data\n{{beforeDate}}"
+		},
+		"DECIMAL": {
+			"INVALID": "Numero non valido"
+		},
+		"NUMBER": {
+			"INVALID": "Numero non valido",
+			"NEGATIVE": "Il valore deve essere positivo",
+			"NOT_A_NUMBER": "Il campo deve contenere solo numeri",
+			"NOT_A_YEAR": "Inserisci un anno valido (1950-2050)",
+			"NO_ZERO_NUMBER": "Inserisci un valore diverso da €0,00",
+			"INTERVAL_INVALID": "Intervallo numerico non valido"
+		}
+	},
+	"WARNING": {
+		"ALREADY_EXIST": "{{value}} già esistente",
+		"DATA_NOT_EXIST": "Dati {{value}} non presenti"
+    }
+   
+    
+}

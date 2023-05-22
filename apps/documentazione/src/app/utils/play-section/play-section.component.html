@@ -1,0 +1,11 @@
+<!-- prettier-ignore -->
+<div class="row">
+	<div class="h3">{{title}}</div>
+	<div class="col-md-{{size}}">
+		<ng-content ></ng-content>
+		<div class="playvalue" *ngIf="input"><b >Value: </b> {{input.formControl.value}}</div>
+		<div class="playvalue" *ngIf="inputJson"><b >JSON: </b> {{inputJson.formControl.value|json}}</div>
+		
+	</div>
+	<markdown class="col-md-{{size}}"></markdown>
+</div>

@@ -1,0 +1,8 @@
+<p>
+  Somma: {{ form.get('somma').value }}
+  <eaf-button title="aggiungi" (click)="prova()"></eaf-button>
+</p>
+
+<ng-template #template1>
+  <eaf-form2 (valore)="aggiungi($event)"></eaf-form2>
+</ng-template>

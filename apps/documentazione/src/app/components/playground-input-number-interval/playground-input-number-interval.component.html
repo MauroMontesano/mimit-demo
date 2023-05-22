@@ -1,0 +1,180 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Number interval
+	This element is used in a form as number interval input.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+  | [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+	| [fromLabel] | string | Label to be used for the 'from' input. |
+	| [toLabel] | string | Label to be used for the 'to' input. |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [error-labels] | ErrorLabel[] | This is used to diseaf-play errors linked with this form element. |
+	| [placeholder] | i18n Key | This is the default input text. |
+	| [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+	| [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+	| [disable-input] | boolean | If true the input is disabled. Note: in this case the placeholder is hidden. |
+	| [actions] | ActionItem[] | Actions diseaf-played on the right of input. |
+	| [warning] | string | A warning message that will always diseaf-play bottom the input. |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required interval</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number-interval
+  label="Required interval label"
+  size="12|12|12|12"
+  ext-id="unique-id-required"
+  [formControl]="form.getFormControl("required")"
+  [error-labels]="errors["required"]"
+  [tooltip]="tooltip"
+  placeholder="Required"
+  fromLabel="From field"
+  toLabel="To field"
+  ></eaf-input-number-interval>
+```'
+>
+  <eaf-input-number-interval
+    label="Required interval label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl('required')"
+    [error-labels]="errors['required']"
+    [tooltip]="tooltip"
+    placeholder="Required"
+    fromLabel="From field"
+    toLabel="To field"
+  ></eaf-input-number-interval>
+  {{ form.getFormControl('required').value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	INTERVAL WITH WARNING
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Interval with warning</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number-interval
+  label="Interval with warning label"
+  size="12|12|12|12"
+  ext-id="unique-id-required"
+  [formControl]="form.getFormControl("warning")"
+  [error-labels]="errors["warning"]"
+  placeholder="Required"
+  warning="I am a warning."
+  ></eaf-input-number-interval>
+```'
+>
+  <eaf-input-number-interval
+    label="Interval with warning label"
+    size="12|12|12|12"
+    ext-id="unique-id-required"
+    [formControl]="form.getFormControl('warning')"
+    [error-labels]="errors['warning']"
+    placeholder="Required"
+    warning="I am a warning."
+  ></eaf-input-number-interval>
+  {{ form.getFormControl('warning').value | json }}
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED INTERVAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled interval</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number-interval
+  label="Disabled interval label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("disabled")"
+  placeholder="I will not be shown."
+  ></eaf-input-number-interval>
+```'
+>
+  <eaf-input-number-interval
+    label="Disabled interval label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('disabled')"
+    placeholder="I will not be shown."
+    [disable-input]="true"
+  ></eaf-input-number-interval>
+</eaf-play-section>
+
+<!--
+	*************************
+	READONLY INTERVAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Readonly interval</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number-interval
+  label="Readonly interval label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("readonly")"
+  placeholder="I will not be shown."
+  ></eaf-input-number-interval>
+```'
+>
+  <eaf-input-number-interval
+    label="Readonly interval label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('readonly')"
+    placeholder="I will not be shown."
+    [readonly-input]="true"
+  ></eaf-input-number-interval>
+</eaf-play-section>
+
+<!--
+	*************************
+	INTERVAL WITH ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Interval with actions</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number-interval
+  label="Interval with actions label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("actions")"
+  [actions]="actions"
+  [error-labels]="errors["actions"]"
+  placeholder="Interval with actions placeholder"
+  ></eaf-input-number-interval>
+```'
+>
+  <eaf-input-number-interval
+    label="Interval with actions label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('actions')"
+    [actions]="actions"
+    [error-labels]="errors['actions']"
+    placeholder="Interval with actions placeholder"
+  ></eaf-input-number-interval>
+</eaf-play-section>

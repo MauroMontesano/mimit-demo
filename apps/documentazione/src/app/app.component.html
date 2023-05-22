@@ -1,0 +1,214 @@
+<!-- <div style="width: 20%; float: left">
+  <eaf-play-menu></eaf-play-menu>
+</div>
+<div style="width: 79%; float: right">
+  <router-outlet></router-outlet>
+</div> -->
+
+<a href="#sidebar-menu" class="visually-hidden-focusable m-2">Vai al menu principale</a>
+<a href="#main" class="visually-hidden-focusable m-2">Vai al contenuto principale</a>
+<header aria-label="Funzioni di servizio">
+  <div class="header-top-dark">
+    <div class="container py-1">
+      <div class="row align-items-center gx-2 gx-md-4">
+        <div class="col d-none d-md-block">
+          <a href="#" class="link-white fw-semibold">Ente appartenenza / Owner</a>
+        </div>
+        <div class="col col-md-auto text-end">
+          <div class="dropdown">
+            <button
+              type="button"
+              id="language"
+              class="btn btn-sm link-white dropdown-toggle"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="visually-hidden">Lingue disponibili:</span>ITA
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="language">
+              <li>
+                <a class="dropdown-item" href="#">ITA<span class="visually-hidden">: italiano</span> </a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#" lang="en">ENG<span class="visually-hidden">: english</span> </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="header-dark">
+    <div class="container py-3 py-md-4">
+      <div class="row align-items-center gx-2 gx-md-4">
+        <div class="col-auto d-block d-md-none">
+          <button
+            type="button"
+            class="navbar-toggler"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-menu"
+            aria-controls="navbar-menu"
+            aria-expanded="false"
+          >
+            <span class="visually-hidden">Apri menu principale</span>
+            <i class="bi bi-list bi-lg"></i>
+          </button>
+        </div>
+        <div class="col-auto">
+          <img src="" alt="" class="logo" />
+        </div>
+        <div class="col">
+          <div class="h1">Nome sito<small>Sottotitolo</small></div>
+        </div>
+        <div class="col-auto d-none d-md-block text-end">
+          <span class="me-3">Seguici su:</span>
+          <ul class="list-inline d-inline-block">
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="Facebook">
+                <i class="bi bi-facebook bi-lg"></i>
+                <span class="visually-hidden">Facebook: apre una nuova finestra</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="Twitter">
+                <i class="bi bi-twitter bi-lg"></i>
+                <span class="visually-hidden">Twitter: apre una nuova finestra</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="Instagram">
+                <i class="bi bi-instagram bi-lg"></i>
+                <span class="visually-hidden">Instagram: apre una nuova finestra</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="YouTube">
+                <i class="bi bi-youtube bi-lg"></i>
+                <span class="visually-hidden">YouTube: apre una nuova finestra</span>
+              </a>
+            </li>
+          </ul>
+          <form name="" action="" class="navbar-form">
+            <label for="search" class="visually-hidden">Cerca nel sito:</label>
+            <div class="input-group-TODO input-group-lg">
+              <input type="text" id="search" name="search" class="form-control border-white" placeholder="Cerca..." />
+              <button type="submit" class="btn btn-outline-white">
+                <i class="bi bi-search"></i>
+                <span class="visually-hidden">Cerca</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-auto">
+      <eaf-sidebar></eaf-sidebar>
+    </div>
+    <div class="col">
+      <main id="main"><router-outlet></router-outlet></main>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-dark">
+    <div class="container py-3 py-md-4">
+      <div class="row align-items-center gx-2 gx-md-4">
+        <div class="col-auto">
+          <img src="" alt="" class="logo" />
+        </div>
+        <div class="col">
+          <div class="h1"><span class="visually-hidden">Informazioni su </span>Nome sito</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-4">
+          <hr />
+          <a href="#" class="link-white">Amministrazione trasparente</a>
+          <hr />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-lg-8">
+          <div class="h2">Recapiti e contatti</div>
+          <hr />
+          <div class="row">
+            <div class="col-12 col-sm">
+              <p>Recapiti: <br />Indirizzo</p>
+            </div>
+            <div class="col-12 col-sm">
+              <p>
+                Contatti:
+                <br />
+                <a href="mailto:" class="link-white">mail@mail.it</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="h2">Seguici su</div>
+          <hr />
+          <ul class="list-inline d-inline-block">
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="Facebook">
+                <i class="bi bi-facebook bi-lg"></i>
+                <span class="visually-hidden">Facebook: apre una nuova finestra</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="Twitter">
+                <i class="bi bi-twitter bi-lg"></i>
+                <span class="visually-hidden">Twitter: apre una nuova finestra</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="Instagram">
+                <i class="bi bi-instagram bi-lg"></i>
+                <span class="visually-hidden">Instagram: apre una nuova finestra</span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" target="_blank" class="link-white me-2" title="YouTube">
+                <i class="bi bi-youtube bi-lg"></i>
+                <span class="visually-hidden">YouTube: apre una nuova finestra</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <hr />
+          <div class="h2 visually-hidden">Altre informazioni</div>
+          <ul class="list-inline d-inline-block me-3">
+            <li class="list-inline-item">
+              <a href="#" class="link-white">Link utili</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="link-white">Dichiarazione di accessibilità</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="link-white">Note legali</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="link-white">Privacy</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#" class="link-white">Cookie</a>
+            </li>
+          </ul>
+          <strong>Ente appartenenza / Owner</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- <eaf-nav-bar [floatingNavbar]="false" [startOpen]="true" [title]="'Documentazione Webkit'">
+  <div body>
+    <router-outlet></router-outlet>
+  </div>
+</eaf-nav-bar>
+<eaf-multi-modal-viewer></eaf-multi-modal-viewer> -->

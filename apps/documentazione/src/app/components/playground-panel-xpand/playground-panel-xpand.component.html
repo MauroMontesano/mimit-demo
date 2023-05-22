@@ -1,0 +1,146 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Panel xpand
+  This element is a panel with optional accordion behavior, actions, and inside panel template.
+  It is used both for both accordions and expandable panels. If you need an accordion, i.e. only one panel
+  can be opened at a time, wrap the component within an  "AccordionManager".
+
+  -------------------------------------------------------------------------
+  | [Input] / (Output) | Type | Description |
+  |----------------------|-------|----------------------------------------|
+  | [panelTitle] | i18n Key or String | this will be use to define title. Can be a string or a i18n key |
+  | [i18n] | i18n placeholder map | it's a map key value to replace some placeholder in i18n message |
+  | [panelContent] | template | Template used to fill the space beetween title and actions. It will share a model with the template. |
+  | [accordion] | template | Template used for the accordion. It will share a model with the template. |
+  | [actions] | ActionsItem [] | An array of action items used in the actions section. |
+  | [model] | any | The model that the panel will share with templates section. |
+  | [isOpen] | boolean | Whether the accordion will be initially open. Default false. |
+  | [editMode] | number or Function | Passed to have the button "edit" in the accordion (used only in wizards recap). If number it represent the queryParam path. If function it takes the id of the step |
+  | (toggle) | emitter(boolean) | Emits events when the panel is toggled: true for open, false for closed. |
+  | [elementSizes] | {{'{'}} title?: string, extra?: string, actions?: string } | Set the sizes of panel elements (pass bootstrap pipe string). |
+
+> You can also use class="transparent" on eaf-accordion-manager to made it transparent
+
+</markdown>
+
+<div class="h3">Expandable panels</div>
+<eaf-play-section
+  size="12"
+  md='
+```html
+<eaf-accordion-manager [accordionMode]="false">
+    <li eaf-panel-xpand panel-title="empty panel"></li>
+    <li eaf-panel-xpand panel-title="filled panel" [actions]="tooMuchIcons">
+      <div>
+        This is some content for the expandable panel
+        <ul>
+          <li>this is a sub item</li>
+          <li>this is the second sub item</li>
+          <li>this is the third sub item</li>
+        </ul>
+      </div>
+    </li>
+    <li eaf-panel-xpand panel-title="panel with middle extras" [accordion]="accordion"></li>
+    <li eaf-panel-xpand panel-title="panel with actions" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+</eaf-accordion-manager>
+```'
+>
+  <eaf-accordion-manager [accordionMode]="false">
+    <!-- <ul class="list-unstyled"> -->
+    <li eaf-panel-xpand panel-title="empty panel"></li>
+    <li eaf-panel-xpand panel-title="filled panel" [actions]="tooMuchIcons">
+      <div>
+        This is some content for the expandable panel
+        <ul>
+          <li>this is a sub item</li>
+          <li>this is the second sub item</li>
+          <li>this is the third sub item</li>
+        </ul>
+      </div>
+    </li>
+    <li eaf-panel-xpand panel-title="panel with middle extras" [accordion]="accordion"></li>
+
+    <li eaf-panel-xpand panel-title="panel with actions" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+    <!-- </ul> -->
+  </eaf-accordion-manager>
+</eaf-play-section>
+
+<div class="h3">Accordions Panels</div>
+<eaf-play-section
+  size="12"
+  md='
+```html
+<eaf-accordion-manager>
+    <li eaf-panel-xpand panel-title="empty panel"></li>
+    <li eaf-panel-xpand panel-title="filled panel" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+    <li eaf-panel-xpand panel-title="panel with middle extras" [accordion]="accordion"></li>
+    <li eaf-panel-xpand panel-title="panel with actions" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+</eaf-accordion-manager>
+```'
+>
+  <eaf-accordion-manager>
+    <li eaf-panel-xpand panel-title="empty panel"></li>
+    <li eaf-panel-xpand panel-title="filled panel" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+    <li eaf-panel-xpand panel-title="panel with middle extras" [accordion]="accordion"></li>
+
+    <li eaf-panel-xpand panel-title="panel with actions" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+  </eaf-accordion-manager>
+</eaf-play-section>
+<ng-template #accordion>
+  <div>This is an accordion</div>
+</ng-template>
+<!-- <ng-template #panelTemplate>
+<div class="label label-success" title="messaggio esplicativo obbligatorio">
+  <span class="icon i-suitcase"></span>
+  <span class="icon i-check-circle"></span>
+</div>
+
+<div class="label label-danger" title="messaggio esplicativo obbligatorio">
+  <span class="icon i-medkit"></span>
+  <span class="icon i-times-circle"></span>
+</div>
+
+<div class="label">
+  <span class="text-danger">Feedback</span>
+</div>
+</ng-template> -->
+
+<eaf-play-section
+  title="class transparent"
+  size="12"
+  md='
+```html
+<eaf-accordion-manager class="transparent" [accordionMode]="false">
+    <li eaf-panel-xpand panel-title="empty panel"></li>
+    <li eaf-panel-xpand panel-title="filled panel" [actions]="tooMuchIcons">
+      <div>
+        This is some content for the expandable panel
+        <ul>
+          <li>this is a sub item</li>
+          <li>this is the second sub item</li>
+          <li>this is the third sub item</li>
+        </ul>
+      </div>
+    </li>
+    <li eaf-panel-xpand panel-title="panel with middle extras" [accordion]="accordion"></li>
+    <li eaf-panel-xpand panel-title="panel with actions" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+</eaf-accordion-manager>
+```'
+>
+  <eaf-accordion-manager class="transparent" [accordionMode]="false">
+    <li eaf-panel-xpand panel-title="empty panel"></li>
+    <li eaf-panel-xpand panel-title="filled panel" [actions]="tooMuchIcons">
+      <div>
+        This is some content for the expandable panel
+        <ul>
+          <li>this is a sub item</li>
+          <li>this is the second sub item</li>
+          <li>this is the third sub item</li>
+        </ul>
+      </div>
+    </li>
+    <li eaf-panel-xpand panel-title="panel with middle extras" [accordion]="accordion"></li>
+
+    <li eaf-panel-xpand panel-title="panel with actions" [accordion]="accordion" [actions]="tooMuchIcons"></li>
+  </eaf-accordion-manager>
+</eaf-play-section>

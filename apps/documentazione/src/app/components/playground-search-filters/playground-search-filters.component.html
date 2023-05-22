@@ -1,0 +1,28 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	This element help to manage filter section.
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|--------------------|------|-------------------------------------------|
+	| [filters] | FilterBase[] | The list of filters that component manage.
+	| [title] | string | The title of panel. |
+	| [headerActions] | ActionsItem[] | A list of action used in the header of panel. |
+	| [actions] | ActionsItem[]  | A list of action in the bottom of panel.|
+	| [configurable] | boolean | if the user can configure the filter order and visibility |
+	| [managePreference] | boolean | if the user can use and save preference of filters |
+	| [managePreferenceKey] | string | the unique key to manage preference of this search | 
+	| [showAdvancedFilter] | boolean  | Show or not the list of advancedFilter |
+	| (searching) | boolean | the button search clicked |
+	| (resetting) | boolean | the butotn reset clicked|
+	
+</markdown>
+
+<eaf-search-filters
+  (resetting)="resetSearch($event)"
+  (searching)="onSearch()"
+  [filters]="filters"
+  [headerActions]="headerActions"
+  [configurable]="true"
+  [managePreference]="true"
+  managePreferenceKey="playground"
+></eaf-search-filters>

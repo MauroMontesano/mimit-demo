@@ -1,0 +1,65 @@
+<div class="h1">Breadcrumbs and Navbar</div>
+<eaf-play-section
+  md="
+	```ts
+	const routes: Routes = [
+	{
+		path: 'form',
+		data: {
+			breadcrumbs: 'Form',
+			icon: 'fa-tachometer',
+			disableBreadcrumbLink: true,
+		},
+		children: [
+			{
+				path: 'upload',
+				component: PlaygroundUploadComponent,
+				data: {
+					breadcrumbs: 'File Upload',
+				},
+			},
+			{
+				path: 'form-sample',
+				component: PlaygroundFormComponent,
+				data: {
+					breadcrumbs: 'Form Sample',
+				},
+			},
+			{
+				path: 'autocomplete',
+				component: PlaygroundAutocompleteComponent,
+				data: {
+					breadcrumbs: 'Autocomplete',
+					icon: 'fa-tachometer',
+				},
+			},
+			...
+```
+"
+>
+  <div>
+    Since the "navbar" section is also used as the navigation component for these docs, this section will cover
+    informations for both breadcrumbs and navbar
+  </div>
+  <div>
+    The navbar will automatically build the menu according to the routing of your application (defined as you can see
+    here). If you want to remove some values you can make a copy of the "this.route.config" value and edit it, passing
+    it with the [config] attribute
+  </div>
+  <div>
+    The breadcrumbs will use the routing too, building its path from the current route. Unlike the navbar, you can't
+    edit the breadcrumbs behavior
+  </div>
+  <div>
+    Values inside data are used both by the navbar and the breadcrumb.
+    <ul>
+      <li><strong>breadcrumbs</strong>: name of the route</li>
+      <li><strong>icon</strong>: icon in the menu (fontawesome class)</li>
+      <li>
+        <strong>disableBreadcrumbLink</strong>: Wheter or not a certain part of the breadcrumbs should be clickable
+      </li>
+    </ul>
+  </div>
+</eaf-play-section>
+
+<eaf-breadcrumb></eaf-breadcrumb>

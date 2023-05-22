@@ -1,0 +1,251 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Number input
+	This element is used in a form as number input.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [label] | i18n Key | this will be used for the label (and also as base for the id of the internal input). |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input to guarantee the uniqueness of the internal input id. |
+	| [formControl] | FormControl | Angular Form control to map with this input. |
+	| [size] | BoostrapSize | Size of form group. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|6\|4\'. |
+	| [size-label] | BoostrapSize | Size of label. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-input] | BoostrapSize | Size of input. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [size-messages] | BoostrapSize | Size of message container. String with format 'xs\|sm\|md\|lg' like '12\|12\|6\|3'. Default '12\|12\|12\|12\'. |
+	| [error-labels] | ErrorLabel[] | This is used to display errorLabels linked with this form element. |
+	| [placeholder] | i18n Key | This is the default input text. |
+	| [tooltip] | TooltipModel | Shows a tooltip that explains the input. |
+	| [readonly-input] | boolean | If true the input is readonly. Note: in this case the placeholder is hidden. |
+	| [disable-input] | boolean | If true the input is disabled. Note: in this case the placeholder is hidden. |
+	| [actions] | ActionItem[] | Actions displayed on the right of input. |
+	| [warning] | string | A warning message that will always display bottom the input. |
+	| [min] | number | Minimum value that can be inserted. Defaults to zero. |
+	| [max] | number | Maximum that can be inserted. |
+
+</markdown>
+
+<!--
+	*************************
+	REQUIRED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Required input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Required input label"
+  size="12|12|12|12"
+  ext-id="inputNumberRequired"
+  [formControl]="form.getFormControl("required")"
+  [error-labels]="errorLabels["required"]"
+  placeholder="Required"
+  warning="I am a warning."
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Required input label"
+    size="12|12|12|12"
+    ext-id="inputNumberRequired"
+    [formControl]="form.getFormControl('required')"
+    [error-labels]="errorLabels['required']"
+    placeholder="Required"
+    warning="I am a warning."
+  ></eaf-input-number>
+  {{ form.getFormControl('required').value }}
+</eaf-play-section>
+
+<!--
+	*************************
+	INTEGER AND DECIMAL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with integer and decimal</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Input with integer and decimal label"
+  size="12|12|12|12"
+  ext-id="inputNumberIntDec"
+  [formControl]="form.getFormControl("intDec")"
+  [error-labels]="errorLabels["intDec"]"
+  [decimal]="3"
+  [integer]="2"
+  placeholder="Input with integer and decimal"
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Input with integer and decimal label"
+    size="12|12|12|12"
+    ext-id="inputNumberIntDec"
+    [formControl]="form.getFormControl('intDec')"
+    [error-labels]="errorLabels['intDec']"
+    [decimal]="3"
+    [integer]="2"
+    placeholder="Input with integer and decimal"
+  ></eaf-input-number>
+  {{ form.getFormControl('intDec').value }}
+</eaf-play-section>
+
+<!--
+	*************************
+	MIN MAX
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with min/max</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Input with min max label"
+  size="12|12|12|12"
+  ext-id="inputNumberMinMax"
+  [formControl]="form.getFormControl("minMax")"
+  [error-labels]="errorLabels["minMax"]"
+  min="5"
+  max="20"
+  placeholder="Input with min max"
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Input with min max label"
+    size="12|12|12|12"
+    ext-id="inputNumberMinMax"
+    [formControl]="form.getFormControl('minMax')"
+    [error-labels]="errorLabels['minMax']"
+    [min]="5"
+    [max]="20"
+    placeholder="Input with min max"
+  ></eaf-input-number>
+  {{ form.getFormControl('minMax').value }}
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Disabled input label"
+  size="12|12|12|12"
+  ext-id="inputNumberDisabled"
+  [formControl]="form.getFormControl("disabled")"
+  [disable-input]="true"
+  placeholder="This placeholder will be hidden."
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Disabled input label"
+    size="12|12|12|12"
+    ext-id="inputNumberDisabled"
+    [formControl]="form.getFormControl('disabled')"
+    [disable-input]="true"
+    placeholder="This placeholder will be hidden."
+  ></eaf-input-number>
+</eaf-play-section>
+
+<!--
+	*************************
+	READONLY
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Readonly input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Readonly input label"
+  size="12|12|12|12"
+  ext-id="inputNumberReadOnly"
+  [formControl]="form.getFormControl("readonly")"
+  [readonly-input]="true"
+  placeholder="This placeholder will be hidden."
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Readonly input label"
+    size="12|12|12|12"
+    ext-id="inputNumberReadOnly"
+    [formControl]="form.getFormControl('readonly')"
+    [readonly-input]="true"
+    placeholder="This placeholder will be hidden."
+  ></eaf-input-number>
+</eaf-play-section>
+
+<!--
+	*************************
+	TOOLTIP
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Tooltip input</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Tooltip input label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("tooltip")"
+  [error-labels]="errorLabels["tooltip"]"
+  [tooltip]="tooltip"
+  placeholder="Tooltip number input"
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Tooltip input label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('tooltip')"
+    [tooltip]="tooltip"
+    [error-labels]="errorLabels['tooltip']"
+    placeholder="Tooltip number input"
+  ></eaf-input-number>
+  {{ form.getFormControl('tooltip').value }}
+</eaf-play-section>
+
+<!--
+	*************************
+	ACTIONS
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Input with actions</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-input-number
+  label="Input with actions label"
+  size="12|12|12|12"
+  [formControl]="form.getFormControl("actions")"
+  [error-labels]="errorLabels["actions"]"
+  [actions]="actions"
+  placeholder="Input with actions placeholder"
+  ></eaf-input-number>
+```'
+>
+  <eaf-input-number
+    label="Input with actions label"
+    size="12|12|12|12"
+    [formControl]="form.getFormControl('actions')"
+    [error-labels]="errorLabels['actions']"
+    [actions]="actions"
+    placeholder="Input with actions placeholder"
+  ></eaf-input-number>
+  {{ form.getFormControl('actions').value }}
+</eaf-play-section>

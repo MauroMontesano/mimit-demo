@@ -1,0 +1,58 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Filter config
+	This element is used as filter configuration panel.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [fields] | SportSearchFilter[] | List of filters for this search. |
+  | (fieldConfigChanged) | SportSearchFilter[] | List of filters rearranged by the user. |
+</markdown>
+
+<!--
+	*************************
+	BASIC FILTER CONFIG
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic filter config</div>
+<eaf-play-section
+  size="12"
+  md='
+	```html
+  <sport-filter-config
+  [fields]="fields"
+	></sport-filter-config>
+```'
+>
+  <eaf-filter-config [fields]="fields" (save)="onSave($event)"></eaf-filter-config>
+  <div>Visible fields: {{ visibleFields | json }}</div>
+  <div>Hidden fields: {{ hiddenFields | json }}</div>
+</eaf-play-section>
+
+<!--
+	*************************
+	BASIC FILTER CONFIG
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Filter config in modal</div>
+<eaf-play-section
+  size="12"
+  md='
+	```html
+  <sport-filter-config
+  [fields]="fields"
+	></sport-filter-config>
+```'
+>
+  <eaf-modal #filterModal>
+    <div class="h1">Impostazioni campi di ricerca</div>
+    <small class="text-muted">Ordina le voci trascinandole e premi il tasto "salva".</small>
+    <eaf-filter-config [fields]="fields" (save)="onSave($event)"></eaf-filter-config>
+    <div>Visible fields: {{ visibleFields | json }}</div>
+    <div>Hidden fields: {{ hiddenFields | json }}</div>
+  </eaf-modal>
+  <eaf-button title="open filter config" color="primary" (click)="openFilterModal()"></eaf-button>
+</eaf-play-section>

@@ -1,0 +1,187 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Action
+  Represents an action. 
+  Based on the **ActionItem** model.
+
+	-------------------------------------------------------------------------
+	| [Input]/[Output] | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [action] | ActionItem | The action to execute. |
+	| [model] | BaseModel | The item on which to execute the action. |
+	| [onlyIcon] | boolean | Whether to show only the icon and not the action name. |
+	| [disabled] | boolean | Whether the action should be disabled. |
+	| [dynamicTitle] | string | Overrides the actionItem name. |
+  | [extraClass] | string | Extra classes to add. |
+  | [loading] | boolean | if true change icon in spinner and disable the action |
+</markdown>
+
+<!--
+	*************************
+	BASIC ACTION
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic action</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-action
+  [action]="basicAction"
+  ></eaf-action>
+```
+
+```typescript
+# TS
+this.basicAction = new ActionItem(
+  "Basic action",
+  () => {
+    alert("Basic action triggered");
+  },
+  undefined,
+  "PRIMARY"
+);
+```'
+>
+  <eaf-action [action]="basicAction"></eaf-action>
+</eaf-play-section>
+<!--
+	*************************
+	ACTION WITH MODEL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Action with model</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <ul>
+    <li *ngFor="let item of items" class="my-1">
+      <eaf-action
+      [action]="modelAction"
+      [model]="item"
+      ></eaf-action>
+    </li>
+  </ul>
+```
+
+```typescript
+# TS
+this.modelAction = new ActionItem(
+  "BUTTON.FOLDER",
+  (item,a) => {
+    this.modelActionMethod(item);
+  },
+  "bomb",
+  "PRIMARY",
+);
+```'
+>
+  <ul>
+    <li *ngFor="let item of items" class="my-1">
+      <eaf-action [action]="modelAction" [model]="item"></eaf-action>
+    </li>
+  </ul>
+</eaf-play-section>
+
+<!--
+	*************************
+	DYNAMIC TITLE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Dynamic title</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <ul>
+    <li *ngFor="let item of items">
+      <eaf-action
+      [dynamicTitle]="item.name"
+      [action]="dynamicAction"
+      [model]="item"
+      ></eaf-action>
+    </li>
+  </ul>
+```
+
+```typescript
+# TS
+this.items = [
+{ name: "first", value: "firstValue" },
+{ name: "second", value: "secondValue" },
+];
+this.dynamicAction = new ActionItem(
+  "Will not be shown",
+  (item,a ) => {
+    this.dynamicActionMethod(item);
+  },
+  "bathtub",
+);
+```'
+>
+  <ul>
+    <li *ngFor="let item of items">
+      <eaf-action [dynamicTitle]="item.name" [action]="dynamicAction" [model]="item"></eaf-action>
+    </li>
+  </ul>
+</eaf-play-section>
+
+<!--
+	*************************
+	ONLYICON ACTION
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Only icon action</div>
+<eaf-play-section
+  md='
+  ```html
+  # HTML
+  <eaf-action
+  [onlyIcon]="true"
+  [action]="onlyIconAction"
+  ></eaf-action>
+```
+```typescript
+  # TS
+  this.onlyIconAction = new ActionItem(
+    "Neither this will be shown",
+    () => {
+      alert("action without parameters");
+    },
+    "bank",
+  );
+  this.b
+```'
+>
+  <eaf-action [onlyIcon]="true" [action]="onlyIconAction"></eaf-action>
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED ACTION
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled action</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-action
+  [action]="basicAction"
+  [disabled]="true"
+  ></eaf-action>
+
+  <eaf-action
+   [action]="secondaryRedDisabledAction"
+   [disabled]="true">
+   </eaf-action>
+```'
+>
+  <li><eaf-action [disabled]="true" [action]="basicAction"></eaf-action></li>
+  <li><eaf-action [disabled]="true" [action]="secondaryRedDisabledAction"></eaf-action></li>
+</eaf-play-section>

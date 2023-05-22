@@ -1,0 +1,14 @@
+<div class="h3">Navbar</div>
+<!-- Do not edit this component unless you want to edit the navigation! It's used as main navigation for the docs -->
+<eaf-nav-bar
+  [floatingNavbar]="false"
+  [startOpen]="true"
+  [dropdownActions]="dropdownActions"
+  title="Nome servizio / applicativo"
+  [config]="config"
+>
+  <div header><div class="h1">Intestazione di primo livello</div></div>
+  <div body>
+    <router-outlet></router-outlet>
+  </div>
+</eaf-nav-bar>

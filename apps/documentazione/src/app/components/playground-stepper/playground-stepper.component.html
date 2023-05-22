@@ -1,0 +1,81 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+  # Stepper
+  Used to show steps in a form wizard.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+  | [steps] | Step | Represents wizard steps. |
+	| [activeStep] | Step | Step that should be set to active. |
+  | (activeStepChanged) | EventEmitter(Step) | Event emitted a step is clicked. |
+  
+</markdown>
+
+<!--
+	*************************
+	BASE PANEL
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Basic stepper</div>
+<eaf-play-section
+  size="12"
+  md='
+  ```html
+  # HTML
+  <eaf-stepper [steps]="steps" (activeStepChange)="onActiveStepChange($event)"></eaf-stepper>
+```
+
+```typescript
+  # TS
+  ngOnInit() {
+    const firstStep = new Step(
+      "step1", // id
+      "first step", // title
+      false, // disabled = false
+      false, // hasError = false
+      false, // hasWarning = false
+      false, // visited = false
+      true, // visible = true
+    );
+    const secondStep = new Step(
+      "step2",
+      "second step"
+    );
+    const thirdStep = new Step(
+      "step3",
+      "third step"
+    );
+    const fourthStep = new Step(
+      "step4",
+      "fourth step with error",
+      false,
+      true
+    );
+    const fifthStep = new Step(
+      "step5",
+      "fifth step disabled",
+      true
+    );
+    const sixthStep = new Step(
+      "step6",
+      "sixth step with warning",
+      false,
+      false,
+      true
+    );
+    this.steps.push(firstStep);
+    this.steps.push(secondStep);
+    this.steps.push(thirdStep);
+    this.steps.push(fourthStep);
+    this.steps.push(fifthStep);
+    this.steps.push(sixthStep);
+  }
+  onActiveStepChange(step: Step): void {
+    this.activeStep = step;
+  }
+```'
+>
+  <eaf-stepper [activeStep]="activeStep" [steps]="steps" (activeStepChange)="onActiveStepChange($event)"></eaf-stepper>
+</eaf-play-section>

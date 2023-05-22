@@ -1,0 +1,257 @@
+<!-- prettier-ignore -->
+<markdown ngPreserveWhitespaces>
+	# Button
+	This element is used as button.
+
+	-------------------------------------------------------------------------
+	| [Input] / (Output) | Type | Description |
+	|----------------------|-------|----------------------------------------|
+	| [title] | string | Defines title property. |
+  | [color] | string | For selecting color (look) of button. One of 'default', 'primary', 'success', 'warning', 'danger'. |
+	| [ext-id] | string without internal spaces | For the cases where label itsn't unique you have to define this input. |
+	| [icon] | string | Defines fa-icon to be shown at the left of the button. |
+	| [iconRight] | string | Defines fa-icon to be shown at the right of the button. |
+	| [onlyIcon] | boolean | Defines fa-icon to be shown alone without text |
+	| [type] | string | Defines type of button |
+	| [extraClass] | string | Additional classes to be added to the button. |
+  | [isLink] | boolean | Whether the button should appear as a link. |
+	| [disabled] | boolean | Disables the button. |
+	| (click) | EventEmitter | Emits button click event. |
+</markdown>
+
+<!--
+	*************************
+	BUTTON TITLE
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Button title</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+  title="This is the default button with a title"
+	></eaf-button>
+```'
+>
+  <eaf-button title="This is the default button with a title"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	PRIMARY BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Primary button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This is a primary button"
+	color="primary"
+	></eaf-button>
+```'
+>
+  <eaf-button title="This is a primary button" color="primary"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	SUCCESS BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Success button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This is a success button"
+	color="success"
+	></eaf-button>
+```'
+>
+  <eaf-button title="This is a success button" color="success"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	WARNING BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Warning button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This is a warning button"
+	color="warning"
+	></eaf-button>
+```'
+>
+  <eaf-button title="This is a warning button" color="warning"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	DANGER BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Danger button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This is a danger button"
+	color="danger"
+	></eaf-button>
+```'
+>
+  <eaf-button title="This is a danger button" color="danger"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	EXTRA CLASS BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Extra class button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This button has an extra class"
+	extraClass="make-my-text-yellow"
+	></eaf-button>
+```'
+>
+  <style>
+    .make-my-text-yellow {
+      color: yellow !important;
+    }
+  </style>
+  <eaf-button title="This button has an extra class" extraClass="make-my-text-yellow"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	LEFT ICON BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Left icon button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This button has a left icon"
+	icon="search"
+	color="primary"
+	></eaf-button>
+```'
+>
+  <eaf-button title="This button has a left icon" icon="search" color="primary"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	RIGHT ICON BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Right icon button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This button has a right icon"
+	color="danger"
+	iconRight="bathtub"
+></eaf-button>
+```'
+>
+  <eaf-button title="This button has a right icon" color="danger" iconRight="bathtub"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	ONLY ICON BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Only icon button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This button has an only icon"
+	color="primary"
+	onlyIcon="true"
+	icon="square"
+></eaf-button>
+```'
+>
+  <eaf-button icon="square" [onlyIcon]="true" title="This button has an only icon" color="primary"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	LINK BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Link button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This button looks like a link"
+	[isLink]="true"
+></eaf-button>
+```'
+>
+  <eaf-button title="This button looks like a link" [isLink]="true"></eaf-button>
+</eaf-play-section>
+
+<!--
+	*************************
+	CLICK BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Click button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="Count my clicks"
+	(click)="onClick($event)"
+></eaf-button>
+```'
+>
+  <eaf-button title="Count my clicks" (click)="onClick($event)"></eaf-button>
+  {{ clickCounter }}
+</eaf-play-section>
+
+<!--
+	*************************
+	DISABLED BUTTON
+	*************************
+-->
+<!-- prettier-ignore -->
+<div class="h3">Disabled button</div>
+<eaf-play-section
+  md='
+	```html
+  <eaf-button
+	title="This button is disabled"
+	[disabled]="true"
+></eaf-button>
+```'
+>
+  <eaf-button title="This button is disabled" [disabled]="true"></eaf-button>
+</eaf-play-section>
